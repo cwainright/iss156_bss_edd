@@ -17,7 +17,7 @@ rm(list=ls())
 RODBC::odbcCloseAll() # close any open db connections
 
 #----- load project functions
-source("scripts/edd/buildEDD.R")
+source("modules/make_edd.R")
 
 #----- specify NCRN db
 # db <- "C:/Users/cwainright/OneDrive - DOI/Documents - NPS-NCRN-Biological Stream Sampling/General/Annual-Data-Packages/2022/NCRN_MBSS/NCRN_MBSS_be_2022.mdb"# "old" database https://doimspp.sharepoint.com/:u:/r/sites/NCRNBiologicalStreamSampling/Shared%20Documents/General/Annual-Data-Packages/2022/NCRN_MBSS/NCRN_MBSS_be_2022.mdb?csf=1&web=1&e=jjeJIg
@@ -25,3 +25,4 @@ source("scripts/edd/buildEDD.R")
 
 #----- execute script
 make_edd(write = TRUE, db = "data/ncrn/NCRN_MBSS_be_2022.mdb")
+
