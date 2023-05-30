@@ -47,8 +47,8 @@ ncrn_habitat_results <- function(results_list, example){
             
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- df$Event_ID # "Activity_ID" shared field with `real_activities.Activity_ID`
-            real[3] <- df$Characteristic_Name # "Characteristic_Name"  
-            real[4] <- df$long # "Method_Speciation"
+            real[3] <- df$long # df$Characteristic_Name # "Characteristic_Name"  
+            real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$value # "Result_Text"
