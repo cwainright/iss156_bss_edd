@@ -1,4 +1,5 @@
-# a module for `buildEDDBob()`
+# a module for `make_edd.R`
+# ETL
 options(warn=-1)
 edd_results <- function(
         results_list
