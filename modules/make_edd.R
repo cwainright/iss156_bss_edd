@@ -99,7 +99,17 @@ make_edd <- function(write, db){
                 )
             # activities <- edd_activities(results_list, bob_2021_water_chem)
             locations <- edd_locations(results_list, marc2022, marc2021, habitat_marc2021, habitat_marc2022)
-            results <- edd_results(results_list, marc2022, marc2021, habitat_marc2021, habitat_marc2022)
+            results <- edd_results(
+                results_list
+                ,marc2022
+                ,marc2021
+                ,habitat_marc2021
+                ,habitat_marc2022
+                ,bob_2021_macroinvert
+                ,bob_2021_water_chem
+                ,bob_2022_wq
+                ,bob_2022_macroinvert
+            )
             
             #----- compile data for EDD tabs into a list
             list_of_datasets <- list("Locations" = locations, "Activities" = activities, "Results" = results)
