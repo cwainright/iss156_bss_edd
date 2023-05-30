@@ -1,4 +1,5 @@
-# a module for `buildEDD()`
+# a module for `edd_results()`
+# ETL results_list into edd.results
 options(warn=-1)
 ncrn_benthic_habitat_results <- function(results_list, example){
     tryCatch(

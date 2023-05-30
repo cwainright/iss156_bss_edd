@@ -1,7 +1,5 @@
-#--------------------------------------------------------------------------
-#----- Make Marc's 2022 data the required `EDD` format-----------------
-#--------------------------------------------------------------------------
-# a module for `buildEDD()`
+# a module for `edd_results()`
+# ETL marc2022 into edd.results
 options(warn=-1)
 marc_2022_fish_results <- function(marc2022, results_list, example){
     tryCatch(

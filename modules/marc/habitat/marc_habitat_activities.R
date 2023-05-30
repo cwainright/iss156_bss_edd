@@ -1,4 +1,5 @@
-# a module for `buildEDD()`
+# a module for `edd_activities()`
+# ETL habitat_marc2022 and habitat_marc2021 into edd.activities
 options(warn = -1)
 marc_habitat_activities <- function(habitat_marc2022, habitat_marc2021, example, results_list){
     tryCatch(

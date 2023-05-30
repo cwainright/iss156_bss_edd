@@ -1,4 +1,5 @@
-# a module for `buildEDD()`
+# a module for `edd_activities()`
+# ETL results_list into edd.activities
 options(warn=-1)
 ncrn_chemistry_activities <- function(results_list, example){
     tryCatch(

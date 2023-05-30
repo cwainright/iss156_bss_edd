@@ -1,4 +1,5 @@
-# a module for `buildEDD()`
+# a module for `edd_activities()`
+# ETL summer_index_marc2022 into edd.activities
 options(warn = -1)
 marc_2022_summer_index_activities <- function(summer_index_marc2022, example, results_list){
     tryCatch(
