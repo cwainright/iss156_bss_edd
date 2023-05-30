@@ -126,7 +126,7 @@ make_edd <- function(write, db){
             if(length(list_of_datasets)==3){
                 if(nrow(list_of_datasets[[1]]>0) & nrow(list_of_datasets[[2]]>0) & nrow(list_of_datasets[[3]]>0)){
                     assign("EDD", list_of_datasets, envir = globalenv()) # save final product to global environment
-                    message("\n\n`make_edd()` successfully produced data views.\nOutput saved as `EDD` in global environment.\n\n")
+                    message("\n\n`make_edd()` executed successfully.\nOutput saved as `EDD` in global environment.\n\n")
                 }
             } else {
                 message("An error occurred when compiling results.")
