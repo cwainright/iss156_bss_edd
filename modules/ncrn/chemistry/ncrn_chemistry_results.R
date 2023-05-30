@@ -18,11 +18,11 @@ ncrn_chemistry_results <- function(results_list, example){
                        measure.vars = measure_vars)
             df <- df %>% subset(variable!="Notes") # notes is already a column
             data.table::setnames(df, "value", "Result_Text")
-            df$Characteristic_Name <- "Stream water chemistry"
+            # df$Characteristic_Name <- "Stream water chemistry"
             # make a lookup table for units and human-readable explanations of $variable
             # from design view of `tbl_Chemistry_Data`
             unit_lookup <- data.frame(variable = unique(df$variable),
-                                      Method_Speciation = c("closed pH value",
+                                      Characteristic_Name = c("closed pH value",
                                                             "acid neutralizing capacity",
                                                             "chloride concentration",
                                                             "nitrate nitrogen concentration",
@@ -68,7 +68,7 @@ ncrn_chemistry_results <- function(results_list, example){
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- df$Event_ID # "Activity_ID" shared field with `real_activities.Activity_ID`
             real[3] <- df$Characteristic_Name# "Characteristic_Name"  
-            real[4] <- df$Method_Speciation # "Method_Speciation"
+            real[4] <- NA # df$Method_Speciation # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$Result_Text # "Result_Text"
