@@ -1,6 +1,6 @@
 # a module for `buildEDD()`
 options(warn = -1)
-marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, results_list){
+marc_2022_summer_index_results <- function(summer_index_marc2022, example, results_list){
     tryCatch(
         expr = {
             #----- load external libraries
@@ -9,45 +9,39 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             suppressWarnings(suppressMessages(library(dplyr)))
             suppressWarnings(suppressMessages(library(readxl)))
             
-            #----- wrangle 2021
-            df2021 <- habitat_marc2021
-            df2021 <- df2021 %>% select(NCRN_Site_ID, c(7:61))
-            measure_vars <- colnames(habitat_marc2021 %>% select(c(7:ncol(habitat_marc2021)))) # the columns we want to melt into `value` and `variable` columns
-            df2021 <- melt(data.table::setDT(df2021), id.vars = c("NCRN_Site_ID"),
-                           measure.vars = measure_vars)
-            df2021 <- dplyr::left_join(df2021, habitat_marc2021 %>% select(NCRN_Site_ID, Unit_Code, Loc_Name, Event_Site_ID, Year, Start_Date), by="NCRN_Site_ID")
-            for(i in 1:nrow(df2021)){
-                df2021$Site_ID[i] <- stringr::str_extract(df2021$Event_Site_ID[i], "[A-Z][A-Z][A-Z][A-Z]-[0-9][0-9][0-9]-[A-Z]")
-            }
-            df2021$Start_Date <- as.character(df2021$Start_Date)
-            
-            #----- wrangle 2022
-            df2022 <- habitat_marc2022
-            id_vars <- colnames(habitat_marc2022)[1] # the column(s) we want to keep as columns
-            measure_vars <- colnames(habitat_marc2022 %>% select(c(2:ncol(habitat_marc2022)))) # the columns we want to melt into `value` and `variable` columns
-            df2022 <- melt(data.table::setDT(df2022), id.vars = id_vars,
-                           measure.vars = measure_vars)
-            data.table::setnames(df2022, "variable", "Site_ID") # rename columns to match df2021
-            data.table::setnames(df2022, "Site", "variable") # rename columns to match df2021
-            df2022$Site_ID <- paste0(df2022$Site_ID, "-N") # add the '-N' suffix so we can xref against `results_list$tbl_Locations`
-            df2022 <- dplyr::left_join(df2022, results_list$tbl_Locations %>% select(Site_ID, NCRN_Site_ID, Unit_Code, Loc_Name), by=c("Site_ID")) %>%
-                mutate(Event_Site_ID = paste0(Site_ID, "-2022"), # create a column `Event_Site_ID`
+            #----- wrangle
+            df <- summer_index_marc2022
+            id_vars <- colnames(df)[1] # the column(s) we want to keep as columns
+            measure_vars <- colnames(df %>% select(c(2:ncol(df)))) # the columns we want to melt into `value` and `variable` columns
+            df <- melt(data.table::setDT(df), id.vars = id_vars,
+                       measure.vars = measure_vars)
+            data.table::setnames(df, "variable", "Site_ID") # rename columns to match df2021
+            data.table::setnames(df, "Site", "variable") # rename columns to match df2021
+            df$Site <- paste0(df$Site, "-N") # add the '-N' suffix so we can xref against `results_list$tbl_Locations`
+            df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(Site_ID, NCRN_Site_ID, Unit_Code, Loc_Name), by=c("Site" = "Site_ID")) %>%
+                mutate(Event_Site_ID = paste0(Site, "-2022"), # create a column `Event_Site_ID`
                        Year = "2022", # create a column `Year`
                        Start_Date = NA) # create a column `Start_Date`
-            df2022 <- df2022 %>% select(colnames(df2021)) # set order of cols to match
-            # extract date
-            tlu_date <- df2022 %>% select(variable, value, Event_Site_ID) %>% subset(variable == "Date" & value != "8") # make a lookup table to grab sample dates
-            tlu_date$value <- as.Date(as.numeric(trimws(tlu_date$value)), origin = "1899-12-30") # 1899-12-30 is MS Excel epoch start
-            df2022 <- subset(df2022, variable != "Date") # get rid of variable == "Date" because Date is its own column
-            df2022 <- dplyr::left_join(df2022, tlu_date %>% select(value, Event_Site_ID), by="Event_Site_ID")
-            df2022$Start_Date <- df2022$value.y
-            df2022$value.y <- NULL
-            data.table::setnames(df2022, "value.x", "value")
-            df2022$Start_Date <- as.character(df2022$Start_Date)
             
-            #----- combine 2021 and 2022
-            df <- rbind(df2021, df2022) # combine
-            df$Activity_ID <- paste0(df$Event_Site_ID, "_", df$variable)
+            # extract date
+            tlu_date <- df %>% select(variable, value, Event_Site_ID) %>% subset(variable == "Date" & value != "8") # make a lookup table to grab sample dates
+            tlu_date$value <- as.Date(as.numeric(trimws(tlu_date$value)), origin = "1899-12-30")
+            df <- subset(df, variable != "Date") # get rid of variable == "Date because Date is its own column
+            df <- dplyr::left_join(df, tlu_date %>% select(value, Event_Site_ID), by="Event_Site_ID")
+            df$Start_Date <- df$value.y
+            df$value.y <- NULL
+            data.table::setnames(df, "value.x", "value")
+            df$Start_Date <- as.character(df$Start_Date)
+            
+            # extract time
+            tlu_time <- df %>% select(variable, value, Event_Site_ID) %>% subset(variable == "Time") # make a lookup table to grab sample times
+            for(i in 1:nrow(tlu_time)){
+                tlu_time$min[i] <- str_sub(tlu_time$value[i], nchar(tlu_time$value[i])-1, nchar(tlu_time$value[i]))
+                tlu_time$hr[i] <- str_sub(tlu_time$value[i], 0, nchar(tlu_time$value[i])-2)
+            }
+            tlu_time$time <- paste0(tlu_time$hr, ":", tlu_time$min)
+            df <- subset(df, variable != "Time")
+            df <- dplyr::left_join(df, tlu_time %>% select(time, Event_Site_ID), by="Event_Site_ID")
             
             #----- use NCRN lookup tables to add values that are missing from Marc's data
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(-c(Unit_Code, Loc_Name, Site_ID)), by=c("NCRN_Site_ID")) # add lookup values
@@ -67,7 +61,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             real[9] <- NA # "Result_Qualifier"
             real[10] <- "Final" # "Result_Status" 
             real[11] <- "Actual" # "Result_Type" 
-            real[12] <- NA # "Result_Comment" 
+            real[12] <- NA # "Characteristic_Name"  # "Result_Comment" 
             real[13] <- NA # "Method_Detection_Limit"
             real[14] <- NA # "Lower_Quantification_Limit"
             real[15] <- NA # "Upper_Quantification_Limit" 
@@ -91,7 +85,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             real[33] <- NA # "Lab_ID"
             real[34] <- NA # "Lab_Remark_Code"
             real[35] <- format(as.Date(df$Start_Date), "%Y-%m-%d") # "Analysis_Start_Date"
-            real[36] <- NA # format(as.Date(df$Start_Date), "%Y-%m-%d") # "Analysis_Start_Time" 
+            real[36] <- NA #format(as.Date(df$Start_Date), "%Y-%m-%d") # "Analysis_Start_Time" 
             real[37] <- "Eastern Time - Washington, DC" # "Analysis_Start_Time_Zone"
             real[38] <- NA # "Lab_Accreditation_Indicator"
             real[39] <- NA # "Lab_Accreditation_Authority_Name" 
@@ -164,7 +158,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             
             message(
                 if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`marc_habitat_results()` executed successfully..."
+                    "`marc_2022_summer_index_results()` executed successfully..."
                 } else {
                     for(i in 1:length(check_df$result != "MATCH")){
                         cat(paste(paste0("`real", check_df$real[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))
