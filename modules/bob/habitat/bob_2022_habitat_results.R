@@ -37,8 +37,8 @@ bob_2022_habitat_results <- function(results_list, bob_2022_hab, example){
             
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- paste0(df$Site, ".b.habitat.", as.character(format(df$`Date sampled`, "%Y%m%d"))) # "Activity_ID" shared field with `real_activities.Activity_ID`
-            real[3] <- df$Characteristic_Name# "Characteristic_Name"  
-            real[4] <- df$variable # "Method_Speciation"
+            real[3] <- df$variable # df$Characteristic_Name# "Characteristic_Name"  
+            real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$value # "Result_Text"
