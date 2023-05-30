@@ -1,6 +1,6 @@
 # a module for `buildEDD()`
 options(warn = -1)
-marc_2022_flow_activities <- function(summer_flow_marc2022, example, results_list){
+marc_2022_summer_exotic_activities <- function(summer_exotic_marc2022, example, results_list){
     tryCatch(
         expr = {
             #----- load external libraries
@@ -10,11 +10,7 @@ marc_2022_flow_activities <- function(summer_flow_marc2022, example, results_lis
             suppressWarnings(suppressMessages(library(readxl)))
             
             #----- wrangle
-            df <- summer_flow_marc2022
-            id_vars <- colnames(df %>% select(c(1:2))) # the column(s) we want to keep as columns
-            measure_vars <- colnames(df %>% select(c(3:ncol(df)))) # the columns we want to melt into `value` and `variable` columns
-            df <- melt(data.table::setDT(df), id.vars = id_vars,
-                       measure.vars = measure_vars)
+            df <- summer_exotic_marc2022
             df$Site <- paste0(df$Site, "-N") # add the '-N' suffix so we can xref against `results_list$tbl_Locations`
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(Site_ID, NCRN_Site_ID, Unit_Code, Loc_Name), by=c("Site" = "Site_ID")) %>%
                 mutate(Event_Site_ID = paste0(Site, "-2022")) # create a column `Event_Site_ID`
@@ -31,7 +27,7 @@ marc_2022_flow_activities <- function(summer_flow_marc2022, example, results_lis
             real[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"
-            real[8] <- "Stream habitat inventory" # "Assemblage_Sampled_Name"
+            real[8] <- "Stream benthic habitat inventory" # "Assemblage_Sampled_Name"
             real[9] <- format(as.Date(df$Date), "%Y-%m-%d") # "Activity_Start_Date"
             real[10] <- NA # "Activity_Start_Time" 
             real[11] <- "Eastern Time - Washington, DC" # "Activity_Start_Time_Zone" 
@@ -107,7 +103,7 @@ marc_2022_flow_activities <- function(summer_flow_marc2022, example, results_lis
             
             message(
                 if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`marc_2022_flow_activities()` executed successfully..."
+                    "`marc_2022_summer_exotic_activities()` executed successfully..."
                 } else {
                     for(i in 1:length(check_df$result != "MATCH")){
                         cat(paste(paste0("`acts", check_df$acts[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))

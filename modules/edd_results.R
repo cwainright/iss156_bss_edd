@@ -64,7 +64,7 @@ edd_results <- function(
             marc_2022_fish_results <- marc_2022_fish_results(marc2022, results_list, example) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_results <- marc_habitat_results(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish results are not in db.tbl_Fish_Data
             marc_2022_summer_index_results <- marc_2022_summer_index_results(summer_index_marc2022, example, results_list)
-            marc_2022_summer_exotic_results <- NA
+            marc_2022_summer_exotic_results <- marc_2022_summer_exotic_results(summer_exotic_marc2022, example, results_list)
             marc_2022_flow_results <- marc_2022_flow_results(summer_flow_marc2022, example, results_list)
             
             #----- combine edd.results

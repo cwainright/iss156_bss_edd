@@ -104,8 +104,20 @@ make_edd <- function(write, db){
                 ,bob_2022_wq
                 ,bob_2022_macroinvert
                 )
-            # activities <- edd_activities(results_list, bob_2021_water_chem)
-            locations <- edd_locations(results_list, marc2022, marc2021, habitat_marc2021, habitat_marc2022)
+            locations <- edd_locations(
+                results_list
+                ,marc2022
+                ,marc2021
+                ,habitat_marc2021
+                ,habitat_marc2022
+                ,summer_index_marc2022
+                ,summer_exotic_marc2022
+                ,summer_flow_marc2022
+                ,bob_2021_macroinvert
+                ,bob_2021_water_chem
+                ,bob_2022_wq
+                ,bob_2022_macroinvert
+            )
             results <- edd_results(
                 results_list
                 ,marc2022

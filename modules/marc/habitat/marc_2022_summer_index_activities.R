@@ -55,7 +55,7 @@ marc_2022_summer_index_activities <- function(summer_index_marc2022, example, re
             real[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"
-            real[8] <- "Stream benthic habitat inventory" # "Assemblage_Sampled_Name"
+            real[8] <- "Stream habitat inventory" # "Assemblage_Sampled_Name"
             real[9] <- format(as.Date(df$Start_Date), "%Y-%m-%d") # "Activity_Start_Date"
             real[10] <- df$time # "Activity_Start_Time" 
             real[11] <- "Eastern Time - Washington, DC" # "Activity_Start_Time_Zone" 
