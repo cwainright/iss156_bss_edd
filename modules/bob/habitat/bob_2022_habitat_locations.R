@@ -1,6 +1,6 @@
 # a module for `buildEDD()`
 options(warn=-1)
-ncrn_benthic_habitat_locations <- function(results_list, example){
+bob_2022_habitat_locations <- function(results_list, bob_2022_hab, example){
     tryCatch(
         expr = {
             #----- load external libraries
@@ -10,14 +10,12 @@ ncrn_benthic_habitat_locations <- function(results_list, example){
             suppressWarnings(suppressMessages(library(readxl)))
             
             # make a flat dataframe from `results_list`
-            df <- results_list$tbl_Benthic_Habitat
-            df <- dplyr::left_join(df, results_list$tbl_Events %>% select(Event_ID, Protocol_ID, Start_Date, Start_Time, Location_ID, Comments, Event_Site_ID, Event_Group_ID), by = "Event_ID")
-            df <- dplyr::left_join(df, results_list$tbl_Protocol %>% select(Protocol_ID, Protocol_Name, Protocol_Version, Version_Date), by = "Protocol_ID")
-            df <- dplyr::left_join(df, results_list$tbl_Meta_Events %>% select(Event_ID, Entered_by), by = "Event_ID")
+            df <- bob_2022_hab %>%
+                dplyr::select(Site, Locality) %>% # keep only the cols we need
+                subset(`Site` %like% "NCRN") # filter out non-site-name entries (sometimes there are reference values entered here)
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(Location_ID, Loc_Name, NCRN_Site_ID, Unit_Code, Dec_Degrees_North, Dex_Degrees_East, Datum, HUC, Reach_Code24,
-                                                                             Elevation, State, County, Catchment_Area), by = "Location_ID")
-            df <- df %>% distinct(Location_ID, .keep_all = TRUE)
-            df$sample_type <- "Stream benthic habitat inventory"
+                                                                             Elevation, State, County, Catchment_Area), by = c("Site" = "NCRN_Site_ID"))
+            df <- df %>% dplyr::distinct(Site, .keep_all = TRUE)
             
             #----- re-build `example` from `results_list`
             # starting point: copy the example dataframe but without data
@@ -26,22 +24,26 @@ ncrn_benthic_habitat_locations <- function(results_list, example){
             
             real[1] <- "NCRN" # "#Org_Code"
             real[2] <- df$Unit_Code # "Park_Code" 
-            real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_activities.Location_ID`
+            real[3] <- df$Site # "Location_ID" shared field with `real_activities.Location_ID`
             real[4] <- df$Loc_Name # "Location_Name"
             real[5] <- "Creek" # "Location_Type"
             real[6] <- as.numeric(sprintf("%.7f", df$Dec_Degrees_North)) # "Latitude"
             for(i in 1:nrow(real)){
                 # catch unrealistic latitude values
-                if(as.numeric(real[i,6])<10){
-                    real[i,6] <- NA
-                }
+                real[i,6] <- ifelse(
+                    real[i,6]<10,
+                    NA,
+                    real[i,6]
+                )
             }
             real[7] <- as.numeric(sprintf("%.7f", df$Dex_Degrees_East)) # "Longitude"
             for(i in 1:nrow(real)){
                 # catch unrealistic longitude values
-                if(as.numeric(real[i,7])>(-50)){
-                    real[i,7] <- NA
-                }
+                real[i,7] <- ifelse(
+                    real[i,7]>(-50),
+                    NA,
+                    real[i,7]
+                )
             }
             real[8] <- "GPS-Unspecified" # "Lat_Lon_Method"
             for(i in 1:nrow(real)){
@@ -54,7 +56,7 @@ ncrn_benthic_habitat_locations <- function(results_list, example){
             real[10] <- NA # "Source_Map_Scale_Numeric" 
             real[11] <- NA # "Lat_Lon_Accuracy"
             real[12] <- NA # "Lat_Lon_Accuracy_Unit"
-            real[13] <- NA # "Location_Description"
+            real[13] <- df$Locality # "Location_Description"
             real[14] <- NA # "Travel_Directions"
             real[15] <- NA # "Location_Purpose"
             real[16] <- NA # "Establishment_Date" 
@@ -64,11 +66,11 @@ ncrn_benthic_habitat_locations <- function(results_list, example){
             real[20] <- NA # "Alternate_Location_ID_Context"
             # "Elevation" 
             for(i in 1:nrow(real)){ # loop runs once per row in `real`
-                if(df$Elevation[i] == 0){ # change zeroes to NA
-                    real[i,21] <- NA # b/c all NCRN sites are above sea level
-                } else { # otherwise just keep the listed elevation
-                    real[i,21] <- df$Elevation[i]
-                }
+                real[i,21] <- ifelse(
+                    df$Elevation[i] == 0,
+                    NA,
+                    df$Elevation[i]
+                )
             }
             # "Elevation_Unit" 
             for(i in 1:nrow(real)){ # loop runs once per row in `real`
@@ -124,7 +126,7 @@ ncrn_benthic_habitat_locations <- function(results_list, example){
             
             message(
                 if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`ncrn_benthic_habitat_locations()` executed successfully..."
+                    "`bob_2022_habitat_locations()` executed successfully..."
                 } else {
                     for(i in 1:length(check_df$result != "MATCH")){
                         cat(paste(paste0("`real.", check_df$real[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))

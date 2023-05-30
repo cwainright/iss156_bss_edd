@@ -29,19 +29,17 @@ ncrn_macroinvert_locations <- function(results_list, example){
             real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_activities.Location_ID`
             real[4] <- df$Loc_Name # "Location_Name"
             real[5] <- "Creek" # "Location_Type"
-            real[6] <- sprintf("%.7f", df$Dec_Degrees_North) # "Latitude"
-            for(i in 1:nrow(real)){
-                # catch unrealistic latitude values
-                if(as.numeric(real[i,6])<10){
-                    real[i,6] <- NA
-                }
+            real[6] <- as.numeric(sprintf("%.7f", df$Dec_Degrees_North)) # "Latitude"
+            for (i in 1:nrow(real)){
+                ifelse(as.numeric(real[i,6])<(10),
+                       real[i,6] <- NA,
+                       real[i,6] <- real[i,6])
             }
-            real[7] <- sprintf("%.7f", df$Dex_Degrees_East) # "Longitude"
-            for(i in 1:nrow(real)){
-                # catch unrealistic longitude values
-                if(as.numeric(real[i,7])>(-50)){
-                    real[i,7] <- NA
-                }
+            real[7] <- as.numeric(sprintf("%.7f", df$Dex_Degrees_East)) # "Longitude"
+            for (i in 1:nrow(real)){
+                ifelse(as.numeric(real[i,7])>(-50),
+                       real[i,7] <- NA,
+                       real[i,7] <- real[i,7])
             }
             real[8] <- "GPS-Unspecified" # "Lat_Lon_Method"
             for(i in 1:nrow(real)){

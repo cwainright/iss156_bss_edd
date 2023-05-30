@@ -30,14 +30,14 @@ bob_2022_chemistry_locations <- function(results_list, bob_2022_wq, example){
             real[3] <- df$`Sample ID` # "Location_ID" shared field with `real_activities.Location_ID`
             real[4] <- df$Loc_Name # "Location_Name"
             real[5] <- "Creek" # "Location_Type"
-            real[6] <- sprintf("%.7f", df$Dec_Degrees_North) # "Latitude"
+            real[6] <- as.numeric(sprintf("%.7f", df$Dec_Degrees_North)) # "Latitude"
             for(i in 1:nrow(real)){
                 # catch unrealistic latitude values
                 if(as.numeric(real[i,6])<10){
                     real[i,6] <- NA
                 }
             }
-            real[7] <- sprintf("%.7f", df$Dex_Degrees_East) # "Longitude"
+            real[7] <- as.numeric(sprintf("%.7f", df$Dex_Degrees_East)) # "Longitude"
             for(i in 1:nrow(real)){
                 # catch unrealistic longitude values
                 if(as.numeric(real[i,7])>(-50)){

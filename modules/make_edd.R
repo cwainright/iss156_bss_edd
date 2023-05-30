@@ -82,6 +82,11 @@ make_edd <- function(write, db){
             }
             
             results_list <- query_db(qry_list = qry_list, connection = con)
+            
+            # filter out erroneous source records
+            results_list$tbl_Locations <- results_list$tbl_Locations %>% subset(Location_ID != "20141014213700-948571085.929871") # this is an erroneous duplicate of NCRN_ROCR_PACR
+            results_list$tbl_Events <- results_list$tbl_Events %>% subset(Location_ID != "20141014213700-948571085.929871") # this Location_ID is associated with tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’], which is an event with no data (i.e., this event was probably created by mistake and never deleted from the db)
+            
             RODBC::odbcCloseAll() # close db connection
             
             # tidy up
