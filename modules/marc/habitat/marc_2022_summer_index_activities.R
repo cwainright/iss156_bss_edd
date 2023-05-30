@@ -57,7 +57,7 @@ marc_2022_summer_index_activities <- function(summer_index_marc2022, example, re
             real[7] <- NA # "Medium_Subdivision"
             real[8] <- "Stream benthic habitat inventory" # "Assemblage_Sampled_Name"
             real[9] <- format(as.Date(df$Start_Date), "%Y-%m-%d") # "Activity_Start_Date"
-            real[10] <- NA # "Activity_Start_Time" 
+            real[10] <- df$time # "Activity_Start_Time" 
             real[11] <- "Eastern Time - Washington, DC" # "Activity_Start_Time_Zone" 
             real[12] <- NA # "Activity_End_Date" 
             real[13] <- NA # "Activity_End_Time"
