@@ -63,9 +63,9 @@ edd_activities <- function(
             #----- marc.edd.activities
             marc_2022_fish_activities <- marc_2022_fish_activities(marc2022, example) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_activities <- marc_habitat_activities(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish activities are not in db.tbl_Fish_Data
-            marc_2022_summer_index_results <- NA
-            marc_2022_summer_exotic_results <- NA
-            marc_2022_flow_results <- NA
+            marc_2022_summer_index_activities <- marc_2022_summer_index_activities(summer_index_marc2022, example, results_list)
+            marc_2022_summer_exotic_activities <- NA
+            marc_2022_flow_activities <- NA
             
             #----- combine edd.activities
             real <- rbind(
