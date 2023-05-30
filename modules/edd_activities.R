@@ -7,6 +7,9 @@ edd_activities <- function(
         ,marc2021
         ,habitat_marc2021
         ,habitat_marc2022
+        ,summer_index_marc2022
+        ,summer_exotic_marc2022
+        ,summer_flow_marc2022
         ,bob_2021_macroinvert
         ,bob_2021_water_chem
         ,bob_2022_wq
@@ -36,6 +39,9 @@ edd_activities <- function(
             #marc
             source("modules/marc/fish/marc_2022_fish_activities.R") # Marc's 2021 fish data are already in ncrn db, so only add 2022
             source("modules/marc/habitat/marc_habitat_activities.R")
+            source("modules/marc/habitat/marc_2022_summer_index_activities.R")
+            source("modules/marc/habitat/marc_2022_summer_exotic_activities.R")
+            source("modules/marc/habitat/marc_2022_flow_activities.R")
             
             #----- load template
             example <- readxl::read_excel("template/NCRN_BSS_EDD_20230105_1300.xlsx", sheet = "Activities") # https://doimspp.sharepoint.com/:x:/r/sites/NCRNDataManagement/Shared%20Documents/General/Standards/Data-Standards/EQuIS-WQX-EDD/NCRN_BSS_EDD_20230105_1300.xlsx?d=w8c283fde9cbd4af480945c8c8bd94ff6&csf=1&web=1&e=7Y9W1M
@@ -57,20 +63,26 @@ edd_activities <- function(
             #----- marc.edd.activities
             marc_2022_fish_activities <- marc_2022_fish_activities(marc2022, example) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_activities <- marc_habitat_activities(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish activities are not in db.tbl_Fish_Data
+            marc_2022_summer_index_results <- NA
+            marc_2022_summer_exotic_results <- NA
+            marc_2022_flow_results <- NA
             
             #----- combine edd.activities
             real <- rbind(
-                ncrn_benthic_habitat_activities,
-                ncrn_chemistry_activities,
-                ncrn_fish_activities,
-                ncrn_habitat_activities,
-                ncrn_macroinvert_activities,
-                bob_2021_macroinvert_activities,
-                bob_2022_macroinvert_activities,
-                bob_2021_chemistry_activities,
-                bob_2022_habitat_activities,
-                marc_2022_fish_activities,
-                marc_habitat_activities
+                ncrn_benthic_habitat_activities
+                ,ncrn_chemistry_activities
+                ,ncrn_fish_activities
+                ,ncrn_habitat_activities
+                ,ncrn_macroinvert_activities
+                ,bob_2021_macroinvert_activities
+                ,bob_2022_macroinvert_activities
+                ,bob_2021_chemistry_activities
+                ,bob_2022_habitat_activities
+                ,marc_2022_fish_activities
+                ,marc_habitat_activities
+                ,marc_2022_summer_index_activities
+                ,marc_2022_summer_exotic_activities
+                ,marc_2022_flow_activities
                 )
             
             #----- keep only unique activities

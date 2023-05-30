@@ -36,6 +36,10 @@ make_edd <- function(write, db){
                 }
             }
             marc2021$Species_ID <- tolower(marc2021$Species_ID)
+            summer_index_marc2022 <- readxl::read_excel("data/marc/ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx", sheet = "Summer Index Data Sheet")
+            summer_exotic_marc2022 <- readxl::read_excel("data/marc/ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx", sheet = "Summer Index Exotic Plants")
+            summer_flow_marc2022 <- readxl::read_excel("data/marc/ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx", sheet = "Summer Habitat Flow")
+
             # bob
             bob_2021_macroinvert <- readxl::read_excel("data/bob/2021_prwi_sites_bob.xlsx", sheet = "raw benthic data")
             bob_2021_water_chem <- readxl::read_excel("data/bob/2021_prwi_sites_bob.xlsx", sheet = "water chem")
@@ -49,23 +53,23 @@ make_edd <- function(write, db){
             db_objs <- RODBC::sqlTables(con) # test db connection
             tbl_names <- db_objs %>% # choose which tables you want to query
                 subset(TABLE_NAME %in% c(
-                    "tbl_Events",
-                    "tbl_Protocol",
-                    "tbl_Fish_Events",
-                    "tbl_Locations",
-                    "tbl_Meta_Events",
-                    "tlu_Collection_Procedures_Gear_Config",
-                    "tbl_Electro_Fish_Details",
-                    "tbl_Fish_Data",
-                    "tbl_GameFish",
-                    "tlu_Fish",
-                    "tlu_Basin_Code",
-                    "tbl_Summer_PHI",
-                    "tbl_Spring_PHI",
-                    "tbl_Chemistry_Data",
-                    "tlu_Macroinverts",
-                    "tbl_Benthic_Data",
-                    "tbl_Benthic_Habitat"
+                    "tbl_Events"
+                    ,"tbl_Protocol"
+                    ,"tbl_Fish_Events"
+                    ,"tbl_Locations"
+                    ,"tbl_Meta_Events"
+                    ,"tlu_Collection_Procedures_Gear_Config"
+                    ,"tbl_Electro_Fish_Details"
+                    ,"tbl_Fish_Data"
+                    ,"tbl_GameFish"
+                    ,"tlu_Fish"
+                    ,"tlu_Basin_Code"
+                    ,"tbl_Summer_PHI"
+                    ,"tbl_Spring_PHI"
+                    ,"tbl_Chemistry_Data"
+                    ,"tlu_Macroinverts"
+                    ,"tbl_Benthic_Data"
+                    ,"tbl_Benthic_Habitat"
                 )
                 ) %>%
                 select(TABLE_NAME)
@@ -92,6 +96,9 @@ make_edd <- function(write, db){
                 ,marc2021
                 ,habitat_marc2021
                 ,habitat_marc2022
+                ,summer_index_marc2022
+                ,summer_exotic_marc2022
+                ,summer_flow_marc2022
                 ,bob_2021_macroinvert
                 ,bob_2021_water_chem
                 ,bob_2022_wq
@@ -105,6 +112,9 @@ make_edd <- function(write, db){
                 ,marc2021
                 ,habitat_marc2021
                 ,habitat_marc2022
+                ,summer_index_marc2022
+                ,summer_exotic_marc2022
+                ,summer_flow_marc2022
                 ,bob_2021_macroinvert
                 ,bob_2021_water_chem
                 ,bob_2022_wq

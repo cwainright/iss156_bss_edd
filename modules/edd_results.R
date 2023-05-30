@@ -6,10 +6,13 @@ edd_results <- function(
         ,marc2021
         ,habitat_marc2021
         ,habitat_marc2022
+        ,summer_index_marc2022
+        ,summer_exotic_marc2022
+        ,summer_flow_marc2022
         ,bob_2021_macroinvert
         ,bob_2021_water_chem
         ,bob_2022_wq
-        ,bob_2022_macroinvert    
+        ,bob_2022_macroinvert   
     ){
     tryCatch(
         expr = {
@@ -35,6 +38,9 @@ edd_results <- function(
             #marc
             source("modules/marc/fish/marc_2022_fish_results.R") # Marc's 2021 fish data are already in ncrn db, so only add 2022
             source("modules/marc/habitat/marc_habitat_results.R")
+            source("modules/marc/habitat/marc_2022_summer_index_results.R")
+            source("modules/marc/habitat/marc_2022_summer_exotic_results.R")
+            source("modules/marc/habitat/marc_2022_flow_results.R")
             
             #----- load template
             example <- readxl::read_excel("template/NCRN_BSS_EDD_20230105_1300.xlsx", sheet = "Results") # https://doimspp.sharepoint.com/:x:/r/sites/NCRNDataManagement/Shared%20Documents/General/Standards/Data-Standards/EQuIS-WQX-EDD/NCRN_BSS_EDD_20230105_1300.xlsx?d=w8c283fde9cbd4af480945c8c8bd94ff6&csf=1&web=1&e=7Y9W1M
@@ -56,20 +62,26 @@ edd_results <- function(
             #----- marc.edd.results
             marc_2022_fish_results <- marc_2022_fish_results(marc2022, results_list, example) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_results <- marc_habitat_results(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish results are not in db.tbl_Fish_Data
+            marc_2022_summer_index_results <- NA
+            marc_2022_summer_exotic_results <- NA
+            marc_2022_flow_results <- NA
             
             #----- combine edd.results
             real <- rbind(
-                ncrn_benthic_habitat_results,
-                ncrn_chemistry_results,
-                ncrn_fish_results,
-                ncrn_habitat_results,
-                ncrn_macroinvert_results,
-                bob_2021_macroinvert_results,
-                bob_2022_macroinvert_results,
-                bob_2021_chemistry_results,
-                bob_2022_habitat_results,
-                marc_2022_fish_results,
-                marc_habitat_results
+                ncrn_benthic_habitat_results
+                ,ncrn_chemistry_results
+                ,ncrn_fish_results
+                ,ncrn_habitat_results
+                ,ncrn_macroinvert_results
+                ,bob_2021_macroinvert_results
+                ,bob_2022_macroinvert_results
+                ,bob_2021_chemistry_results
+                ,bob_2022_habitat_results
+                ,marc_2022_fish_results
+                ,marc_habitat_results
+                ,marc_2022_summer_index_results
+                ,marc_2022_summer_exotic_results
+                ,marc_2022_flow_results
             )
             
             # error-checking:
