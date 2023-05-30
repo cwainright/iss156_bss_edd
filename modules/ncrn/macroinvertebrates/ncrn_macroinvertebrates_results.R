@@ -27,8 +27,8 @@ ncrn_macroinvert_results <- function(results_list, example){
             
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- df$Event_ID # "Activity_ID" shared field with `real_activities.Activity_ID`
-            real[3] <- df$Characteristic_Name# "Characteristic_Name"  
-            real[4] <- df$Taxon_ID # "Method_Speciation"
+            real[3] <- df$Taxon_ID # df$Characteristic_Name# "Characteristic_Name"  
+            real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$Result_Text # "Result_Text"
