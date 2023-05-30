@@ -103,21 +103,23 @@ make_edd <- function(write, db){
                 ,bob_2021_water_chem
                 ,bob_2022_wq
                 ,bob_2022_macroinvert
+                ,bob_2022_hab
                 )
-            locations <- edd_locations(
-                results_list
-                ,marc2022
-                ,marc2021
-                ,habitat_marc2021
-                ,habitat_marc2022
-                ,summer_index_marc2022
-                ,summer_exotic_marc2022
-                ,summer_flow_marc2022
-                ,bob_2021_macroinvert
-                ,bob_2021_water_chem
-                ,bob_2022_wq
-                ,bob_2022_macroinvert
-            )
+            # locations <- edd_locations(
+            #     results_list
+            #     ,marc2022
+            #     ,marc2021
+            #     ,habitat_marc2021
+            #     ,habitat_marc2022
+            #     ,summer_index_marc2022
+            #     ,summer_exotic_marc2022
+            #     ,summer_flow_marc2022
+            #     ,bob_2021_macroinvert
+            #     ,bob_2021_water_chem
+            #     ,bob_2022_wq
+            #     ,bob_2022_macroinvert
+            #     ,bob_2022_hab
+            # )
             results <- edd_results(
                 results_list
                 ,marc2022
@@ -131,24 +133,28 @@ make_edd <- function(write, db){
                 ,bob_2021_water_chem
                 ,bob_2022_wq
                 ,bob_2022_macroinvert
+                ,bob_2022_hab
             )
             
             #----- compile data for EDD tabs into a list
-            list_of_datasets <- list("Locations" = locations, "Activities" = activities, "Results" = results)
-            if(length(list_of_datasets)==3){
-                if(nrow(list_of_datasets[[1]]>0) & nrow(list_of_datasets[[2]]>0) & nrow(list_of_datasets[[3]]>0)){
-                    assign("EDD", list_of_datasets, envir = globalenv()) # save final product to global environment
-                    message("\n\n`make_edd()` executed successfully.\nOutput saved as `EDD` in global environment.\n\n")
-                }
-            } else {
-                message("An error occurred when compiling results.")
-                break
-            }
+            list_of_datasets <- list("Activities" = activities, "Results" = results)
+            assign("EDD", list_of_datasets, envir = globalenv())
             
-            #----- write list to xlsx if `write` flag is TRUE
-            if(write == TRUE){
-                openxlsx::write.xlsx(list_of_datasets, file = file.choose())
-            }
+            # list_of_datasets <- list("Locations" = locations, "Activities" = activities, "Results" = results)
+            # if(length(list_of_datasets)==3){
+            #     if(nrow(list_of_datasets[[1]]>0) & nrow(list_of_datasets[[2]]>0) & nrow(list_of_datasets[[3]]>0)){
+            #         assign("EDD", list_of_datasets, envir = globalenv()) # save final product to global environment
+            #         message("\n\n`make_edd()` executed successfully.\nOutput saved as `EDD` in global environment.\n\n")
+            #     }
+            # } else {
+            #     message("An error occurred when compiling results.")
+            #     break
+            # }
+            # 
+            # #----- write list to xlsx if `write` flag is TRUE
+            # if(write == TRUE){
+            #     openxlsx::write.xlsx(list_of_datasets, file = file.choose())
+            # }
         }
     )
 }

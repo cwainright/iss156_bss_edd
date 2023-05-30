@@ -24,5 +24,5 @@ source("modules/make_edd.R")
 db <- "data/ncrn/NCRN_MBSS_be_2022.mdb" # "new" database after Jones added missing locations # \OneDrive - DOI\Documents - NPS-NCRN-Biological Stream Sampling\General\Annual-Data-Packages\2022\NCRN_MBSS\NCRN_MBSS_be_2022.mdb
 
 #----- execute script
-make_edd(write = TRUE, db = db)
+make_edd(write = FALSE, db = db)
 

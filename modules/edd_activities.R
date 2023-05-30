@@ -14,6 +14,7 @@ edd_activities <- function(
         ,bob_2021_water_chem
         ,bob_2022_wq
         ,bob_2022_macroinvert
+        ,bob_2022_hab
        ){
     tryCatch(
         expr = {
