@@ -83,9 +83,16 @@ make_edd <- function(write, db){
             
             results_list <- query_db(qry_list = qry_list, connection = con)
             
-            # filter out erroneous source records
+            #----- correct erroneous records from source files to avoid propagating errors
+            # ncrn
             results_list$tbl_Locations <- results_list$tbl_Locations %>% subset(Location_ID != "20141014213700-948571085.929871") # this is an erroneous duplicate of NCRN_ROCR_PACR
             results_list$tbl_Events <- results_list$tbl_Events %>% subset(Location_ID != "20141014213700-948571085.929871") # this Location_ID is associated with tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’], which is an event with no data (i.e., this event was probably created by mistake and never deleted from the db)
+            # bob
+            
+            # marc
+            habitat_marc2022$`MONO-133`[1] <- as.numeric(habitat_marc2022$`MONO-316`[1])+1 # `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Data Sheet”.MONO-133 has no date. Per `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.SITE[‘MONO-133’].DATE[0], MONO-133 was sampled on 2022-06-21, which is one day before MONO-316.I replaced the missing MONO-133 date by assigning the date from MONO-316 and adding one day to it.
+            summer_exotic_marc2022$Date[summer_exotic_marc2022$Date == "2010-08-22 UTC"] <- as.Date("2022-08-22 UTC") # `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
+            summer_flow_marc2022$Date[summer_flow_marc2022$Date == "2010-08-22 UTC"] <- as.Date("2022-08-22 UTC") # `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Flow”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
             
             RODBC::odbcCloseAll() # close db connection
             
