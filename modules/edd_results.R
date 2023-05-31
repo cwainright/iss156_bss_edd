@@ -86,6 +86,19 @@ edd_results <- function(
                 ,marc_2022_flow_results
             )
             
+            #----- unify
+            real$Characteristic_Name <- tolower(real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("comments2", "comments", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("comments1", "comments", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("_", " ", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("wetted width of stream at bottom of 75m sampling reach", "wetted channel width (m) at bottom (0m) of site", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("wetted width of stream at top of 75m sampling reach", "wetted channel width (m) at top (75m) of site", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("riparian vegetation width on left bank", "left bank riparian width (m)", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("riparian vegetation width on right bank", "right bank riparian width (m)", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("right bank concrete", "presence of concrete on right bank", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("left bank concrete", "presence of concrete on left bank", real$Characteristic_Name)
+            real <- subset(real, real$Characteristic_Name != "8 digit watershed code for sampled site") # this is not a result; it's a datum associated with the location and is provided in edd.locations
+            
             # error-checking:
             check_df <- tibble::tibble(data.frame(matrix(ncol=3, nrow=ncol(real))))
             colnames(check_df) <- c("real", "example", "result")
