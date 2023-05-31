@@ -150,6 +150,7 @@ make_edd <- function(write, db){
                 ,bob_2022_macroinvert
                 ,bob_2022_hab
             )
+            results$Characteristic_Name <- tolower(results$Characteristic_Name)
             
             #----- compile data for EDD tabs into a list
             list_of_datasets <- list("Locations" = locations, "Activities" = activities, "Results" = results)

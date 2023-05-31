@@ -13,7 +13,9 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             #----- load project functions
             source("modules/marc/habitat/marc_to_ncrn_lookup.R")
             
-            
+            #----- use lookup `ncrn_phi_lookup()` table to replace marc's abbreviations
+            lookup <- read.csv("modules/marc/habitat/unit_lookup.csv")
+            lookup[1] <- NULL
             
             #----- wrangle 2021
             df2021 <- habitat_marc2021
@@ -62,9 +64,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             df2022$dummy <- gsub("_", " ", df2022$dummy)
             df2022 <- df2022 %>% mutate(dummy = tolower(dummy))
             
-            #----- use lookup `ncrn_phi_lookup()` table to replace marc's abbreviations
-            lookup <- read.csv("modules/marc/habitat/unit_lookup.csv")
-            lookup[1] <- NULL
+            
             
             marc_lookup <- marc_to_ncrn_lookup(df2022, lookup)
             

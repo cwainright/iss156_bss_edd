@@ -11,6 +11,7 @@ library(dplyr)
 library(readxl)
 library(RODBC)
 library(openxlsx)
+library(fuzzyjoin)
 
 #----- prep
 rm(list=ls())
