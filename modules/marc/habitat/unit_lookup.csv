@@ -1,0 +1,172 @@
+,long,short,source,unit
+1,unique identifier of sampling site,SITEYR,tbl_Spring_PHI,NA
+2,field comments about site,COMMENTS,tbl_Spring_PHI,NA
+3,indicator if temperature logger was deployed (y=yes; n=no),NO_TL,tbl_Spring_PHI,Y=yes; N=no
+4,serial code number of temperature logger (if deployed),TLOG_NO,tbl_Spring_PHI,NA
+5,presence/absence of culvert in sample reach,Culvert_Pres,tbl_Spring_PHI,"0 = absence, 1 = presence"
+6,presence/absence of culvert in sample reach,CULVPRES,tbl_Spring_PHI,"0 = absence, 1 = presence"
+7,indicates if electrofishing could be conducted in culvert during summer visit,Culvert_Samp,tbl_Spring_PHI,NA
+8,indicates if electrofishing could be conducted in culvert during summer visit,CULVSAMP,tbl_Spring_PHI,NA
+9,diameter of culvert,culvwid,tbl_Spring_PHI,meters
+10,length of culvert if present,culvlen,tbl_Spring_PHI,meters
+11,wetted width of stream at bottom of 75m sampling reach,STWID_0,tbl_Spring_PHI,meters
+12,wetted width of stream at top of 75m sampling reach,STWID_75,tbl_Spring_PHI,meters
+13,straight line length of segment,SEG_LEN,tbl_Spring_PHI,meters
+14,water quality duplicate or blank sample collected for quality control,QC_CK,tbl_Spring_PHI,Y=yes; N=no
+15,water quality qc sample collected.,QC_Sample,tbl_Spring_PHI,1=yes; 0=no
+16,8 digit watershed code for sampled site,QC_CODE,tbl_Spring_PHI,NA
+17,stream segment id number for quality control sample,QC_SEG,tbl_Spring_PHI,NA
+18,site type for qc sample (r=random; s=sentinel; n=national park service; t=targeted),QC_TYPE,tbl_Spring_PHI,R=random; S=sentinel; N=National Park Service; T=targeted
+19,year of quality control sample,QC_YR,tbl_Spring_PHI,NA
+20,sample is a blank or a duplicate,BLANKDUP,tbl_Spring_PHI,NA
+21,distance to nearest road,DIST_RD,tbl_Spring_PHI,meters
+22,aesthetic rating ranging from 0 (lowest) to 20 (highest) rating visual appeal of stream and absence of trash,AESTHET,tbl_Spring_PHI,0-20; 0 is lowest and 20 is highest
+23,riparian vegetation width on left bank,RV_WID_L,tbl_Spring_PHI,meters
+24,riparian vegetation width on right bank,RV_WID_R,tbl_Spring_PHI,meters
+25,adjacent land cover left bank,ADJ_CV_L,tbl_Spring_PHI,categorical; fr=forest; of=old field; em=emergent vegetation; ln=mowed lawn; tg=tall grass; lo=logged area; sl=bare soil; rr=railroad;pv=paved road; pk=parking lot; gr=gravel road; di=dirt road; pa=pasture; or=orchard; cp=cropland; ho=housing
+26,adjacent land cover righ bank,ADJ_CV_R,tbl_Spring_PHI,categorical; fr=forest; of=old field; em=emergent vegetation; ln=mowed lawn; tg=tall grass; lo=logged area; sl=bare soil; rr=railroad;pv=paved road; pk=parking lot; gr=gravel road; di=dirt road; pa=pasture; or=orchard; cp=cropland; ho=housing
+27,riparian vegetation buffer broken on left bank (yes/no),RV_BUF_BL,tbl_Spring_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+28,riparian vegetation buffer broken on left bank (yes/no),BufferBrk_L,tbl_Spring_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+29,riparian vegetation buffer broken on right bank (yes/no),RV_BUF_BR,tbl_Spring_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+30,riparian vegetation buffer broken on right bank (yes/no),BufferBrk_R,tbl_Spring_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+31,vegetation types on left bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_1L,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+32,vegetation types on left bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_2L,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+33,vegetation types on left bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_3L,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+34,vegetation types on left bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_4L,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+35,vegetation types on right bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_1R,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+36,vegetation types on right bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_2R,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+37,vegetation types on right bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_3R,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+38,vegetation types on right bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn),VEG_T_4R,tbl_Spring_PHI,G=grasses/forbes; R=regenerating deciduous/shrubs; Y=young deciduous; M=mature deciduous; O=old deciduous; A=regenerating coniferous; B=young coniferous; C=mature coniferous; D=lawn
+39,presence of old field in close proximity of sampling site,Old_Field,tbl_Spring_PHI,"0 = absence, 1 = presence"
+40,presence of deciduous forest in close proximity of sampling site,Decid_Forest,tbl_Spring_PHI,"0 = absence, 1 = presence"
+41,presence of coniferous forest in close proximity of sampling site,Conif_Forest,tbl_Spring_PHI,"0 = absence, 1 = presence"
+42,presence of wetlands in close proximity of sampling site,Wetlands,tbl_Spring_PHI,"0 = absence, 1 = presence"
+43,presence of surface mines in close proximity of sampling site,Surface_Mine,tbl_Spring_PHI,"0 = absence, 1 = presence"
+44,presence of landfills in close proximity of sampling site,Landfills,tbl_Spring_PHI,"0 = absence, 1 = presence"
+45,presence of residential development in close proximity of sampling site,Residential,tbl_Spring_PHI,"0 = absence, 1 = presence"
+46,presence of commercial/industrial in close proximity of sampling site,Commercial_Indust,tbl_Spring_PHI,"0 = absence, 1 = presence"
+47,presence of cropland in close proximity of sampling site,Crops,tbl_Spring_PHI,"0 = absence, 1 = presence"
+48,presence of pasture in close proximity of sampling site,Pastures,tbl_Spring_PHI,"0 = absence, 1 = presence"
+49,presence of orchards/vinyards in close proximity of sampling site,Orchard,tbl_Spring_PHI,"0 = absence, 1 = presence"
+50,presence of golf course in close proximity of sampling site,Golfcourses,tbl_Spring_PHI,"0 = absence, 1 = presence"
+51,stream gradient measurement location (distance from bottom),STG_L1,tbl_Spring_PHI,distance from bottom
+52,stream gradient measurement location (distance from bottom),STG_L2,tbl_Spring_PHI,distance from bottom
+53,stream gradient measurement location (distance from bottom),stg_l3,tbl_Spring_PHI,distance from bottom
+54,stream gradient measurement location (distance from bottom),stg_l4,tbl_Spring_PHI,distance from bottom
+55,stream gradient measurement location (distance from bottom),STG_L5,tbl_Spring_PHI,distance from bottom
+56,stream gradient measurement location (distance from bottom),STG_L6,tbl_Spring_PHI,distance from bottom
+57,stream gradient height measurement (meters),STG_H1,tbl_Spring_PHI,meters
+58,stream gradient height measurement (meters),STG_H2,tbl_Spring_PHI,meters
+59,stream gradient height measurement (meters),stg_h3,tbl_Spring_PHI,meters
+60,stream gradient height measurement (meters),stg_h4,tbl_Spring_PHI,meters
+61,stream gradient height measurement (meters),STG_H5,tbl_Spring_PHI,meters
+62,stream gradient height measurement (meters),STG_H6,tbl_Spring_PHI,meters
+63,channelization present,Channel_Pres,tbl_Spring_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+64,presence of concrete on left bank,CONCR_L,tbl_Spring_PHI,meters
+65,presence of concrete on stream bottom,CONCR_B,tbl_Spring_PHI,meters
+66,presence of concrete on right bank,CONCR_R,tbl_Spring_PHI,meters
+67,presence of gabions on left bank,GABIO_L,tbl_Spring_PHI,meters
+68,presence of gabions on stream bottom,GABIO_B,tbl_Spring_PHI,meters
+69,presence of gabions on right bank,GABIO_R,tbl_Spring_PHI,meters
+70,presence of riprap on left bank,RIPRP_L,tbl_Spring_PHI,meters
+71,presence of riprap on stream bottom,RIPRP_B,tbl_Spring_PHI,meters
+72,presence of riprap on right bank,RIPRP_R,tbl_Spring_PHI,meters
+73,presence of earthern berm on left bank,BERM_L,tbl_Spring_PHI,meters
+74,presence of earthern berm on stream bottom,BERM_B,tbl_Spring_PHI,meters
+75,presence of earthern berm on right bank,BERM_R,tbl_Spring_PHI,meters
+76,presence of pipe on left bank,PIPE_L,tbl_Spring_PHI,meters
+77,presence of pipe on stream bottom,PIPE_B,tbl_Spring_PHI,meters
+78,presence of pipe on right bank,PIPE_R,tbl_Spring_PHI,meters
+79,presence of dredge spoil on left bank,DREG_L,tbl_Spring_PHI,meters
+80,presence of dredge spoil on stream bottom,DREG_B,tbl_Spring_PHI,meters
+81,presence of dredge spoil on right bank,DREG_R,tbl_Spring_PHI,meters
+82,height of stream blockage (meters) if present,ST_BLKHT,tbl_Spring_PHI,meters
+83,stream blockage type (p52),ST_BLKTP,tbl_Spring_PHI,"categorical; dm=dam, pc=pipe culvert, f=fishway, gw=gaging station weir, g=gabion, px=pipeline crossing, ac=arch culvert, bc=box culvert, tg=tide gate"
+84,latitude of stream blockage,ST_BLAT,tbl_Spring_PHI,decimal degrees
+85,longitude of stream blockage,ST_BLON,tbl_Spring_PHI,decimal degrees
+86,channel slope (%) using a surveyor's level and rod,gradient,tbl_Spring_PHI,%
+87,altitude (feet) from degital elevation model,ALTITUDE,tbl_Spring_PHI,feet
+88,gps location of latitude (only present if coordinates do not fall within 30m of stream or on samplable reach),gps_lat,tbl_Spring_PHI,only present if coordinates do not fall within 30m of stream or on samplable reach
+89,gps location of longitude (only present if coordinates do not fall within 30m of stream or on samplable reach),gps_long,tbl_Spring_PHI,only present if coordinates do not fall within 30m of stream or on samplable reach
+90,number of square feet of undercut bank sampled for benthos,UND_BANK,tbl_Spring_PHI,square feet
+91,number of square feet of roots or leaves sampled for benthos,rootleaf,tbl_Spring_PHI,square feet
+92,presence of golf course in close proximity of sampling site,GOLFCOURSE,tbl_Spring_PHI,"N = no, i.e., absent; Y = yes, i.e, present"
+93,unique identifier of sampling site,SITEID,tbl_Summer_PHI,NA
+94,erosion extent left bank,ERODEXLT,tbl_Summer_PHI,meters; 75 m maximum
+95,erosion extent right bank,ERODEXRT,tbl_Summer_PHI,meters; 75 m maximum
+96,eroded area left bank (square meters/10),ERODARLT,tbl_Summer_PHI,square meters/10
+97,eroded area right bank (square meters/10),ERODARRT,tbl_Summer_PHI,square meters/10
+98,erosion severity left bank (0=none; 1=minor; 2=moderate; 3=severe),erodsvlt,tbl_Summer_PHI,0=none; 1=minor; 2=moderate; 3=severe
+99,erosion severity right bank (0=none; 1=minor; 2=moderate; 3=severe),erodsvrt,tbl_Summer_PHI,0=none; 1=minor; 2=moderate; 3=severe
+100,erosion height left bank (meters),erodhtlt,tbl_Summer_PHI,meters
+101,erosion height right bank (meters),erodhtrt,tbl_Summer_PHI,meters
+102,bar formation = none,BAR_NONE,tbl_Summer_PHI,No = absent; Yes = present
+103,bar formation = minor,BAR_MIN,tbl_Summer_PHI,No = absent; Yes = present
+104,bar formation = moderate,BAR_MOD,tbl_Summer_PHI,No = absent; Yes = present
+105,bar formation = extensive,BAR_EXT,tbl_Summer_PHI,No = absent; Yes = present
+106,bar formation = extensive,Bar_Extensive,tbl_Summer_PHI,meters
+107,dominant substrate of bars present is cobble (yes/no),Cobble_Bar,tbl_Summer_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+108,dominant substrate of bars present is gravel (yes/no),Gravel_Bar,tbl_Summer_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+109,dominant substrate of bars present is sand (yes/no),Sand_Bar,tbl_Summer_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+110,dominant substrate of bars present is silt/clay (yes/no),Silt_Clay_Bar,tbl_Summer_PHI,"0 = no, i.e., absent; 1 = yes, i.e, present"
+111,bar severity right bank (0=none; 1=minor; 2=moderate; 3=severe),Bar_Severity,tbl_Summer_PHI,0=none; 1=minor; 2=moderate; 3=severe
+112,multiflora rose present/absent,MULTFLOR,tbl_Summer_PHI,"A = absent, P = present"
+113,mile-a-minute present/absent,MILEMIN,tbl_Summer_PHI,"A = absent, P = present"
+114,japanese honeysuckle present/absent,JHONEY,tbl_Summer_PHI,"A = absent, P = present"
+115,reed canary grass present/absent,RCANGRAS,tbl_Summer_PHI,"A = absent, P = present"
+116,phragmites present/absent,PHRAG,tbl_Summer_PHI,"A = absent, P = present"
+117,nonnative thistles present/absent,THISTLE,tbl_Summer_PHI,"A = absent, P = present"
+118,microstegium present/absent,MICRO,tbl_Summer_PHI,"A = absent, P = present"
+119,other exotic plant species present/absent,EXO_OTHE,tbl_Summer_PHI,"A = absent, P = present"
+120,species of other exotics that may be present,OTH_TYPE,tbl_Summer_PHI,NA
+121,number of large wood pieces in wetted stream,WOODINST,tbl_Summer_PHI,count
+122,number of large wood pieces in active channel but currently dewatered,WOODDEWA,tbl_Summer_PHI,count
+123,number of root wads in wetted stream,ROOTINST,tbl_Summer_PHI,count
+124,number of root wads in active channel but currently dewatered,ROOTDEWA,tbl_Summer_PHI,count
+125,instream habitat score (0-20),INSTRHAB,tbl_Summer_PHI,0-20; 0 is lowest and 20 is highest
+126,epifaunal substrate habitat score (0-20),EPI_SUB,tbl_Summer_PHI,0-20; 0 is lowest and 20 is highest
+127,diversity and quality of water velocity and depths habitat score (0-20),VEL_DEPT,tbl_Summer_PHI,0-20; 0 is lowest and 20 is highest
+128,"diversity and quality of pool, glide, and eddy habitats score (0-20)",POOLGLID,tbl_Summer_PHI,0-20; 0 is lowest and 20 is highest
+129,linear extent of pool habitat (meters; 75 m maximum),EXPOOL,tbl_Summer_PHI,meters; 75 m maximum
+130,quality of riffle and run habitats score (0-20),RIFFLRUN,tbl_Summer_PHI,0-20; 0 is lowest and 20 is highest
+131,linear extent of riffle habitat (meters; 75 m maximum),EXRIFRUN,tbl_Summer_PHI,meters; 75 m maximum
+132,percentage of hard substrates that are surrounded by fine sediments (0-100%),EMBED,tbl_Summer_PHI,0-100%
+133,percentage of segment that is shaded (including duration of shading; 0-100),SHADING,tbl_Summer_PHI,including duration of shading; 0-100
+134,"braided channel present, absent, extensive",BRAIDED,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+135,"riffle present, absent, extensive",RIFFLE,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+136,"run/glide present, absent, extensive",RUNGLIDE,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+137,"deep pool (> 50 cm depth) present, absent, extensive",DEEPOOL,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+138,"shallow pool (< 50 cm deep) present, absent, extensive",SHALPOOL,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+139,"large boulders (> 2m) present, absent, extensive",LRGBOULD,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+140,"small boulders present (<2m, but larger than cobble), absent, extensive",SMLBOULD,tbl_Summer_PHI,"<2m, but larger than cobble"
+141,"cobbles present, absent, extensive",COBBLE,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+142,"bedrock present, absent, extensive",BEDROCK,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+143,"gravel present, absent, extensive",GRAVEL,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+144,"sand present, absent, extensive",SAND,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+145,"silt/clay present, absent, extensive",SILTCLAY,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+146,"undercut banks present, absent, extensive",UNDERCUT,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+147,"overhead cover present, absent, extensive",OH_COVER,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+148,"beaver ponds present, absent, extensive",BEAVPND,tbl_Summer_PHI,"A = absent, P = present, E = extensive"
+149,maximum depth (cm),MAXDEPTH,tbl_Summer_PHI,cm
+150,wetted channel width (m) at bottom (0m) of site,WETWID0,tbl_Summer_PHI,m
+151,thalweg depth (cm) at bottom of site,THALDE0,tbl_Summer_PHI,cm
+152,thalweg velocity (m/s) at bottom of site,THALVE0,tbl_Summer_PHI,m/s
+153,wetted channel width (m) at 25 m from bottom of site,WETWID25,tbl_Summer_PHI,m
+154,thalweg depth (cm) at 25 m from bottom of site,THALDE25,tbl_Summer_PHI,cm
+155,thalweg velocity (m/s) at 25 m from bottom of site,THALVE25,tbl_Summer_PHI,m/s
+156,wetted channel width (m) at 50 m from bottom of site,WETWID50,tbl_Summer_PHI,m
+157,thalweg depth (cm) at 50 m from bottom of site,THALDE50,tbl_Summer_PHI,cm
+158,thalweg velocity (m/s) at 50 m from bottom of site,THALVE50,tbl_Summer_PHI,m/s
+159,wetted channel width (m) at top (75m) of site,WETWID75,tbl_Summer_PHI,m
+160,thalweg depth (cm) at top (75 m) of site,THALDE75,tbl_Summer_PHI,cm
+161,thalweg velocity (m/s) at top (75 m) of site,THALVE75,tbl_Summer_PHI,m/s
+162,alternate flow measurement float distance,ALT_DIST,tbl_Summer_PHI,meters
+163,alternate flow measurement flow depth,ALT_DEP,tbl_Summer_PHI,cm
+164,alternate flow measurement flow width,ALT_WID,tbl_Summer_PHI,cm
+165,time float takes to make it to end point for trial 1,TIME_1,tbl_Summer_PHI,seconds
+166,time float takes to make it to end point for trial 2,TIME_2,tbl_Summer_PHI,seconds
+167,time float takes to make it to end point for trial 3,TIME_3,tbl_Summer_PHI,seconds
+168,field comments,Comments2,tbl_Summer_PHI,NA
+169,bar formation = minor,BAR_MIN1,tbl_Summer_PHI,NA
+170,bar formation = moderate,BAR_MOD1,tbl_Summer_PHI,NA
+171,bar formation = extensive,BAR_EXT1,tbl_Summer_PHI,NA

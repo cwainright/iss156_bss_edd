@@ -10,6 +10,11 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             suppressWarnings(suppressMessages(library(dplyr)))
             suppressWarnings(suppressMessages(library(readxl)))
             
+            #----- load project functions
+            source("modules/marc/habitat/marc_to_ncrn_lookup.R")
+            
+            
+            
             #----- wrangle 2021
             df2021 <- habitat_marc2021
             df2021 <- df2021 %>% select(NCRN_Site_ID, c(7:61))
@@ -21,6 +26,12 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
                 df2021$Site_ID[i] <- stringr::str_extract(df2021$Event_Site_ID[i], "[A-Z][A-Z][A-Z][A-Z]-[0-9][0-9][0-9]-[A-Z]")
             }
             df2021$Start_Date <- as.character(df2021$Start_Date)
+            
+            
+            df2021 <- dplyr::left_join(df2021, lookup, by=c("variable"= "short"))
+            df2021$variable <- df2021$long
+
+            
             
             #----- wrangle 2022
             df2022 <- habitat_marc2022
@@ -35,7 +46,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
                 mutate(Event_Site_ID = paste0(Site_ID, "-2022"), # create a column `Event_Site_ID`
                        Year = "2022", # create a column `Year`
                        Start_Date = NA) # create a column `Start_Date`
-            df2022 <- df2022 %>% select(colnames(df2021)) # set order of cols to match
+            
             # extract date
             tlu_date <- df2022 %>% select(variable, value, Event_Site_ID) %>% subset(variable == "Date" & value != "8") # make a lookup table to grab sample dates
             tlu_date$value <- as.Date(as.numeric(trimws(tlu_date$value)), origin = "1899-12-30") # 1899-12-30 is MS Excel epoch start
@@ -46,9 +57,27 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             data.table::setnames(df2022, "value.x", "value")
             df2022$Start_Date <- as.character(df2022$Start_Date)
             
+            
+            df2022$dummy <- df2022$variable
+            df2022$dummy <- gsub("_", " ", df2022$dummy)
+            df2022 <- df2022 %>% mutate(dummy = tolower(dummy))
+            
+            #----- use lookup `ncrn_phi_lookup()` table to replace marc's abbreviations
+            lookup <- read.csv("modules/marc/habitat/unit_lookup.csv")
+            lookup[1] <- NULL
+            
+            marc_lookup <- marc_to_ncrn_lookup(df2022, lookup)
+            
+            df2022 <- dplyr::left_join(df2022, marc_lookup, by=c("dummy" = "df2022"))
+            df2022$variable <- df2022$long
+            df2022$dummy <- NULL
+            df2022$short <- NULL
+            
+            df2022 <- df2022 %>% select(colnames(df2021))
+            
             #----- combine 2021 and 2022
             df <- rbind(df2021, df2022) # combine
-            df$Activity_ID <- paste0(df$Event_Site_ID, "_", df$variable)
+            df$Activity_ID <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d"))
             
             #----- use NCRN lookup tables to add values that are missing from Marc's data
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(-c(Unit_Code, Loc_Name, Site_ID)), by=c("NCRN_Site_ID")) # add lookup values
@@ -58,13 +87,13 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             colnames(real) <- colnames(example) # name columns to match example
             
             real[1] <- "NCRN" # "#Org_Code" 
-            real[2] <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d")) # "Activity_ID"
+            real[2] <- df$Activity_ID # "Activity_ID"
             real[3] <- df$variable # "Characteristic_Name"  
             real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$value # "Result_Text"
-            real[8] <- NA # "Result_Unit"
+            real[8] <- df$unit # "Result_Unit"
             real[9] <- NA # "Result_Qualifier"
             real[10] <- "Final" # "Result_Status" 
             real[11] <- "Actual" # "Result_Type" 
