@@ -173,28 +173,28 @@ make_edd <- function(write, db){
 
 
 # Justification for source-file errors fixed above
-# •	Marc
-    # o	Added missing date in source file: `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Data Sheet”.MONO-133
-        # 	In the source spreadsheet `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Data Sheet”.MONO-133 has no date. Per `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.SITE[‘MONO-133’].DATE[0], MONO-133 was sampled on 2022-06-21, which is one day before MONO-316. I replaced the missing MONO-133 date by assigning the date from MONO-316 and adding one day to it.
-    # o	Corrected typo date in source file (says this sample took place in 2010): `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.Site[“ANTI-101”] == 8/22/2010
-        # 	Corrected to 8/22/2022. `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
-    # o	Corrected typo date in source file (says this sample took place in 2010): ): `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`. “Summer Habitat Flow”.Site[“ANTI-101”] == 8/22/2010
-        # 	Corrected to 8/22/2022. `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Flow”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
-    # o	
-# •	Bob
-    # o	Corrected typo in source file `2021 PRWI sites.xlsx`.’raw benthic data’.site == ‘PRWI-MAWI’ to ‘PRWI-MARU’
-        # 	Bob’s sampled the same sites for macroinvertebrates and water chemistry. Bob's spreadsheet reflects this except for one site: ‘PRWI-MAWI’, which is not a valid value in `tbl_Locations.NCRN_Site_ID`
-    # o	Corrected typo in source file `nps_spring_2022_benthics_bob.xlsx`.site == ‘NCRN_MONO_ VCCR’
-        # 	There was a space between the second underscore and the creek abbreviation ‘VCCR’. I deleted that space.
-    # o	Corrected typo in source file `nps_spring_habitat_2022_bob.xlsx`.Site == ‘NCRN_MONO_ VCCR’
-        # 	There was a space between the second underscore and the creek abbreviation ‘VCCR’. I deleted that space.
-# •	NCRN
-    # o	One orphaned record filtered; tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’] has Location_ID ‘20141014213700-948571085.929871’. This Location_ID does not exist in tbl_Locations. Further, there are no data associated with this Event_ID in any of the following data tables:
-        # 	tbl_Fish_Data
-        # 	tbl_Spring_PHI
-        # 	tbl_Summer_PHI
-        # 	tbl_Benthic_Data
-        # 	tbl_Benthic_Habitat
-        # 	tbl_Chemistry_Data
-    # o	One duplicate tbl_Locations.Location_ID filtered out
-        # 	tbl_Locations.Location_ID[‘20141014213700-948571085.929871’] is an erroneous duplicate of NCRN_ROCR_PACR. This record is erroneous because it contains no data; fields contain null or 0.
+# Marc
+    # Added missing date in source file: `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Data Sheet”.MONO-133
+        # In the source spreadsheet `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Data Sheet”.MONO-133 has no date. Per `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.SITE[‘MONO-133’].DATE[0], MONO-133 was sampled on 2022-06-21, which is one day before MONO-316. I replaced the missing MONO-133 date by assigning the date from MONO-316 and adding one day to it.
+    # Corrected typo date in source file (says this sample took place in 2010): `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.Site[“ANTI-101”] == 8/22/2010
+        # Corrected to 8/22/2022. `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Exotic Plants”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
+    # Corrected typo date in source file (says this sample took place in 2010): ): `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`. “Summer Habitat Flow”.Site[“ANTI-101”] == 8/22/2010
+        # Corrected to 8/22/2022. `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Habitat Flow”.Site[“ANTI-101”] == 8/22/2010. 8/22/2010 is wrong because all records in this source file are from 2022. Further, `ncrn_bss_fish_monitoring_data_stream_habitat_2022_marc.xlsx`.“Summer Index Data Sheet”.ANTI-101” shows that ANTI-101 was sampled on 8/10/2022, indicating 2010 is a typo and should be replaced by 2022.
+    #	
+# Bob
+    # Corrected typo in source file `2021 PRWI sites.xlsx`.’raw benthic data’.site == ‘PRWI-MAWI’ to ‘PRWI-MARU’
+        # Bob’s sampled the same sites for macroinvertebrates and water chemistry. Bob's spreadsheet reflects this except for one site: ‘PRWI-MAWI’, which is not a valid value in `tbl_Locations.NCRN_Site_ID`
+    # Corrected typo in source file `nps_spring_2022_benthics_bob.xlsx`.site == ‘NCRN_MONO_ VCCR’
+        # There was a space between the second underscore and the creek abbreviation ‘VCCR’. I deleted that space.
+    # Corrected typo in source file `nps_spring_habitat_2022_bob.xlsx`.Site == ‘NCRN_MONO_ VCCR’
+        # There was a space between the second underscore and the creek abbreviation ‘VCCR’. I deleted that space.
+# NCRN
+    # One orphaned record filtered; tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’] has Location_ID ‘20141014213700-948571085.929871’. This Location_ID does not exist in tbl_Locations. Further, there are no data associated with this Event_ID in any of the following data tables:
+        # tbl_Fish_Data
+        # tbl_Spring_PHI
+        # tbl_Summer_PHI
+        # tbl_Benthic_Data
+        # tbl_Benthic_Habitat
+        # tbl_Chemistry_Data
+    # One duplicate tbl_Locations.Location_ID filtered out
+        # tbl_Locations.Location_ID[‘20141014213700-948571085.929871’] is an erroneous duplicate of NCRN_ROCR_PACR. This record is erroneous because it contains no data; fields contain null or 0.
