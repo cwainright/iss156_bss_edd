@@ -101,6 +101,34 @@ edd_results <- function(
             real$Characteristic_Name <- gsub("left bank", "top left bank", real$Characteristic_Name)
             real$Characteristic_Name <- gsub("field comments about site", "comments", real$Characteristic_Name)
             real$Characteristic_Name <- gsub("field comments", "comments", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("macrophytes sampled for benthos", "macrophytes", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("macrophytes", "square feet of macrophytes sampled for benthic macroinvertebrates", real$Characteristic_Name)
+            
+            sub <- subset(real, real$Characteristic_Name %like% "mile-a-minute" == TRUE)
+            real <- subset(real, real$Characteristic_Name %like% "mile-a-minute" == FALSE)
+            sub$Characteristic_Name <- "persicaria perfoliata (mile-a-minute) relative abundance"
+            sub$Result_Unit <- "A = absent, P = present, E = extensive"
+            real <- rbind(real, sub)
+            rm(sub)
+            
+            sub <- subset(real, real$Characteristic_Name %like% "japanese" == TRUE)
+            real <- subset(real, real$Characteristic_Name %like% "japanese" == FALSE)
+            sub$Characteristic_Name <- gsub("japanese honeysuckle present/absent", "japanese honeysuckle", sub$Characteristic_Name)
+            sub$Characteristic_Name <- gsub("japanese honeysuckle", "lonicera japonica (japanese honeysuckle) relative abundance", sub$Characteristic_Name)
+            sub$Characteristic_Name <- gsub("japanese knotweed", "reynoutria japonica (japanese knotweed) relative abundance", sub$Characteristic_Name)
+            sub$Characteristic_Name <- gsub("japanese stiltgrass", "microstegium vimineum (japanese stiltgrass) relative abundance", sub$Characteristic_Name)
+            sub$Characteristic_Name <- gsub("japanese hops", "humulus japonicus (japanese hops) relative abundance", sub$Characteristic_Name)
+            sub$Result_Unit <- "A = absent, P = present, E = extensive"
+            real <- rbind(real, sub)
+            rm(sub)
+
+            real$Characteristic_Name <- gsub("note", "comment", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("time float takes to make it to end point for trial 1", "float time, trial 1; for sites with extremely low flow, the speed of a floating
+object is substituted to allow calculation of discharge", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("time float takes to make it to end point for trial 2", "float time, trial 2; for sites with extremely low flow, the speed of a floating
+object is substituted to allow calculation of discharge", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("time float takes to make it to end point for trial 3", "float time, trial 3; for sites with extremely low flow, the speed of a floating
+object is substituted to allow calculation of discharge", real$Characteristic_Name)
             real <- subset(real, real$Characteristic_Name != "8 digit watershed code for sampled site") # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
             real$Activity_ID <- trimws(real$Activity_ID, which="both")
             real$Characteristic_Name <- trimws(real$Characteristic_Name, which="both")
