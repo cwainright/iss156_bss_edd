@@ -86,7 +86,7 @@ edd_results <- function(
                 ,marc_2022_flow_results
             )
             
-            #----- unify
+            #----- unify and clean
             real$Characteristic_Name <- tolower(real$Characteristic_Name)
             real$Characteristic_Name <- gsub("comments2", "comments", real$Characteristic_Name)
             real$Characteristic_Name <- gsub("comments1", "comments", real$Characteristic_Name)
@@ -97,7 +97,16 @@ edd_results <- function(
             real$Characteristic_Name <- gsub("riparian vegetation width on right bank", "right bank riparian width (m)", real$Characteristic_Name)
             real$Characteristic_Name <- gsub("right bank concrete", "presence of concrete on right bank", real$Characteristic_Name)
             real$Characteristic_Name <- gsub("left bank concrete", "presence of concrete on left bank", real$Characteristic_Name)
-            real <- subset(real, real$Characteristic_Name != "8 digit watershed code for sampled site") # this is not a result; it's a datum associated with the location and is provided in edd.locations
+            real$Characteristic_Name <- gsub("right bank", "top right bank", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("left bank", "top left bank", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("field comments about site", "comments", real$Characteristic_Name)
+            real$Characteristic_Name <- gsub("field comments", "comments", real$Characteristic_Name)
+            real <- subset(real, real$Characteristic_Name != "8 digit watershed code for sampled site") # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
+            real$Activity_ID <- trimws(real$Activity_ID, which="both")
+            real$Characteristic_Name <- trimws(real$Characteristic_Name, which="both")
+            real$Result_Text <- trimws(real$Result_Text, which="both")
+            real$Result_Unit <- trimws(real$Result_Unit, which="both")
+            real$Result_Comment <- trimws(real$Result_Comment, which="both")
             
             # error-checking:
             check_df <- tibble::tibble(data.frame(matrix(ncol=3, nrow=ncol(real))))
