@@ -23,7 +23,7 @@ marc_2022_summer_exotic_results <- function(summer_exotic_marc2022, example, res
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Date), "%Y%m%d")) # "Activity_ID"
             real[3] <- df$Exotic_Plant # "Characteristic_Name"  
-            real[4] <- "Present 'P' or Extensive 'E'" # "Method_Speciation"
+            real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$Relative_Abundance # "Result_Text"
