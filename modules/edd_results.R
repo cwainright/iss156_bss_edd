@@ -86,9 +86,7 @@ edd_results <- function(
                 ,marc_2022_flow_results
             )
             
-            #----- unify and clean
-            
-            
+            #----- clean
             real <- real %>%
                 mutate(
                     Characteristic_Name = tolower(Characteristic_Name)
