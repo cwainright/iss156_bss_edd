@@ -192,25 +192,28 @@ edd_results <- function(
                         ,Characteristic_Name == "presence of pipe on stream bottom" ~ "stream physical characteristics - stream bottom - length of stream obstructed by gabion (m)"
                         ,Characteristic_Name == "right bank gabion" ~ "stream physical characteristics - right bank - length of stream obstructed by gabion (m)"
                         ,Characteristic_Name == "left bank gabion" ~ "stream physical characteristics - left bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream physical characteristics - 0m (site-bottom) - wetted channel width (m)"
+                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream physical characteristics - 0m  - wetted channel width (m)"
                         ,Characteristic_Name == "wetted channel width (m) at 25 m from bottom of site" ~ "stream physical characteristics - 25m - wetted channel width (m)"
                         ,Characteristic_Name == "wetted channel width (m) at 50 m from bottom of site" ~ "stream physical characteristics - 50m - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width (m) at top (75m) of site" ~ "stream physical characteristics - 75m (site-top) - wetted channel width (m)"
-                        ,Characteristic_Name == "thalweg depth (cm) at bottom of site" ~ "stream physical characteristics - 0m (site-bottom) - thalweg depth (cm)"
+                        ,Characteristic_Name == "wetted channel width (m) at top (75m) of site" ~ "stream physical characteristics - 75m - wetted channel width (m)"
+                        ,Characteristic_Name == "thalweg depth (cm) at bottom of site" ~ "stream physical characteristics - 0m - thalweg depth (cm)"
                         ,Characteristic_Name == "thalweg depth (cm) at 25 m from bottom of site" ~ "stream physical characteristics - 25m - thalweg depth (cm)"
                         ,Characteristic_Name == "thalweg depth (cm) at 50 m from bottom of site" ~ "stream physical characteristics - 50m - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg depth (cm) at top (75 m) of site" ~ "stream physical characteristics - 75m (site-top) - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at bottom of site" ~ "stream physical characteristics - 0m (site-bottom) - thalweg velocity (m/s)"
+                        ,Characteristic_Name == "thalweg depth (cm) at top (75 m) of site" ~ "stream physical characteristics - 75m - thalweg depth (cm)"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at bottom of site" ~ "stream physical characteristics - 0m - thalweg velocity (m/s)"
                         ,Characteristic_Name == "thalweg velocity (m/s) at 25 m from bottom of site" ~ "stream physical characteristics - 25m - thalweg velocity (m/s)"
                         ,Characteristic_Name == "thalweg velocity (m/s) at 50 m from bottom of site" ~ "stream physical characteristics - 50m - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at top (75 m) of site" ~ "stream physical characteristics - 75m (site-top) - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "wetted channel width (m) at bottom (0m) of site" ~ "stream physical characteristics - 0m (site-bottom) - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream physical characteristics - 0m (site-bottom) - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width - top of site (75m)" ~ "stream physical characteristics - 75m (site-top) - wetted channel width (m)"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at top (75 m) of site" ~ "stream physical characteristics - 75m - thalweg velocity (m/s)"
+                        ,Characteristic_Name == "wetted channel width (m) at bottom (0m) of site" ~ "stream physical characteristics - 0m - wetted channel width (m)"
+                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream physical characteristics - 0m - wetted channel width (m)"
+                        ,Characteristic_Name == "wetted channel width - top of site (75m)" ~ "stream physical characteristics - 75m - wetted channel width (m)"
                         ,Characteristic_Name == "diversity and quality of water velocity and depths habitat score (0-20)" ~ "stream physical characteristics - diversity and quality of water velocity and depths habitat score (0-20)"
                         ,Characteristic_Name == "velocity" ~ "stream physical characteristics - water velocity associated with a stream lateral location (m/s)"
                         ,Characteristic_Name == "depth" ~ "stream physical characteristics - water depth associated with a stream lateral location (cm)"
                         ,Characteristic_Name == "lat loc" ~ "stream physical characteristics - stream lateral location (m)"
+                        ,Characteristic_Name == "stream gradient measurement location (distance from bottom)" ~ "stream physical characteristics - stream gradient measurement location (meters above site-bottom)"
+                        ,Characteristic_Name == "stream gradient height measurement (meters)" ~ "stream physical characteristics - stream gradient height measurement (meters above stream gradient measurement location)"
+                        ,Characteristic_Name == "stream gradient" ~ "stream physical characteristics - stream gradient (percent slope)"
                         # ,Characteristic_Name %like% "gabion" ~ paste0("stream physical characteristics - ",Characteristic_Name)
                         ,TRUE ~ Characteristic_Name
                     )
@@ -222,10 +225,13 @@ edd_results <- function(
                         ,Characteristic_Name %like% "benthic macroinvertebrates" ~ "square feet"
                         ,Characteristic_Name %like% "sampleability" ~ "S = Sampleable"
                         ,Characteristic_Name %like% "float time" ~ "seconds"
-                        ,Characteristic_Name == "qualitative stream erosion severity - right bank" ~ "0=none; 1=minor; 2=moderate; 3=severe"
+                        ,Characteristic_Name %like% "stream erosion severity" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
                         ,Characteristic_Name %like% "coarse woody debris" ~ "count"
                         ,Characteristic_Name %like% "length of stream obstructed by" ~ "meters"
                         ,Characteristic_Name %like% "wetted channel width" ~ "meters"
+                        ,Characteristic_Name %like% "stream gradient measurement location" ~ "meters"
+                        ,Characteristic_Name %like% "stream gradient height measurement" ~ "meters"
+                        ,Characteristic_Name %like% "percent slope" ~ "percent slope"
                         ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
                         ,TRUE ~ Characteristic_Name
                     )
@@ -263,12 +269,21 @@ edd_results <- function(
             
             myvec <- unique(real$Characteristic_Name)
             subset(myvec, myvec %like% "fragmites")
-            unique(real$Characteristic_Name) %like% "electrofishing sampleability"
-            mysub <- real %>% subset(Characteristic_Name == "riffle")
+            unique(real$Characteristic_Name) %like% "stream gradient"
+            mysub <- real %>% subset(Characteristic_Name %like% "stream gradient")
+            mysub <- real %>% subset(Characteristic_Name == "stream gradient")
             View(mysub)
             unique(mysub$Result_Unit)
             unique(mysub$Result_Text)
             unique(mysub$Characteristic_Name)
+            
+            
+            mysub <- mysub %>% mutate(
+                Result_Unit = case_when(
+                    Characteristic_Name %like% "percent slope" ~ "percent slope"
+                    ,TRUE ~ Result_Unit
+                )
+            )
             
             sort(unique(real$Characteristic_Name))
             rm(mychars)
