@@ -98,15 +98,17 @@ edd_results <- function(
                         ,Characteristic_Name == "comments1" ~ "comments"
                         ,Characteristic_Name == "note" ~ "comments"
                         ,Characteristic_Name == "field comments about site" ~ "comments"
-                        # ,Characteristic_Name == "wetted width of stream at bottom of 75m sampling reach" ~ "wetted channel width - bottom of site (0m)"
                         ,Characteristic_Name == "wetted width of stream at bottom of 75m sampling reach" ~ "stream abiotic - 75m - wetted channel width (m)"
-                        # ,Characteristic_Name == "wetted width of stream at top of 75m sampling reach" ~ "wetted channel width - top of site (75m)"
                         ,Characteristic_Name == "wetted width of stream at top of 75m sampling reach" ~ "stream abiotic - 0m - wetted channel width (m)"
                         ,Characteristic_Name == "riparian vegetation width on left bank" ~ "stream abiotic - riparian width - left bank"
                         ,Characteristic_Name == "riparian vegetation width on right bank" ~ "stream abiotic - riparian width - right bank "
                         ,Characteristic_Name == "right bank concrete" ~ "stream abiotic - right bank - length of stream obstructed by pipe (m)"
                         ,Characteristic_Name == "left bank concrete" ~ "stream abiotic - left bank - length of stream obstructed by pipe (m)"
                         ,Characteristic_Name == "field comments" ~ "comments"
+                        ,Characteristic_Name == "vegetation types on left bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn)" ~ "stream biotic - dominant riparian buffer terrestrial vegetation - left bank"
+                        ,Characteristic_Name == "left bank veg type" ~ "stream biotic - dominant riparian buffer terrestrial vegetation - left bank"
+                        ,Characteristic_Name == "vegetation types on right bank in riparian buffer most to least common (g=grasses/forbes; r=regenerating deciduous/shrubs; y=young deciduous; m=mature deciduous; o=old deciduous; a=regenerating coniferous; b=yound coniferous; c=mature coniferous; d=lawn)" ~ "stream biotic - dominant riparian buffer terrestrial vegetation - right bank"
+                        ,Characteristic_Name == "right bank veg type" ~ "stream biotic - dominant riparian buffer terrestrial vegetation - right bank"
                         ,Characteristic_Name == "macrophytes sampled for benthos" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - macrophytes"
                         ,Characteristic_Name == "macrophytes" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - macrophytes"
                         ,Characteristic_Name == "riffle sampled for benthos" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - riffle"
@@ -116,15 +118,16 @@ edd_results <- function(
                         ,Characteristic_Name == "undercut bank sampled for benthos" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - undercut bank"
                         ,Characteristic_Name == "'other habitats' sampled for benthos" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - other habitat type"
                         ,Characteristic_Name == "number of square feet of undercut bank sampled for benthos" ~ "stream biotic - square feet of habitat sampled for benthic macroinvertebrates - undercut bank"
-                        ,Characteristic_Name == "number of square feet of roots or leaves sampled for benthos" ~ "square feet of habiat sampled for benthic macroinvertebrates - roots or leaves"
+                        ,Characteristic_Name == "number of square feet of roots or leaves sampled for benthos" ~ "stream biotic - square feet of habiat sampled for benthic macroinvertebrates - roots or leaves"
                         ,Characteristic_Name == "mile-a-minute present/absent" ~ "stream biotic - exotic terrestrial plant relative abundance - persicaria perfoliata (mile-a-minute)"
                         ,Characteristic_Name == "japanese honeysuckle present/absent" ~ "stream biotic - exotic terrestrial plant relative abundance - lonicera japonica (japanese honeysuckle)"
                         ,Characteristic_Name == "japanese honeysuckle" ~ "stream biotic - exotic terrestrial plant relative abundance - lonicera japonica (japanese honeysuckle)"
                         ,Characteristic_Name == "japanese knotweed" ~ "stream biotic - exotic terrestrial plant relative abundance - reynoutria japonica (japanese knotweed)"
                         ,Characteristic_Name == "japanese stiltgrass" ~ "stream biotic - exotic terrestrial plant relative abundance - microstegium vimineum (japanese stiltgrass)"
+                        ,Characteristic_Name == "microstegium present/absent" ~ "stream biotic - exotic terrestrial plant relative abundance - microstegium vimineum (japanese stiltgrass)"
                         ,Characteristic_Name == "japanese hops" ~ "stream biotic - exotic terrestrial plant relative abundance - humulus japonicus (japanese hops)"
-                        ,Characteristic_Name == "bush honeysuckle" ~ "stream biotic - exotic terrestrial plant relative abundance - lonicera tatarica (bush honeysuckle)"
-                        ,Characteristic_Name == "wisteria" ~ "stream biotic - exotic terrestrial plant relative abundance - lonicera tatarica (wisteria)"
+                        ,Characteristic_Name == "bush honeysuckle" ~ "stream biotic - exotic terrestrial plant relative abundance - lonicera tatarica (bush honeysuckle, tatarian honeysuckle)"
+                        ,Characteristic_Name == "wisteria" ~ "stream biotic - exotic terrestrial plant relative abundance - wisteria spp. (wisteria)"
                         ,Characteristic_Name == "princess tree" ~ "stream biotic - exotic terrestrial plant relative abundance - paulownia tomentosa (princess tree)"
                         ,Characteristic_Name == "ornamental bittersweet" ~ "stream biotic - exotic terrestrial plant relative abundance - celastrus orbiculatus (ornamental bittersweet)"
                         ,Characteristic_Name == "garlic mustard" ~ "stream biotic - exotic terrestrial plant relative abundance - alliaria petiolata (garlic mustard)"
@@ -132,11 +135,24 @@ edd_results <- function(
                         ,Characteristic_Name == "english ivy" ~ "stream biotic - exotic terrestrial plant relative abundance - hedera helixa (english ivy)"
                         ,Characteristic_Name == "purple loosestrife" ~ "stream biotic - exotic terrestrial plant relative abundance - lythrum salicaria (purple loosestrife)"
                         ,Characteristic_Name == "fragmites" ~ "stream biotic - exotic terrestrial plant relative abundance - phragmites spp. (reed grasses)"
+                        ,Characteristic_Name == "phragmites present/absent" ~ "stream biotic - exotic terrestrial plant relative abundance - phragmites spp. (reed grasses)"
                         ,Characteristic_Name == "mile-a-minute" ~ "stream biotic - exotic terrestrial plant relative abundance - persicaria perfoliata (mile-a-minute)"
                         ,Characteristic_Name == "privot" ~ "stream biotic - exotic terrestrial plant relative abundance - ligustrum spp. (privet)"
                         ,Characteristic_Name == "wineberry" ~ "stream biotic - exotic terrestrial plant relative abundance - rubus phoenicolasius (wineberry)"
                         ,Characteristic_Name == "multiflora rose" ~ "stream biotic - exotic terrestrial plant relative abundance - rosa multiflora (multiflora rose)"
-                        ,Characteristic_Name == "deep pool (> 50 cm depth)  present, absent, extensive" ~ "stream abiotic -  relative abundance- deep pool (> 50 cm depth)"
+                        ,Characteristic_Name == "multiflora rose present/absent" ~ "stream biotic - exotic terrestrial plant relative abundance - rosa multiflora (multiflora rose)"
+                        ,Characteristic_Name == "species of other exotics that may be present" ~ "stream biotic - exotic terrestrial plant relative abundance - other species"
+                        ,Characteristic_Name == "deep pool (> 50 cm depth) present, absent, extensive" ~ "stream abiotic - relative abundance - deep pool (> 50 cm depth)"
+                        ,Characteristic_Name == "shallow pool (<= 50 cm depth) present, absent, extensive" ~ "stream abiotic - relative abundance - shallow pool (<= 50 cm depth)"
+                        ,Characteristic_Name == "maximum depth (cm)" ~ "stream abiotic - reach maximum depth"
+                        ,Characteristic_Name == "linear extent of pool habitat (meters; 75 m maximum)" ~ "stream abiotic - extent - linear extent pool habitat"
+                        ,Characteristic_Name == "linear extent of riffle habitat (meters; 75 m maximum)" ~ "stream abiotic - extent - linear extent riffle habitat"
+                        ,Characteristic_Name == "large boulders (> 2m) present, absent, extensive" ~ "stream abiotic - relative abundance - large boulders (> 2 m)"
+                        ,Characteristic_Name == "riffle present, absent, extensive" ~ "stream abiotic - relative abundance - riffle habitat"
+                        ,Characteristic_Name == "run/glide present, absent, extensive" ~ "stream abiotic - relative abundance - run or glide habitat"
+                        ,Characteristic_Name == "small boulders present (<2m, but larger than cobble), absent, extensive" ~ "stream abiotic - relative abundance - small boulders (<= 2 m)"
+                        ,Characteristic_Name == "sand present, absent, extensive" ~ "stream abiotic - relative abundance - sand"
+                        ,Characteristic_Name == "silt/clay present, absent, extensive" ~ "stream abiotic - relative abundance - silt/clay"
                         ,Characteristic_Name == "undercut banks present, absent, extensive" ~ "stream abiotic - relative abundance - undercut banks"
                         ,Characteristic_Name == "undercut banks" ~ "stream abiotic - relative abundance - undercut banks"
                         ,Characteristic_Name == "rootwad/woody debris" ~ "stream abiotic - relative abundance - rootwad/woody debris"
@@ -159,83 +175,131 @@ edd_results <- function(
                         ,Characteristic_Name == "time float takes to make it to end point for trial 1" ~ "alternate discharge measurement - float time - trial 1"
                         ,Characteristic_Name == "time float takes to make it to end point for trial 2" ~ "alternate discharge measurement - float time - trial 2"
                         ,Characteristic_Name == "time float takes to make it to end point for trial 3" ~ "alternate discharge measurement - float time - trial 3"
-                        ,Characteristic_Name == "number of large wood pieces in wetted stream" ~ "coarse woody debris in wetted stream"
-                        ,Characteristic_Name == "number of large wood pieces in active channel but currently dewatered" ~ "coarse woody debris in stream channel but currently dewatered"
-                        ,Characteristic_Name == "left dominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-left dominant substrate"
-                        ,Characteristic_Name == "left subdominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m -river-left subdominant substrate"
-                        ,Characteristic_Name == "left depth at 50m-75m" ~ "stream abiotic - 50m-75m - river-left water depth"
-                        ,Characteristic_Name == "left velocity at 50m-75m" ~ "stream abiotic - 50m-75m - river-left water velocity"
-                        ,Characteristic_Name == "right dominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right dominant substrate"
-                        ,Characteristic_Name == "right subdominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right subdominant substrate"
-                        ,Characteristic_Name == "right depth at 50m-75m" ~ "stream abiotic - 50m-75m - river-right water depth"
-                        ,Characteristic_Name == "right velocity at 50m-75m" ~ "stream abiotic - 50m-75m - river-right water velocity"
-                        ,Characteristic_Name == "left dominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-left dominant substrate"
-                        ,Characteristic_Name == "left subdominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m -river-left subdominant substrate"
-                        ,Characteristic_Name == "left depth at 25m-50m" ~ "stream abiotic - 25m-50m - river-left water depth"
-                        ,Characteristic_Name == "left velocity at 25m-50m" ~ "stream abiotic - 25m-50m - river-left water velocity"
-                        ,Characteristic_Name == "right dominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-right dominant substrate"
-                        ,Characteristic_Name == "right subdominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-right subdominant substrate"
-                        ,Characteristic_Name == "right depth at 25m-50m" ~ "stream abiotic - 25m-50m - river-right water depth"
-                        ,Characteristic_Name == "right velocity at 25m-50m" ~ "stream abiotic - 25m-50m - river-right water velocity"
-                        ,Characteristic_Name == "left dominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-left dominant substrate"
-                        ,Characteristic_Name == "left subdominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m -river-left subdominant substrate"
-                        ,Characteristic_Name == "left depth at 0m-25m" ~ "stream abiotic - 0m-25m - river-left water depth"
-                        ,Characteristic_Name == "left velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-left water velocity"
-                        ,Characteristic_Name == "right dominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-right dominant substrate"
-                        ,Characteristic_Name == "right subdominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-right subdominant substrate"
-                        ,Characteristic_Name == "right depth at 0m-25m" ~ "stream abiotic - 0m-25m - river-right water depth"
-                        ,Characteristic_Name == "right velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-right water velocity"
-                        ,Characteristic_Name == "right velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-right water velocity"
-                        ,Characteristic_Name == "presence of gabions on left bank" ~ "stream abiotic - left bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "presence of gabions on right bank" ~ "stream abiotic - right bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "presence of gabions on stream bottom" ~ "stream abiotic - stream bottom - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "presence of pipe on left bank" ~ "stream abiotic - left bank - length of stream obstructed by pipe (m)"
-                        ,Characteristic_Name == "presence of pipe on right bank" ~ "stream abiotic - right bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "presence of pipe on stream bottom" ~ "stream abiotic - stream bottom - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "right bank gabion" ~ "stream abiotic - right bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "left bank gabion" ~ "stream abiotic - left bank - length of stream obstructed by gabion (m)"
-                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream abiotic - 0m  - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width (m) at 25 m from bottom of site" ~ "stream abiotic - 25m - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width (m) at 50 m from bottom of site" ~ "stream abiotic - 50m - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width (m) at top (75m) of site" ~ "stream abiotic - 75m - wetted channel width (m)"
-                        ,Characteristic_Name == "thalweg depth (cm) at bottom of site" ~ "stream abiotic - 0m - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg depth (cm) at 25 m from bottom of site" ~ "stream abiotic - 25m - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg depth (cm) at 50 m from bottom of site" ~ "stream abiotic - 50m - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg depth (cm) at top (75 m) of site" ~ "stream abiotic - 75m - thalweg depth (cm)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at bottom of site" ~ "stream abiotic - 0m - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at 25 m from bottom of site" ~ "stream abiotic - 25m - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at 50 m from bottom of site" ~ "stream abiotic - 50m - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "thalweg velocity (m/s) at top (75 m) of site" ~ "stream abiotic - 75m - thalweg velocity (m/s)"
-                        ,Characteristic_Name == "wetted channel width (m) at bottom (0m) of site" ~ "stream abiotic - 0m - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream abiotic - 0m - wetted channel width (m)"
-                        ,Characteristic_Name == "wetted channel width - top of site (75m)" ~ "stream abiotic - 75m - wetted channel width (m)"
+                        ,Characteristic_Name == "number of large wood pieces in wetted stream" ~ "stream abiotic - coarse woody debris in wetted stream"
+                        ,Characteristic_Name == "number of large wood pieces in active channel but currently dewatered" ~ "stream abiotic - coarse woody debris in stream channel but currently dewatered"
+                        ,Characteristic_Name == "left bank riparian width (m)" ~ "stream abiotic - left bank - riparian width"
+                        ,Characteristic_Name == "right bank riparian width (m)" ~ "stream abiotic - right bank - riparian width"
+                        ,Characteristic_Name == "left bank adjacent land cover" ~ "stream abiotic - left bank - adjacent land cover"
+                        ,Characteristic_Name == "right bank adjacent land cover" ~ "stream abiotic - right bank - adjacent land cover"
+                        ,Characteristic_Name == "left bank dredge spoil" ~ "stream abiotic - relative abundance - left bank - dredge spoil"
+                        ,Characteristic_Name == "right bank dredge spoil" ~ "stream abiotic - relative abundance - right bank - dredge spoil"
+                        ,Characteristic_Name == "left bank buffer breaks" ~ "stream abiotic - left bank - buffer breaks"
+                        ,Characteristic_Name == "right bank riparian width (m)" ~ "stream abiotic - right bank riparian width"
+                        ,Characteristic_Name == "left dominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right dominant substrate"
+                        ,Characteristic_Name == "left subdominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right subdominant substrate"
+                        ,Characteristic_Name == "left depth at 50m-75m" ~ "stream abiotic - 50m-75m - river-right water depth"
+                        ,Characteristic_Name == "left velocity at 50m-75m" ~ "stream abiotic - 50m-75m - river-right water velocity"
+                        ,Characteristic_Name == "right dominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-left dominant substrate"
+                        ,Characteristic_Name == "right subdominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-left subdominant substrate"
+                        ,Characteristic_Name == "right depth at 50m-75m" ~ "stream abiotic - 50m-75m - river-left water depth"
+                        ,Characteristic_Name == "right velocity at 50m-75m" ~ "stream abiotic - 50m-75m - river-left water velocity"
+                        ,Characteristic_Name == "left dominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-right dominant substrate"
+                        ,Characteristic_Name == "left subdominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m -river-right subdominant substrate"
+                        ,Characteristic_Name == "left depth at 25m-50m" ~ "stream abiotic - 25m-50m - river-right water depth"
+                        ,Characteristic_Name == "left velocity at 25m-50m" ~ "stream abiotic - 25m-50m - river-right water velocity"
+                        ,Characteristic_Name == "right dominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-left dominant substrate"
+                        ,Characteristic_Name == "right subdominant substrate at 25m-50m" ~ "stream abiotic - 25m-50m - river-left subdominant substrate"
+                        ,Characteristic_Name == "right depth at 25m-50m" ~ "stream abiotic - 25m-50m - river-left water depth"
+                        ,Characteristic_Name == "right velocity at 25m-50m" ~ "stream abiotic - 25m-50m - river-left water velocity"
+                        ,Characteristic_Name == "left dominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-right dominant substrate"
+                        ,Characteristic_Name == "left subdominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m -river-right subdominant substrate"
+                        ,Characteristic_Name == "left depth at 0m-25m" ~ "stream abiotic - 0m-25m - river-right water depth"
+                        ,Characteristic_Name == "left velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-right water velocity"
+                        ,Characteristic_Name == "right dominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-left dominant substrate"
+                        ,Characteristic_Name == "right subdominant substrate at 0m-25m" ~ "stream abiotic - 0m-25m - river-left subdominant substrate"
+                        ,Characteristic_Name == "right depth at 0m-25m" ~ "stream abiotic - 0m-25m - river-left water depth"
+                        ,Characteristic_Name == "right velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-left water velocity"
+                        ,Characteristic_Name == "right velocity at 0m-25m" ~ "stream abiotic - 0m-25m - river-left water velocity"
+                        ,Characteristic_Name == "presence of gabions on left bank" ~ "stream abiotic - left bank - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "presence of gabions on right bank" ~ "stream abiotic - right bank - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "presence of gabions on stream bottom" ~ "stream abiotic - stream bottom - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "presence of pipe on left bank" ~ "stream abiotic - left bank - length of stream obstructed by pipe"
+                        ,Characteristic_Name == "presence of pipe on right bank" ~ "stream abiotic - right bank - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "presence of pipe on stream bottom" ~ "stream abiotic - stream bottom - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "right bank gabion" ~ "stream abiotic - right bank - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "left bank gabion" ~ "stream abiotic - left bank - length of stream obstructed by gabion"
+                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream abiotic - 0m  - wetted channel width"
+                        ,Characteristic_Name == "wetted channel width (m) at 25 m from bottom of site" ~ "stream abiotic - 25m - wetted channel width"
+                        ,Characteristic_Name == "wetted channel width (m) at 50 m from bottom of site" ~ "stream abiotic - 50m - wetted channel width"
+                        ,Characteristic_Name == "wetted channel width (m) at top (75m) of site" ~ "stream abiotic - 75m - wetted channel width"
+                        ,Characteristic_Name == "thalweg depth (cm) at bottom of site" ~ "stream abiotic - 0m - thalweg depth"
+                        ,Characteristic_Name == "thalweg depth (cm) at 25 m from bottom of site" ~ "stream abiotic - 25m - thalweg depth"
+                        ,Characteristic_Name == "thalweg depth (cm) at 50 m from bottom of site" ~ "stream abiotic - 50m - thalweg depth"
+                        ,Characteristic_Name == "thalweg depth (cm) at top (75 m) of site" ~ "stream abiotic - 75m - thalweg depth"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at bottom of site" ~ "stream abiotic - 0m - thalweg velocity"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at 25 m from bottom of site" ~ "stream abiotic - 25m - thalweg velocity"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at 50 m from bottom of site" ~ "stream abiotic - 50m - thalweg velocity"
+                        ,Characteristic_Name == "thalweg velocity (m/s) at top (75 m) of site" ~ "stream abiotic - 75m - thalweg velocity"
+                        ,Characteristic_Name == "wetted channel width (m) at bottom (0m) of site" ~ "stream abiotic - 0m - wetted channel width"
+                        ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream abiotic - 0m - wetted channel width"
+                        ,Characteristic_Name == "wetted channel width - top of site (75m)" ~ "stream abiotic - 75m - wetted channel width"
                         ,Characteristic_Name == "diversity and quality of water velocity and depths habitat score (0-20)" ~ "stream abiotic - diversity and quality of water velocity and depths habitat score (0-20)"
-                        ,Characteristic_Name == "velocity" ~ "stream abiotic - water velocity associated with a stream lateral location (m/s)"
-                        ,Characteristic_Name == "depth" ~ "stream abiotic - water depth associated with a stream lateral location (cm)"
-                        ,Characteristic_Name == "lat loc" ~ "stream abiotic - stream lateral location (m)"
+                        ,Characteristic_Name == "velocity" ~ "stream abiotic - water velocity associated with a stream lateral location"
+                        ,Characteristic_Name == "depth" ~ "stream abiotic - water depth associated with a stream lateral location"
+                        ,Characteristic_Name == "lat loc" ~ "stream abiotic - stream lateral location"
+                        ,Characteristic_Name == "latitude of stream blockage" ~ "stream abiotic - stream obstruction - latitude"
+                        ,Characteristic_Name == "longitude of stream blockage" ~ "stream abiotic - stream obstruction - latitude"
                         ,Characteristic_Name == "stream gradient measurement location (distance from bottom)" ~ "stream abiotic - stream gradient measurement location (meters above site-bottom)"
                         ,Characteristic_Name == "stream gradient height measurement (meters)" ~ "stream abiotic - stream gradient height measurement (meters above stream gradient measurement location)"
                         ,Characteristic_Name == "stream gradient" ~ "stream abiotic - stream gradient (percent slope)"
+                        ,Characteristic_Name == "channel slope (%) using a surveyor's level and rod" ~ "stream abiotic - stream gradient (percent slope)"
                         ,Characteristic_Name == "vernal pool present (y/n)" ~ "stream abiotic - vernal pool relative abundance"
                         ,Characteristic_Name == "vernal pool" ~ "stream abiotic - vernal pool relative abundance"
-                        # ,Characteristic_Name %like% "gabion" ~ paste0("stream abiotic - ",Characteristic_Name)
+                        ,Characteristic_Name == "acid neutralizing capacity" ~ "stream abiotic - chemistry - acid neutralizing capacity"
+                        ,Characteristic_Name == "sulfate (mg/l)" ~ "stream abiotic - chemistry - sulfate concentration"
+                        ,Characteristic_Name == "altitude (feet) from degital elevation model" ~ "stream abiotic - elevation above sea level at sampling location"
+                        ,Characteristic_Name == "ammonia concentration" ~ "stream abiotic - chemistry - ammonia concentration"
+                        ,Characteristic_Name == "chloride (mg/l)" ~ "stream abiotic - chemistry - chloride concentration"
+                        ,Characteristic_Name == "chloride concentration" ~ "stream abiotic - chemistry - chloride concentration"
+                        ,Characteristic_Name == "dissolved organic carbon (mg/l)" ~ "stream abiotic - chemistry - dissolved organic carbon concentration"
+                        ,Characteristic_Name == "dissolved organic carbon concentration" ~ "stream abiotic - chemistry - dissolved organic carbon concentration"
+                        ,Characteristic_Name == "nitrate-n (mg/l)" ~ "stream abiotic - chemistry - nitrate concentration"
+                        ,Characteristic_Name == "nitrate nitrogen concentration" ~ "stream abiotic - chemistry - nitrate concentration"
+                        ,Characteristic_Name == "ortho-phosphate concentration" ~ "stream abiotic - chemistry - orthophosphate concentration"
+                        ,Characteristic_Name == "orthophosphate (mg/l)" ~ "stream abiotic - chemistry - orthophosphate concentration"
+                        ,Characteristic_Name == "specific conductance" ~ "stream abiotic - chemistry - specific conductance"
+                        ,Characteristic_Name == "total ammonia nitrogen (mg/l)" ~ "stream abiotic - chemistry - ammonia concentration"
+                        ,Characteristic_Name == "total nitrogen concentration" ~ "stream abiotic - chemistry - total nitrogen concentration"
+                        ,Characteristic_Name == "total phosphorus concentration" ~ "stream abiotic - chemistry - total phosphorus concentration"
+                        ,Characteristic_Name == "straight line length of segment" ~ "stream abiotic - straight line length of 75m reach"
+                        ,Characteristic_Name == "stream blockage type (p52)" ~ "stream abiotic - stream blockage type (p52)"
                         ,TRUE ~ Characteristic_Name
                     )
                 ) %>%
                 mutate(
                     Result_Unit = case_when(
-                        # Characteristic_Name %like% "stream biotic - exotic terrestrial plant relative abundance" ~ "A = absent, P = present, E = extensive"
-                        Characteristic_Name %like% "relative abundance" ~ "A = absent, P = present, E = extensive"
+                        Characteristic_Name == "stream biotic - exotic terrestrial plant relative abundance - other species" ~ "species name"
+                        ,Characteristic_Name %like% "relative abundance" ~ "A = absent, P = present, E = extensive"
                         ,Characteristic_Name %like% "benthic macroinvertebrates" ~ "square feet"
                         ,Characteristic_Name %like% "sampleability" ~ "S = Sampleable"
                         ,Characteristic_Name %like% "float time" ~ "seconds"
                         ,Characteristic_Name %like% "stream erosion severity" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
                         ,Characteristic_Name %like% "coarse woody debris" ~ "count"
+                        ,Characteristic_Name %like% "linear extent" ~ "meters"
+                        ,Characteristic_Name %like% "straight line length" ~ "meters"
                         ,Characteristic_Name %like% "length of stream obstructed by" ~ "meters"
                         ,Characteristic_Name %like% "wetted channel width" ~ "meters"
                         ,Characteristic_Name %like% "stream gradient measurement location" ~ "meters"
                         ,Characteristic_Name %like% "stream gradient height measurement" ~ "meters"
+                        ,Characteristic_Name %like% "lateral stream location" ~ "meters"
+                        ,Characteristic_Name %like% "elevation above sea level" ~ "meters"
+                        ,Characteristic_Name %like% "riparian width" ~ "meters"
                         ,Characteristic_Name %like% "percent slope" ~ "percent slope"
+                        ,Characteristic_Name %like% "thalweg depth" ~ "centimeters"
+                        ,Characteristic_Name %like% "reach maximum depth" ~ "centimeters"
+                        ,Characteristic_Name %like% "thalweg velocity" ~ "meters per second"
+                        ,Characteristic_Name %like% "sulfate" ~ "mg/L"
+                        ,Characteristic_Name %like% "ammonia" ~ "mg/L"
+                        ,Characteristic_Name %like% "chloride" ~ "mg/L"
+                        ,Characteristic_Name %like% "nitrate" ~ "mg/L"
+                        ,Characteristic_Name %like% "orthophosphate" ~ "mg/L"
+                        ,Characteristic_Name %like% "dissolved organic carbon" ~ "mg/L"
+                        ,Characteristic_Name %like% "acid neutralizing capacity" ~ "ueq/L"
+                        ,Characteristic_Name %like% "specific conductance" ~ "uS/cm"
+                        ,Characteristic_Name %like% "latitude" ~ "decimal degrees"
+                        ,Characteristic_Name %like% "longitude" ~ "decimal degrees"
+                        ,Characteristic_Name == "stream abiotic - stream blockage type (p52)" ~ "DM = dam; PC = pipe culvert; F = fishway; FW = gaging station weir; G = gabion; PX = pipeline crossing; AC = arch culvert; BC = box culvert; TG = tide gate"
+                        ,Characteristic_Name %like% "dominant riparian buffer terrestrial vegetation" ~ "(G = grasses/forbes; R = regenerating deciduous/shrubs; Y = young deciduous; M = mature deciduous; O = old deciduous; A = regenerating coniferous; B = young coniferous; C = mature coniferous; D = lawn)"
                         ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
                         ,TRUE ~ Characteristic_Name
                     )
@@ -248,13 +312,20 @@ edd_results <- function(
                 mutate(
                     Characteristic_Name = gsub("right bank", "top right bank", Characteristic_Name)
                     ,Characteristic_Name = gsub("left bank", "top left bank", Characteristic_Name)
-                    ,Characteristic_Name = gsub("alternate flow measurement", "alternate discharge measurement -", Characteristic_Name)
+                    ,Characteristic_Name = gsub("alternate flow measurement", "stream abiotic - alternate discharge measurement -", Characteristic_Name)
                 ) %>%
                 filter(
                     Characteristic_Name != "8 digit watershed code for sampled site" # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
+                    ,Characteristic_Name != "unique identifier of sampling site" # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
                     ,Characteristic_Name != "benthos" # this is a boolean that simply says whether bob sampled for macroinverts at this Activity_ID; it's not a datum
                     ,Characteristic_Name != "sampleable?" # this is a boolean that simply says whether bob could sample the site; it's not a datum
+                    ,Characteristic_Name != "crew" # filter out field crew names (PII)
                 ) %>%
+                mutate(Result_Qualifier = case_when(
+                    Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "< 0.0032" ~ "reported as undetectable;  < 0.0032"
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "< 0.0045" ~ "reported as undetectable; < 0.0045"
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ "reported as undetectable; < 0.0043"
+                )) %>%
                 mutate(Result_Text = case_when(
                     Characteristic_Name == "sampleability - electrofishing" & Result_Text == "10" ~ "S" # this is a typo in the source file
                     ,Characteristic_Name == "sampleability - water quality" & Result_Text == "Y" ~ "S" # this is a typo in the source file
@@ -262,6 +333,24 @@ edd_results <- function(
                     ,Characteristic_Name %like% "gabion relative abundance" & Result_Text == "N" ~ "A" # this is a typo in the source file
                     ,Characteristic_Name %like% "vernal pool relative abundance" & Result_Text == "N" ~ "A" # this is a typo in the source file
                     ,Characteristic_Name %like% "vernal pool relative abundance" & Result_Text == "Y" ~ "P" # this is a typo in the source file
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ "0.0043" # undetectable
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "2.5100000000000001E-2" ~ "0.0251" # not a number
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "2.12E-2" ~ "0.0212" # not a number
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "0.26790000000000003" ~ "0.2679" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "1.8100000000000002E-2" ~ "0.0181" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "1.11E-2" ~ "0.011" # number
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "6.3E-3" ~ "0.0063" # number
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "2.5700000000000001E-2" ~ "0.0257" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "4.7999999999999996E-3" ~ "0.0048" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "5.1999999999999998E-3" ~ "0.0052" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "< 0.0045" ~ NA # undetectable
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "5.3E-3" ~ "0.0053" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "6.0000000000000001E-3" ~ "0.0060" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "1.4E-3" ~ "0.0014" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "3.8999999999999998E-3" ~ "0.0039" # sig figs
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "< 0.0032" ~ NA # undetectable
+                    ,Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "3.3E-3" ~ "0.0033" # sig figs
+                    ,Characteristic_Name %like% "exotic terrestrial plant relative abundance - other species" & Result_Text == "NONE" ~ NA
                     ,TRUE ~ Result_Text
                     )
                 ) %>%
@@ -276,20 +365,14 @@ edd_results <- function(
             myvec <- unique(real$Characteristic_Name)
             subset(myvec, myvec %like% "fragmites")
             unique(real$Characteristic_Name) %like% "stream gradient"
-            mysub <- real %>% subset(Characteristic_Name %like% "vernal pool")
-            mysub <- real %>% subset(Characteristic_Name == "vernal pool present (y/n)")
+            mysub <- real %>% subset(Characteristic_Name == "stream abiotic - stream blockage type (p52)")
+            mysub <- real %>% subset(Activity_ID %like% "macroinvertebrates")
+            mysub <- real %>% subset(Characteristic_Name %like% "other species")
             View(mysub)
             unique(mysub$Result_Unit)
             unique(mysub$Result_Text)
             unique(mysub$Characteristic_Name)
-            
-            
-            mysub <- mysub %>% mutate(
-                Result_Unit = case_when(
-                    Characteristic_Name %like% "percent slope" ~ "percent slope"
-                    ,TRUE ~ Result_Unit
-                )
-            )
+            unique(mysub$Result_Qualifier)
             
             sort(unique(real$Characteristic_Name))
             rm(mychars)
