@@ -96,7 +96,7 @@ ncrn_benthic_habitat_results <- function(results_list, example){
             real[47] <- NA # "Data_Logger_Line_Name"
             real[48] <- NA # "Biological_Intent"
             real[49] <- NA # "Biological_Individual_ID"
-            real[50] <- df$Characteristic_Name # "Subject_Taxon"
+            real[50] <- NA # "Subject_Taxon"
             real[51] <- NA # "Unidentified_Species_ID"
             real[52] <- NA # "Tissue_Anatomy"
             real[53] <- NA # "Group_Summary_Count_or_Weight"
