@@ -12,7 +12,7 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             # make a flat dataframe from `results_list`
             df <- bob_2022_macroinvert
             df$date <- 2022 # there is no date column in the source file
-            df$Characteristic_Name <- "Stream macroinvertebrate sampling"
+            df$Characteristic_Name <- "stream macroinvertebrate sampling"
             df$unit <- "count of individuals"
             df$Activity_ID <- paste0(df$site, ".b.macroinvertebrates.", as.character(df$date))
             
@@ -29,7 +29,7 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- df$Activity_ID # "Activity_ID" shared field with `real_activities.Activity_ID`
-            real[3] <- df$Genus # df$Characteristic_Name# "Characteristic_Name"  
+            real[3] <- df$Characteristic_Name # df$Characteristic_Name# "Characteristic_Name"  
             real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
@@ -74,9 +74,9 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             real[45] <- NA # "Dilution_Factor"
             real[46] <- NA # "Num_of_Replicates"
             real[47] <- NA # "Data_Logger_Line_Name"
-            real[48] <- NA # "Biological_Intent"
+            real[48] <- df$Family # "Biological_Intent"
             real[49] <- NA # "Biological_Individual_ID"
-            real[50] <- df$Family # "Subject_Taxon"
+            real[50] <- df$Genus # "Subject_Taxon"
             real[51] <- NA # "Unidentified_Species_ID"
             real[52] <- NA # "Tissue_Anatomy"
             real[53] <- NA # "Group_Summary_Count_or_Weight"
@@ -115,7 +115,7 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             real[86] <- NA # "Frequency_Class_Upper_Bound_3"
             real[87] <- NA # "Taxonomist_Accreditation_Indicator"
             real[88] <- NA # "Taxonomist_Accreditation_Authority_Name"
-            real[89] <- NA # "Result_File_Name"
+            real[89] <- "nps_spring_2022_benthics_bob.xlsx" # "Result_File_Name"
             
             real <- as.data.frame(lapply(real, function(y) gsub("\\<NA\\>", NA, y))) # remove "NA" chr strings
             colnames(real)[1] <- "#Org_Code"    

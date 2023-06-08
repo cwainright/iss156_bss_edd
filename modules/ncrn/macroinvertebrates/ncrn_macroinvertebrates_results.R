@@ -12,7 +12,7 @@ ncrn_macroinvert_results <- function(results_list, example){
             
             # make a flat dataframe from `results_list`
             df <- results_list$tbl_Benthic_Data
-            df$Characteristic_Name <- "Stream macroinvertebrate sampling"
+            df$Characteristic_Name <- "stream macroinvertebrate sampling"
             df$Result_Text <- df$N_TAXA
             df$Result_Unit <- "count of individuals"
             # join taxonomic values
@@ -28,7 +28,7 @@ ncrn_macroinvert_results <- function(results_list, example){
             
             real[1] <- "NCRN" # "#Org_Code" 
             real[2] <- df$Event_ID # "Activity_ID" shared field with `real_activities.Activity_ID`
-            real[3] <- tolower(df$TAXON) # df$Characteristic_Name# "Characteristic_Name"  
+            real[3] <- df$Characteristic_Name # df$Characteristic_Name# "Characteristic_Name"  
             real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
             real[6] <- NA # "Result_Detection_Condition"
@@ -73,9 +73,9 @@ ncrn_macroinvert_results <- function(results_list, example){
             real[45] <- NA # "Dilution_Factor"
             real[46] <- NA # "Num_of_Replicates"
             real[47] <- NA # "Data_Logger_Line_Name"
-            real[48] <- NA # "Biological_Intent"
+            real[48] <- df$Family # "Biological_Intent"
             real[49] <- NA # "Biological_Individual_ID"
-            real[50] <- df$Family # "Subject_Taxon"
+            real[50] <- tolower(df$TAXON) # "Subject_Taxon"
             real[51] <- NA # "Unidentified_Species_ID"
             real[52] <- NA # "Tissue_Anatomy"
             real[53] <- NA # "Group_Summary_Count_or_Weight"
@@ -114,7 +114,7 @@ ncrn_macroinvert_results <- function(results_list, example){
             real[86] <- NA # "Frequency_Class_Upper_Bound_3"
             real[87] <- NA # "Taxonomist_Accreditation_Indicator"
             real[88] <- NA # "Taxonomist_Accreditation_Authority_Name"
-            real[89] <- NA # "Result_File_Name"
+            real[89] <- "tbl_Benthic_Data" # "Result_File_Name"
             
             real <- as.data.frame(lapply(real, function(y) gsub("\\<NA\\>", NA, y))) # remove "NA" chr strings
             colnames(real)[1] <- "#Org_Code"
