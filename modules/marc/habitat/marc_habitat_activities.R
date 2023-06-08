@@ -49,7 +49,8 @@ marc_habitat_activities <- function(habitat_marc2022, habitat_marc2021, example,
             df2022$Start_Date <- as.character(df2022$Start_Date)
             
             #----- combine 2021 and 2022
-            df <- rbind(df2021, df2022)
+            df <-  df2022 # DO NOT combine. we do not add 2021 data to `real` because those records already exist in ncrn_habitat_results; tbl_Spring_PHI; tbl_Summer_PHI
+            # df <- rbind(df2021, df2022)
             df$Activity_ID <- paste0(df$Event_Site_ID, "_", df$variable)
             
             #----- build to match example
