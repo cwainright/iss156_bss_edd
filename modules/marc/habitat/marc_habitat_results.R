@@ -17,7 +17,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             lookup <- read.csv("modules/marc/habitat/unit_lookup.csv")
             lookup[1] <- NULL
             
-            #----- wrangle 2021
+            #----- wrangle 2021 (note, we do not add 2021 data to `real` because those records already exist in ncrn_habitat_results; tbl_Spring_PHI; tbl_Summer_PHI)
             df2021 <- habitat_marc2021
             df2021 <- df2021 %>% select(NCRN_Site_ID, c(7:61))
             measure_vars <- colnames(habitat_marc2021 %>% select(c(7:ncol(habitat_marc2021)))) # the columns we want to melt into `value` and `variable` columns
@@ -76,7 +76,8 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             df2022 <- df2022 %>% select(colnames(df2021))
             
             #----- combine 2021 and 2022
-            df <- rbind(df2021, df2022) # combine
+            # df <- rbind(df2021, df2022) # combine
+            df <-  df2022 # DO NOT combine. we do not add 2021 data to `real` because those records already exist in ncrn_habitat_results; tbl_Spring_PHI; tbl_Summer_PHI
             df$Activity_ID <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d"))
             
             #----- use NCRN lookup tables to add values that are missing from Marc's data
