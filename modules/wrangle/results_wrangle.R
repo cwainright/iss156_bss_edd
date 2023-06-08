@@ -7,7 +7,6 @@ results_wrangle <- function(
 ){
     tryCatch(
         expr = {
-
             real <- real %>%
                 mutate(
                     Characteristic_Name = tolower(Characteristic_Name)
@@ -97,10 +96,11 @@ results_wrangle <- function(
                         ,Characteristic_Name == "floating aquatic vegetation" ~ "aquatic vegetation relative abundance - floating aquatic plants"
                         ,Characteristic_Name == "percentage of rocks (gravel, cobble, and boulders) that are surrounded by, covered, or sunken into the silt, sand, or mud of the stream" ~ "stream abiotic - embeddedness - percentage of rocks (gravel, cobble, boulders) covered by sediment (sand, silt)"
                         ,Characteristic_Name == "percentage of hard substrates that are surrounded by fine sediments (0-100%)" ~ "stream abiotic - embeddedness - percentage of rocks (gravel, cobble, boulders) covered by sediment (sand, silt)"
-                        ,Characteristic_Name == "erosion severity right bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - right bank - stream erosion severity"
-                        ,Characteristic_Name == "bar severity right bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - right bank - stream bar severity"
-                        ,Characteristic_Name == "erosion severity left bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - left bank - stream erosion severity"
-                        ,Characteristic_Name == "bar severity left bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - left bank - stream bar severity"
+                        ,Characteristic_Name == "erosion severity right bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - right bank - severity - bank erosion"
+                        ,Characteristic_Name == "erosion severity right  bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - right bank - severity - bank erosion"
+                        ,Characteristic_Name == "bar severity right bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - right bank - severity - stream bar"
+                        ,Characteristic_Name == "erosion severity left bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - left bank - severity - bank erosion"
+                        ,Characteristic_Name == "bar severity left bank (0=none; 1=minor; 2=moderate; 3=severe)" ~ "stream abiotic - left bank - severity - stream bar"
                         # ,Characteristic_Name == "bar formation = extensive" ~ "stream abiotic - bar formation - extensive"
                         # ,Characteristic_Name == "bar formation = extensive" ~ "stream abiotic - bar formation - extensive"
                         # ,Characteristic_Name == "bar formation = extensive" ~ "stream abiotic - bar formation - extensive"
@@ -273,10 +273,16 @@ results_wrangle <- function(
                         ,Characteristic_Name == "distance to nearest road" ~ "stream abiotic - straight-line distance to nearest road"
                         ,Characteristic_Name == "individual fish mass (weight) in g" ~ "stream biota - fish - individual fish mass"
                         ,Characteristic_Name == "individual fish total length in mm" ~ "stream biota - fish - individual fish total length"
-                        ,Characteristic_Name == "fish count by species" ~ "stream biota - fish - fish count by species"
+                        ,Characteristic_Name == "fish count by species" ~ "stream biota - fish - count of individuals captured by species"
                         ,Characteristic_Name == "gps location of latitude (only present if coordinates do not fall within 30m of stream or on samplable reach)" ~ "instrumentation or event data - sampling location latitude"
                         ,Characteristic_Name == "gps location of longitude (only present if coordinates do not fall within 30m of stream or on samplable reach)" ~ "instrumentation or event data - sampling location longitude"
-                        ,Characteristic_Name == "stream macroinvertebrate sampling" ~ "stream biota - macroinvertebrate counts"
+                        ,Characteristic_Name == "stream macroinvertebrate sampling" ~ "stream biota - benthic macroinvertebrates - count of individuals captured by taxon"
+                        ,Characteristic_Name == "erosion extent left bank" ~ "stream abiotic - left bank - extent - bank erosion"
+                        ,Characteristic_Name == "erosion extent right bank" ~ "stream abiotic - right bank - extent - bank erosion"
+                        ,Characteristic_Name == "erosion height left bank (meters)" ~ "stream abiotic - left bank - height - bank erosion"
+                        ,Characteristic_Name == "erosion height right bank (meters)" ~ "stream abiotic - right bank - height - bank erosion"
+                        ,Characteristic_Name == "eroded area left bank (square meters/10)" ~ "stream abiotic - left bank - area - bank erosion"
+                        ,Characteristic_Name == "eroded area right bank (square meters/10)" ~ "stream abiotic - right bank - area - bank erosion"
                         ,TRUE ~ Characteristic_Name
                     )
                 ) %>%
@@ -284,10 +290,12 @@ results_wrangle <- function(
                     Result_Unit = case_when(
                         Characteristic_Name == "stream biotic - exotic terrestrial plant relative abundance - other species" ~ "species name"
                         ,Characteristic_Name %like% "relative abundance" ~ "A = absent, P = present, E = extensive"
+                        ,Characteristic_Name == "stream biota - benthic macroinvertebrates - count of individuals captured by taxon" ~ "count"
                         ,Characteristic_Name %like% "benthic macroinvertebrates" ~ "square feet"
+                        ,Characteristic_Name %like% "area - bank erosion" ~ "square meters"
                         ,Characteristic_Name %like% "sampleability" ~ "S = Sampleable"
                         ,Characteristic_Name %like% "float time" ~ "seconds"
-                        ,Characteristic_Name %like% "stream erosion severity" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
+                        ,Characteristic_Name %like% "severity - bank erosion" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
                         ,Characteristic_Name %like% "stream bar severity" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
                         ,Characteristic_Name == "stream abiotic - coarse woody debris in stream channel but currently dewatered" ~ "count"
                         ,Characteristic_Name == "stream abiotic - coarse woody debris in wetted stream" ~ "count"
@@ -304,6 +312,8 @@ results_wrangle <- function(
                         ,Characteristic_Name %like% "elevation above sea level" ~ "meters"
                         ,Characteristic_Name %like% "riparian width" ~ "meters"
                         ,Characteristic_Name %like% "length of stream channelized" ~ "meters"
+                        ,Characteristic_Name %like% "extent - bank erosion" ~ "meters"
+                        ,Characteristic_Name %like% "height - bank erosion" ~ "meters"
                         ,Characteristic_Name %like% "percent slope" ~ "percent slope"
                         ,Characteristic_Name == "stream abiotic - overhead cover" ~ "percent"
                         ,Characteristic_Name %like% "thalweg depth" ~ "centimeters"
@@ -356,7 +366,8 @@ results_wrangle <- function(
                         ,Characteristic_Name == "stream abiotic - alternate discharge measurement - wetted width" ~ "centimeters"
                         ,Characteristic_Name == "stream biota - fish - individual fish mass" ~ "grams"
                         ,Characteristic_Name == "stream biota - fish - individual fish total length" ~ "millimeters"
-                        ,Characteristic_Name == "stream biota - fish - fish count by species" ~ "count"
+                        ,Characteristic_Name == "stream biota - fish - count of individuals captured by species" ~ "count"
+                        ,Characteristic_Name == "stream biota - benthic macroinvertebrates" ~ "count"
                         ,Characteristic_Name %like% "adjacent land cover" ~ "FR = forest; OF = old field; EM = emergent vegetation; LN = mowed lawn; TG = tall grass; LO = logged area; SL = bare soil; RR = railroad; PV = paved road; PK = parking lot, industrial, or commercial; GR = gravel road; DI = dirt road; PA = pasture; OR = orchard; CP = cropland; HO = housing"
                         ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
                         ,TRUE ~ Characteristic_Name
@@ -480,12 +491,6 @@ results_wrangle <- function(
                     ,Result_Comment = trimws(Result_Comment, which="both")
                 )
             
-            mysub <- real %>% subset(Characteristic_Name %like% "adjacent land cover")
-            mysub <- real %>% subset(Characteristic_Name == "instrumentation or event data - air logger deployed")
-            View(mysub)
-            unique(mysub$Result_Unit)
-            unique(mysub$Result_Text)
-             
             
             # check that data wrangling produced valid units
             unit_check <- data.frame(
