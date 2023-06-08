@@ -49,21 +49,21 @@ edd_results <- function(
             #----- load template
             example <- readxl::read_excel("template/NCRN_BSS_EDD_20230105_1300.xlsx", sheet = "Results") # https://doimspp.sharepoint.com/:x:/r/sites/NCRNDataManagement/Shared%20Documents/General/Standards/Data-Standards/EQuIS-WQX-EDD/NCRN_BSS_EDD_20230105_1300.xlsx?d=w8c283fde9cbd4af480945c8c8bd94ff6&csf=1&web=1&e=7Y9W1M
             
-            #----- ncrn.edd.results
+            #----- edd.results.ncrn
             ncrn_benthic_habitat_results <- ncrn_benthic_habitat_results(results_list, example)
             ncrn_chemistry_results <- ncrn_chemistry_results(results_list, example)
             ncrn_fish_results <- ncrn_fish_results(results_list, example)
             ncrn_habitat_results <- ncrn_habitat_results(results_list, example)
             ncrn_macroinvert_results <- ncrn_macroinvert_results(results_list, example)
             
-            #----- bob.edd.results
+            #----- edd.results.bob
             bob_2021_macroinvert_results <- bob_2021_macroinvert_results(results_list, bob_2021_macroinvert, bob_2021_water_chem, example)# bob's water chem and macroinvert samples are the same locations
             bob_2022_macroinvert_results <- bob_2022_macroinvert_results(results_list, bob_2022_macroinvert, example)# bob's water chem and macroinvert samples are the same locations
             bob_2021_chemistry_results <- bob_2021_chemistry_results(results_list, bob_2021_water_chem, example)
             bob_2022_chemistry_results <- bob_2022_chemistry_results(results_list, bob_2022_wq, example)
             bob_2022_habitat_results <- bob_2022_habitat_results(results_list, bob_2022_hab, example)
             
-            #----- marc.edd.results
+            #----- edd.results.marc
             marc_2022_fish_results <- marc_2022_fish_results(marc2022, results_list, example) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_results <- marc_habitat_results(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish results are not in db.tbl_Fish_Data
             marc_2022_summer_index_results <- marc_2022_summer_index_results(summer_index_marc2022, example, results_list)
