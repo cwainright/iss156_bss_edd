@@ -134,7 +134,7 @@ ncrn_habitat_results <- function(results_list, example){
             real[86] <- NA # "Frequency_Class_Upper_Bound_3"
             real[87] <- NA # "Taxonomist_Accreditation_Indicator"
             real[88] <- NA # "Taxonomist_Accreditation_Authority_Name"
-            real[89] <- NA # "Result_File_Name"
+            real[89] <- "tbl_Spring_PHI; tbl_Summer_PHI" # "Result_File_Name"
             
             real <- as.data.frame(lapply(real, function(y) gsub("\\<NA\\>", NA, y))) # remove "NA" chr strings
             colnames(real)[1] <- "#Org_Code"
