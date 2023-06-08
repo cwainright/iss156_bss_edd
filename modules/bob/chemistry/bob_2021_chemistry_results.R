@@ -125,7 +125,7 @@ bob_2021_chemistry_results <- function(results_list, bob_2021_water_chem, exampl
             real[86] <- NA # "Frequency_Class_Upper_Bound_3"
             real[87] <- NA # "Taxonomist_Accreditation_Indicator"
             real[88] <- NA # "Taxonomist_Accreditation_Authority_Name"
-            real[89] <- NA # "Result_File_Name"
+            real[89] <- "'2021_prwi_sites_bob.xlsx' sheet 'water chem'" # "Result_File_Name"
             
             real <- as.data.frame(lapply(real, function(y) gsub("\\<NA\\>", NA, y))) # remove "NA" chr strings
             colnames(real)[1] <- "#Org_Code"    
