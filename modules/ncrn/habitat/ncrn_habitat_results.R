@@ -41,6 +41,9 @@ ncrn_habitat_results <- function(results_list, example){
             df <- dplyr::left_join(df, results_list$tbl_Events %>% select(Event_ID, Start_Date, Start_Time, Location_ID, Comments), by = "Event_ID")
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(Location_ID, Loc_Name), by = "Location_ID")
             df <- dplyr::left_join(df, lookup, by=c("variable" = "short"))
+            df$dummy <- paste0(df$Event_ID, df$short)
+            df <- df %>% distinct(dummy, .keep_all = TRUE)
+            df$dummy <- NULL
             
             #----- re-build `example` from `results_list`
             real <- tibble::tibble(data.frame(matrix(ncol = ncol(example), nrow = nrow(df)))) # empty dataframe
