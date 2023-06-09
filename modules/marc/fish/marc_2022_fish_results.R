@@ -71,7 +71,7 @@ marc_2022_fish_results <- function(marc2022, results_list, example){
             real[24] <- NA # "Confidence_Interval" 
             real[25] <- NA # "Upper_Confidence_Limit" 
             real[26] <- NA # "Lower_Confidence_Limit" 
-            real[27] <- df$Station_Name# "Result_Sampling_Point_Name"
+            real[27] <- df$Branch# "Result_Sampling_Point_Name"
             real[28] <- NA # "Result_Depth_Height_Measure"
             real[29] <- NA # "Result_Depth_Height_Measure_Unit" 
             real[30] <- NA # "Result_Depth_Altitude_Reference_Point"
