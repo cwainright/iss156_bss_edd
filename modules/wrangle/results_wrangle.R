@@ -535,12 +535,6 @@ results_wrangle <- function(example, real){
                     ,Result_Comment = trimws(Result_Comment, which="both")
                 )
             
-            
-            wtf <- real %>%
-                filter(
-                    Result_Sampling_Point_Name == "MONO-316"
-                )
-            unique(wtf$Result_File_Name)
             # check that data wrangling produced valid units
             # unit_check <- data.frame(
             #     char_name = sort(unique(real$Characteristic_Name))
