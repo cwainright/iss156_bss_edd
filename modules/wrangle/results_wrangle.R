@@ -181,7 +181,7 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "right bank gabion" ~ "stream abiotic - right bank - extent - length of stream channelized by gabion"
                         ,Characteristic_Name == "left bank gabion" ~ "stream abiotic - left bank - extent - length of stream channelized by gabion"
                         ,Characteristic_Name == "right bank earthen berm" ~ "stream abiotic - right bank - extent - stream channelized by earthen berm"
-                        ,Characteristic_Name == "left bank earthen berm" ~ "stream abiotic - left bank - extent - stream channelized earthen berm"
+                        ,Characteristic_Name == "left bank earthen berm" ~ "stream abiotic - left bank - extent - stream channelized by earthen berm"
                         ,Characteristic_Name == "right bank pipe culvert" ~ "stream abiotic - right bank - extent - stream channelized by pipe culvert"
                         ,Characteristic_Name == "left bank pipe culvert" ~ "stream abiotic - left bank - extent - stream channelized pipe culvert"
                         ,Characteristic_Name == "length of culvert if present" ~ "stream abiotic - either bank - extent - stream channelized pipe culvert"
@@ -190,7 +190,7 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "presence/absence of culvert in sample reach" ~ "stream abiotic - either bank - relative abundance - culvert"
                         ,Characteristic_Name == "culvert in segment" ~ "stream abiotic - either bank - relative abundance - stream channelized pipe culvert"
                         ,Characteristic_Name == "right bank rip-rap" ~ "stream abiotic - right bank - extent - stream channelized by rip-rap"
-                        ,Characteristic_Name == "left bank rip-rap" ~ "stream abiotic - left bank - extent - stream channelized rip-rap"
+                        ,Characteristic_Name == "left bank rip-rap" ~ "stream abiotic - left bank - extent - stream channelized by rip-rap"
                         ,Characteristic_Name == "wetted channel width - bottom of site (0m)" ~ "stream abiotic - 0m  - wetted channel width"
                         ,Characteristic_Name == "wetted channel width (m) at 25 m from bottom of site" ~ "stream abiotic - 25m - wetted channel width"
                         ,Characteristic_Name == "wetted channel width (m) at 50 m from bottom of site" ~ "stream abiotic - 50m - wetted channel width"
@@ -305,28 +305,30 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name %like% "sampleability" ~ "S = Sampleable"
                         ,Characteristic_Name %like% "float time" ~ "seconds"
                         ,Characteristic_Name %like% "severity - bank erosion" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
-                        ,Characteristic_Name %like% "stream bar severity" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
+                        ,Characteristic_Name %like% "severity - stream bar" ~ "0 = None; 1 = Minor; 2 = Moderate; 3 = Severe"
                         ,Characteristic_Name == "stream abiotic - coarse woody debris in stream channel but currently dewatered" ~ "count"
                         ,Characteristic_Name == "stream abiotic - coarse woody debris in wetted stream" ~ "count"
                         ,Characteristic_Name == "stream abiotic - root wads in stream channel but currently dewatered" ~ "count"
                         ,Characteristic_Name == "stream abiotic - root wads in wetted stream" ~ "count"
                         ,Characteristic_Name == "stream abiotic - stream obstruction - height" ~ "meters"
+                        ,Characteristic_Name == "stream abiotic - straight-line length of 75m reach" ~ "meters"
                         ,Characteristic_Name %like% "linear extent" ~ "meters"
                         ,Characteristic_Name %like% "straight line length" ~ "meters"
                         ,Characteristic_Name %like% "length of stream obstructed by" ~ "meters"
                         ,Characteristic_Name %like% "wetted channel width" ~ "meters"
                         ,Characteristic_Name %like% "stream gradient measurement location" ~ "meters"
                         ,Characteristic_Name %like% "stream gradient height measurement" ~ "meters"
-                        ,Characteristic_Name %like% "lateral stream location" ~ "meters"
+                        ,Characteristic_Name %like% "stream lateral location" ~ "meters"
                         ,Characteristic_Name %like% "elevation above sea level" ~ "meters"
                         ,Characteristic_Name %like% "riparian width" ~ "meters"
                         ,Characteristic_Name %like% "length of stream channelized" ~ "meters"
                         ,Characteristic_Name %like% "extent - bank erosion" ~ "meters"
                         ,Characteristic_Name %like% "height - bank erosion" ~ "meters"
-                        ,Characteristic_Name %like% "extent - stream channelized earthen berm" ~ "meters"
+                        ,Characteristic_Name %like% "extent - stream channelized by earthen berm" ~ "meters"
                         ,Characteristic_Name %like% "extent - stream channelized by pipe culvert" ~ "meters"
-                        ,Characteristic_Name %like% "extent - stream channelized by rip-rapt" ~ "meters"
+                        ,Characteristic_Name %like% "extent - stream channelized by rip-rap" ~ "meters"
                         ,Characteristic_Name %like% "percent slope" ~ "percent slope"
+                        ,Characteristic_Name %like% "stream gradient" ~ "percent slope"
                         ,Characteristic_Name == "stream abiotic - overhead cover" ~ "percent"
                         ,Characteristic_Name %like% "thalweg depth" ~ "centimeters"
                         ,Characteristic_Name %like% "reach maximum depth" ~ "centimeters"
@@ -382,12 +384,15 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "stream abiotic - alternate discharge measurement - float distance" ~ "centimeters"
                         ,Characteristic_Name == "stream abiotic - alternate discharge measurement - water depth" ~ "centimeters"
                         ,Characteristic_Name == "stream abiotic - alternate discharge measurement - wetted width" ~ "centimeters"
+                        ,Characteristic_Name == "stream abiotic - water depth associated with a stream lateral location" ~ "centimeters"
+                        ,Characteristic_Name == "stream abiotic - water depth associated with a stream lateral location" ~ "centimeters"
                         ,Characteristic_Name == "stream biota - fish - individual fish mass" ~ "grams"
                         ,Characteristic_Name == "stream biota - fish - individual fish total length" ~ "millimeters"
                         ,Characteristic_Name == "stream biota - fish - count of individuals captured by species" ~ "count"
                         ,Characteristic_Name == "stream biota - benthic macroinvertebrates" ~ "count"
                         ,Characteristic_Name == "stream abiotic - either bank - diameter of culvert" ~ "meters"
                         ,Characteristic_Name == "stream abiotic - bar formation - presence absence" ~ "P = present; A = absent"
+                        ,Characteristic_Name == "stream abiotic - chemistry - source of any acidity" ~ "text"
                         ,Characteristic_Name %like% " extent - stream channelized pipe culvert" ~ "meters"
                         ,Characteristic_Name %like% "adjacent land cover" ~ "FR = forest; OF = old field; EM = emergent vegetation; LN = mowed lawn; TG = tall grass; LO = logged area; SL = bare soil; RR = railroad; PV = paved road; PK = parking lot, industrial, or commercial; GR = gravel road; DI = dirt road; PA = pasture; OR = orchard; CP = cropland; HO = housing"
                         ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
@@ -403,6 +408,17 @@ results_wrangle <- function(example, real){
                     Characteristic_Name = gsub("right bank", "top right bank", Characteristic_Name)
                     ,Characteristic_Name = gsub("left bank", "top left bank", Characteristic_Name)
                 ) %>%
+                mutate(
+                    Result_Sampling_Point_Name = case_when(
+                        Result_Sampling_Point_Name == "Hazen Creek" ~"Reservation 630 Creek"
+                        ,Result_Sampling_Point_Name == "NCRN Monocacy Park at Bush Creek" ~"Bush Creek"
+                        ,Result_Sampling_Point_Name == "Henson Creek @ Suitland Road" ~"Henson Creek"
+                        ,Result_Sampling_Point_Name == "Still Creek, Greenbelt Park" ~"Still Creek"
+                        ,Result_Sampling_Point_Name == "Whiskey Still Creek" ~"Blue Blazes Creek"
+                        ,Result_Sampling_Point_Name == "Visitor's Center Creek" ~"Visitor Center Creek"
+                        ,TRUE ~ Result_Sampling_Point_Name
+                    )
+                ) %>%
                 filter(
                     Characteristic_Name != "8 digit watershed code for sampled site" # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
                     ,Characteristic_Name != "unique identifier of sampling site" # this is not a result; it's a datum associated with the sampling location, which belongs in (and is reported in) edd.locations
@@ -413,9 +429,10 @@ results_wrangle <- function(example, real){
                     ,Characteristic_Name != "limph1" # this is a nonsense id
                 ) %>%
                 mutate(Result_Qualifier = case_when(
-                    Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "< 0.0032" ~ "reported as undetectable; < 0.0032"
-                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "< 0.0045" ~ "reported as undetectable; < 0.0045"
-                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ "reported as undetectable; < 0.0043"
+                    Characteristic_Name == "stream abiotic - chemistry - orthophosphate concentration" & Result_Text == "< 0.0032" ~ "reported '< 0.0032'; undetectable"
+                    ,Characteristic_Name == "stream abiotic - chemistry - ammonia concentration" & Result_Text == "< 0.0045" ~ "reported as '< 0.0045'; undetectable"
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ "reported as '< 0.0043'; undetectable"
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrite concentration" & Result_Text == "< 0.0028" ~ "reported as '< 0.0028'; undetectable"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" ~ "only present if coordinates do not fall within 30m of stream or on samplable reach"
                     ,Characteristic_Name == "instrumentation or event data - sampling location latitude" ~ "only present if coordinates do not fall within 30m of stream or on samplable reach"
                 )) %>%
@@ -439,8 +456,8 @@ results_wrangle <- function(example, real){
                     ,Characteristic_Name %like% "gabion relative abundance" & Result_Text == "N" ~ "A" # this is a typo in the source file
                     ,Characteristic_Name %like% "vernal pool relative abundance" & Result_Text == "N" ~ "A" # this is a typo in the source file
                     ,Characteristic_Name %like% "vernal pool relative abundance" & Result_Text == "Y" ~ "P" # this is a typo in the source file
-                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ "0.0043" # undetectable
-                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "2.5100000000000001E-2" ~ "0.0251" # not a number
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "< 0.0043" ~ NA # undetectable
+                    ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "2.5100000000000001E-2" ~ "0.0251" # sig figs
                     ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "2.12E-2" ~ "0.0212" # not a number
                     ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "0.26790000000000003" ~ "0.2679" # sig figs
                     ,Characteristic_Name == "stream abiotic - chemistry - nitrate concentration" & Result_Text == "1.8100000000000002E-2" ~ "0.0181" # sig figs
@@ -477,19 +494,19 @@ results_wrangle <- function(example, real){
                     ,Characteristic_Name == "stream biotic - either bank - dominant riparian buffer terrestrial vegetation" & Result_Text == "Old Field" ~ "R"
                     ,Characteristic_Name == "stream biotic - either bank - dominant riparian buffer terrestrial vegetation" & Result_Text == "Wetland" ~ "W"
                     ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "38 56 24" ~ "38.94" # degree min sec to decimal degrees
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "385550" ~ "38.5550" # orders of magnitude
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392833" ~ "39.2833"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392741" ~ "39.2741"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392148" ~ "39.2148"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392128" ~ "39.2128"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392207" ~ "39.2207"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "385550" ~ "38.930556" # "385550" == "38d 55m 50s" degree min sec to decimal degrees
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392833" ~ "39.475833"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392741" ~ "39.461389"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392148" ~ "39.363333"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392128" ~ "39.357778"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location latitude" & Result_Text == "392207" ~ "39.368611"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "-77 15 41" ~ "-77.261389" # degree min sec to decimal degrees
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "770726" ~ "-77.0726" # orders of magnitude
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "774417" ~ "-77.4417"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "774351" ~ "-77.4351"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772324" ~ "-77.2324"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772349" ~ "-77.2349"
-                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772318" ~ "-77.2318"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "770726" ~ "-77.123889"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "774417" ~ "-77.738056"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "774351" ~ "-77.730833"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772324" ~ "-77.390000"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772349" ~ "--77.396944"
+                    ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "772318" ~ "-77.388333"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.041638" ~ "-77.041638"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.043842" ~ "-77.043842"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.046552" ~ "-77.046552"
@@ -498,6 +515,7 @@ results_wrangle <- function(example, real){
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.053476" ~ "-77.053476"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.050748" ~ "-77.050748"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" & Result_Text == "77.059312" ~ "-77.059312"
+                    ,Characteristic_Name == "stream abiotic - water velocity associated with a stream lateral location" & Result_Text == "7.0000000000000007E-2" ~ "0.07" # sig figs
                     ,Characteristic_Name %like% "exotic terrestrial plant relative abundance - other species" & Result_Text == "NONE" ~ NA
                     ,Characteristic_Name %like% "dominant substrate of bars" & Result_Text == "0" ~ "FALSE"
                     ,Characteristic_Name %like% "dominant substrate of bars" & Result_Text == "1" ~ "TRUE"
@@ -517,34 +535,35 @@ results_wrangle <- function(example, real){
                     ,Result_Comment = trimws(Result_Comment, which="both")
                 )
             
-            wtf <- real %>% filter(
-                Characteristic_Name == "stream biotic - exotic terrestrial plant relative abundance - other species"
-            )
-            unique(wtf$Result_Text)
             
-            # check that data wrangling produced valid units
-            unit_check <- data.frame(
-                char_name = sort(unique(real$Characteristic_Name))
-                ,units = NA
-                ,unit_count = NA
-            )
-
-            for(i in 1:nrow(unit_check)){
-                mytarget <- unit_check$char_name[i]
-                mysub <- real %>% select(
-                    Characteristic_Name, Result_Unit
-                ) %>%
-                    filter(
-                        Characteristic_Name == mytarget
-                    )
-                unit_vec <- sort(unique(mysub$Result_Unit))
-                unit_check$units[i] <- ifelse(
-                    length(unit_vec) >1,
-                    paste(shQuote(sort(unique(mysub$Result_Unit)), type="cmd"), collapse=", "),
-                    unit_vec
+            wtf <- real %>%
+                filter(
+                    Result_Sampling_Point_Name == "MONO-316"
                 )
-                unit_check$unit_count[i] <- length(unit_check$units[i])
-            }
+            unique(wtf$Result_File_Name)
+            # check that data wrangling produced valid units
+            # unit_check <- data.frame(
+            #     char_name = sort(unique(real$Characteristic_Name))
+            #     ,units = NA
+            #     ,unit_count = NA
+            # )
+            # 
+            # for(i in 1:nrow(unit_check)){
+            #     mytarget <- unit_check$char_name[i]
+            #     mysub <- real %>% select(
+            #         Characteristic_Name, Result_Unit
+            #     ) %>%
+            #         filter(
+            #             Characteristic_Name == mytarget
+            #         )
+            #     unit_vec <- sort(unique(mysub$Result_Unit))
+            #     unit_check$units[i] <- ifelse(
+            #         length(unit_vec) >1,
+            #         paste(shQuote(sort(unique(mysub$Result_Unit)), type="cmd"), collapse=", "),
+            #         unit_vec
+            #     )
+            #     unit_check$unit_count[i] <- length(unit_check$units[i])
+            # }
             
             #----- error-checking:
             check_df <- tibble::tibble(data.frame(matrix(ncol=3, nrow=ncol(real))))
