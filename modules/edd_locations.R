@@ -43,6 +43,8 @@ edd_locations <- function(
             source("modules/marc/habitat/marc_2022_summer_index_locations.R")
             source("modules/marc/habitat/marc_2022_summer_exotic_locations.R")
             source("modules/marc/habitat/marc_2022_flow_locations.R")
+            #wrangle
+            source("modules/wrangle/locations_wrangle.R")
             
             #----- load template
             example <- readxl::read_excel("template/NCRN_BSS_EDD_20230105_1300.xlsx", sheet = "Locations") # https://doimspp.sharepoint.com/:x:/r/sites/NCRNDataManagement/Shared%20Documents/General/Standards/Data-Standards/EQuIS-WQX-EDD/NCRN_BSS_EDD_20230105_1300.xlsx?d=w8c283fde9cbd4af480945c8c8bd94ff6&csf=1&web=1&e=7Y9W1M
