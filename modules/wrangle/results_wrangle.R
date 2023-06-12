@@ -395,7 +395,7 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "stream abiotic - chemistry - source of any acidity" ~ "text"
                         ,Characteristic_Name %like% " extent - stream channelized pipe culvert" ~ "meters"
                         ,Characteristic_Name %like% "adjacent land cover" ~ "FR = forest; OF = old field; EM = emergent vegetation; LN = mowed lawn; TG = tall grass; LO = logged area; SL = bare soil; RR = railroad; PV = paved road; PK = parking lot, industrial, or commercial; GR = gravel road; DI = dirt road; PA = pasture; OR = orchard; CP = cropland; HO = housing"
-                        ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
+                        # ,Activity_ID %like% "macroinvertebrates" ~ "count of individuals"
                         ,TRUE ~ Characteristic_Name
                     )
                 ) %>%
