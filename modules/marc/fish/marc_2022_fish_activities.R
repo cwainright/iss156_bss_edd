@@ -22,7 +22,7 @@ marc_2022_fish_activities <- function(marc2022, example){
             colnames(acts) <- colnames(example) # name columns to match example
             
             acts[1] <- "NCRN" # "#Org_Code" 
-            acts[2] <- "Biological Stream Survey Protocol" # "Project_ID"
+            acts[2] <- "Biological Stream Survey - stream fish monitoring" # "Project_ID"
             acts[3] <- df$Reach_Name # "Location_ID"
             acts[4] <- paste0(df$Reach_Name, ".m.electrofishing.", format(df$SampleDate, "%Y%m%d"), ".", df$Pass_ID) # "Activity_ID"
             acts[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
