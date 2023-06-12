@@ -58,7 +58,7 @@ edd_activities <- function(
             
             #----- bob.edd.activities
             bob_2021_macroinvert_activities <- bob_2021_macroinvert_activities(results_list, bob_2021_water_chem, example)# bob's water chem and macroinvert samples are the same locations
-            bob_2022_macroinvert_activities <- bob_2022_macroinvert_activities(results_list, bob_2022_macroinvert, example)# bob's water chem and macroinvert samples are the same locations
+            bob_2022_macroinvert_activities <- bob_2022_macroinvert_activities(results_list, bob_2022_macroinvert, bob_2022_wq, example)# bob's water chem and macroinvert samples are the same locations
             bob_2021_chemistry_activities <- bob_2021_chemistry_activities(results_list, bob_2021_water_chem, example)
             bob_2022_chemistry_activities <- bob_2022_chemistry_activities(results_list, bob_2022_wq, example)
             bob_2022_habitat_activities <- bob_2022_habitat_activities(results_list, bob_2022_hab, example)

@@ -1,6 +1,6 @@
 # a module for `buildEDD()`
 options(warn=-1)
-bob_2022_macroinvert_activities <- function(results_list, bob_2022_macroinvert, example){
+bob_2022_macroinvert_activities <- function(results_list, bob_2022_macroinvert, bob_2022_wq, example){
     tryCatch(
         expr = {
             #----- load external libraries
@@ -12,9 +12,15 @@ bob_2022_macroinvert_activities <- function(results_list, bob_2022_macroinvert, 
             # make a flat dataframe from `results_list`
             
             df <- bob_2022_macroinvert
-            df$date <- 2022 # there is no date column in the source file
+            # there is no date column in the source file
+            date_lookup <- bob_2022_wq %>%
+                subset(`Sample ID` %like% "NCRN") %>%
+                select(-c(Region))
+            date_lookup$`Date Collected` <- as.Date(as.numeric(date_lookup$`Date Collected`), origin = "1899-12-30")
+            df <- dplyr::left_join(df, date_lookup %>% select(`Sample ID`, `Date Collected`), by=c("site" = "Sample ID"))
+            
             df$Characteristic_Name <- "Stream macroinvertebrate sampling"
-            df$Activity_ID <- paste0(df$site, ".b.", as.character(df$date))
+            df$Activity_ID <- paste0(df$site, ".b.", format(as.Date(df$`Date Collected`), "%Y%m%d"))
             df$Assemblage_Sampled_Name <- "Stream benthic macroinvertebrates"
             
             loc_lookup <- results_list$tbl_Locations %>% select(Location_ID, Site_ID, NCRN_Site_ID, Loc_Name)
@@ -34,7 +40,7 @@ bob_2022_macroinvert_activities <- function(results_list, bob_2022_macroinvert, 
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"
             real[8] <- df$Assemblage_Sampled_Name # "Assemblage_Sampled_Name"
-            real[9] <- df$date # "Activity_Start_Date"
+            real[9] <- df$`Date Collected` # "Activity_Start_Date"
             real[10] <- NA # "Activity_Start_Time" 
             real[11] <- NA # "Activity_Start_Time_Zone" 
             real[12] <- NA # "Activity_End_Date" 

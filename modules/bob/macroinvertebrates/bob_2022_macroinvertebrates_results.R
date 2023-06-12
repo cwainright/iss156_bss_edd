@@ -1,6 +1,6 @@
 # a module for `buildEDD()`
 options(warn=-1)
-bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, example){
+bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, bob_2022_wq, example){
     tryCatch(
         expr = {
             #----- load external libraries
@@ -11,10 +11,17 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             
             # make a flat dataframe from `results_list`
             df <- bob_2022_macroinvert
-            df$date <- 2022 # there is no date column in the source file
+            # there is no date column in the source file
+            date_lookup <- bob_2022_wq %>%
+                subset(`Sample ID` %like% "NCRN") %>%
+                select(-c(Region))
+            date_lookup$`Date Collected` <- as.Date(as.numeric(date_lookup$`Date Collected`), origin = "1899-12-30")
+            
+            df <- dplyr::left_join(df, date_lookup %>% select(`Sample ID`, `Date Collected`), by=c("site" = "Sample ID"))
+            
             df$Characteristic_Name <- "stream macroinvertebrate sampling"
             df$unit <- "count of individuals"
-            df$Activity_ID <- paste0(df$site, ".b.", as.character(df$date))
+            df$Activity_ID <- paste0(df$site, ".b.", format(as.Date(df$`Date Collected`), "%Y%m%d"))
             
             loc_lookup <- results_list$tbl_Locations %>% select(Location_ID, Site_ID, NCRN_Site_ID, Loc_Name)
             df <- dplyr::left_join(df, loc_lookup, by=c("site" = "NCRN_Site_ID"))
