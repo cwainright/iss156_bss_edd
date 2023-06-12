@@ -30,6 +30,37 @@ activities_wrangle <- function(example, real){
                     )
                 ) %>%
                 mutate(
+                    Activity_Recorder = NA
+                ) %>%
+                mutate(
+                    Custody_ID = NA
+                ) %>%
+                # mutate(
+                #     Activity_Group_ID = NA
+                # ) %>%
+                mutate(
+                    Collection_Method_ID = case_when(
+                        Collection_Method_ID == "Stream benthic habitat inventory; version 2; protocol date 2009-06-30" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Collection_Method_ID == "Stream benthic habitat inventory; version 1; protocol date 2007-01-01" ~ "Biological Stream Survey Protocol; version 1; protocol date 2007-01-01"
+                        ,Collection_Method_ID == "Stream habitat inventory; version 2; protocol date 2009-06-30" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,is.na(Collection_Method_ID) ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Collection_Method_ID == "Biological Stream Survey Protocol" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,TRUE ~ Collection_Method_ID
+                    )
+                ) %>%
+                mutate(
+                    Preparation_Method_ID = case_when(
+                        Preparation_Method_ID == "Stream benthic habitat inventory; version 2; protocol date 2009-06-30" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Preparation_Method_ID == "Stream benthic habitat inventory; version 1; protocol date 2007-01-01" ~ "Biological Stream Survey Protocol; version 1; protocol date 2007-01-01"
+                        ,Preparation_Method_ID == "Stream habitat inventory; version 2; protocol date 2009-06-30" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,is.na(Preparation_Method_ID) ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Preparation_Method_ID == "Biological Stream Survey Protocol" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Preparation_Method_ID == "Stream water chemistry; version 2.0; protocol date 2009/116" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,Preparation_Method_ID == "Stream benthic macroinvertebrates; version 2.0; protocol date 2009/116" ~ "Biological Stream Survey Protocol; version 2; protocol date 2009-06-30"
+                        ,TRUE ~ Preparation_Method_ID
+                    )
+                ) %>%
+                mutate(
                     Assemblage_Sampled_Name = case_when(
                         Assemblage_Sampled_Name == "Stream benthic habitat inventory" ~ "stream physical habitat"
                         ,Assemblage_Sampled_Name == "stream physical habitat inventory" ~ "stream physical habitat"
