@@ -41,7 +41,7 @@ marc_2022_fish_activities <- function(marc2022, example){
             acts[18] <- NA # "Activity_Upper_Depth"
             acts[19] <- NA # "Activity_Lower_Depth"
             acts[20] <- NA # "Activity_Depth_Reference"
-            acts[21] <- df$Station_Name # "Additional_Location_Info"
+            acts[21] <- df$Branch #  # "Additional_Location_Info"
             acts[22] <- NA # "Activity_Sampler"; the person who did the sampling?
             # "Activity_Recorder"
             acts[23] <- NA
@@ -57,7 +57,7 @@ marc_2022_fish_activities <- function(marc2022, example){
                        acts[i,23] <- stringr::str_extract(acts[i,23], "^*([0-9])+-([0-9])+.([0-9])+"),
                        acts[i,23] <- acts[i,23])# units are meters
             }
-            acts[24] <- df$Station_Name # "Custody_ID" 
+            acts[24] <- NA # "Custody_ID" 
             acts[25] <- "NCRN" # "Activity_Conducting_Organization" 
             acts[26] <- NA # "Station_Visit_Comment" 
             acts[27] <- NA # "Activity_Comment
