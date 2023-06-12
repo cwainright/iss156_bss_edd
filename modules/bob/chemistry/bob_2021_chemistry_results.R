@@ -38,7 +38,7 @@ bob_2021_chemistry_results <- function(results_list, bob_2021_water_chem, exampl
             colnames(real) <- colnames(example) # name columns to match example
             
             real[1] <- "NCRN" # "#Org_Code" 
-            real[2] <- paste0(df$NCRN_Site_ID, ".b.water_chemistry.", format(df$`Date Collected`, "%Y%m%d")) # "Activity_ID" shared field with `real_activities.Activity_ID`
+            real[2] <- paste0(df$NCRN_Site_ID, ".b.", format(df$`Date Collected`, "%Y%m%d")) # "Activity_ID" shared field with `real_activities.Activity_ID`
             real[3] <- df$variable # df$Characteristic_Name# "Characteristic_Name"  
             real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"

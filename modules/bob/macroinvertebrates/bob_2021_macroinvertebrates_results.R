@@ -28,7 +28,7 @@ bob_2021_macroinvert_results <- function(results_list, bob_2021_macroinvert, bob
             df2 <- bob_2021_water_chem %>% select(`Sample ID`, `Date Collected`)
             df <- dplyr::left_join(df, df2, by=c("site" = "Sample ID"))
             df$`Date Collected` <- as.Date(as.numeric(df$`Date Collected`), origin = "1899-12-30")
-            df$activity_id <- paste0(df$NCRN_Site_ID, ".b.macroinvertebrates.", format(df$`Date Collected`, "%Y%m%d"))
+            df$activity_id <- paste0(df$NCRN_Site_ID, ".b.", format(df$`Date Collected`, "%Y%m%d"))
             
             #----- re-build `example` from `results_list`
             real <- tibble::tibble(data.frame(matrix(ncol = ncol(example), nrow = nrow(df)))) # empty dataframe

@@ -12,7 +12,8 @@ marc_2022_fish_results <- function(marc2022, results_list, example){
             df <- marc2022
             df <- dplyr::left_join(df, tlu_species %>% select(-c(species_id)), by=c("common_name" = "Common_Name"))
             df$dummy <- paste0(df$SampleDate, df$Pass_ID, df$species_id)
-            df$Result_Qualifier <- paste0(df$SampleDate,";", df$Pass_ID)
+            # df$Result_Qualifier <- paste0(df$SampleDate,";", df$Pass_ID)
+            df$Result_Qualifier <- df$Pass_ID
             
             # there are three metrics to report:
             ### 1. Total length of individuals with != NA in df$TL_mm
@@ -46,7 +47,7 @@ marc_2022_fish_results <- function(marc2022, results_list, example){
             colnames(real) <- colnames(example) # name columns to match example
             
             real[1] <- "NCRN" # "#Org_Code" 
-            real[2] <- paste0(df$Reach_Name, ".m.electrofishing.", format(df$SampleDate, "%Y%m%d"), ".", df$Pass_ID) # "Activity_ID"
+            real[2] <- paste0(df$Reach_Name, ".m.", format(df$SampleDate, "%Y%m%d")) # "Activity_ID"
             real[3] <- df$Characteristic_Name# "Characteristic_Name"  
             real[4] <- df$common_name # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"

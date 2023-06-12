@@ -14,7 +14,7 @@ bob_2022_macroinvert_results <- function(results_list, bob_2022_macroinvert, exa
             df$date <- 2022 # there is no date column in the source file
             df$Characteristic_Name <- "stream macroinvertebrate sampling"
             df$unit <- "count of individuals"
-            df$Activity_ID <- paste0(df$site, ".b.macroinvertebrates.", as.character(df$date))
+            df$Activity_ID <- paste0(df$site, ".b.", as.character(df$date))
             
             loc_lookup <- results_list$tbl_Locations %>% select(Location_ID, Site_ID, NCRN_Site_ID, Loc_Name)
             df <- dplyr::left_join(df, loc_lookup, by=c("site" = "NCRN_Site_ID"))

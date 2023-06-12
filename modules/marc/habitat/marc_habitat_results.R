@@ -78,7 +78,7 @@ marc_habitat_results <- function(habitat_marc2022, habitat_marc2021, example, re
             #----- combine 2021 and 2022
             # df <- rbind(df2021, df2022) # combine
             df <-  df2022 # DO NOT combine. we do not add 2021 data to `real` because those records already exist in ncrn_habitat_results; tbl_Spring_PHI; tbl_Summer_PHI
-            df$Activity_ID <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d"))
+            df$Activity_ID <- paste0(df$NCRN_Site_ID, ".m.", format(as.Date(df$Start_Date), "%Y%m%d"))
             
             #----- use NCRN lookup tables to add values that are missing from Marc's data
             df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(-c(Unit_Code, Loc_Name, Site_ID)), by=c("NCRN_Site_ID")) # add lookup values

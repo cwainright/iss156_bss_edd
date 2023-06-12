@@ -52,7 +52,7 @@ marc_2022_summer_index_results <- function(summer_index_marc2022, example, resul
             colnames(real) <- colnames(example) # name columns to match example
             
             real[1] <- "NCRN" # "#Org_Code" 
-            real[2] <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d")) # "Activity_ID"
+            real[2] <- paste0(df$NCRN_Site_ID, ".m.", format(as.Date(df$Start_Date), "%Y%m%d")) # "Activity_ID"
             real[3] <- df$variable # "Characteristic_Name"  
             real[4] <- NA # "Method_Speciation"
             real[5] <- NA # "Filtered_Fraction"
