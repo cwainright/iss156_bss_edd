@@ -29,7 +29,7 @@ bob_2021_macroinvert_activities <- function(results_list, bob_2021_water_chem, e
             colnames(real) <- colnames(example) # name columns to match example
             
             real[1] <- "NCRN" # "#Org_Code" 
-            real[2] <- df$Characteristic_Name # "Project_ID"
+            real[2] <- "Biological Stream Survey - stream benthic macroinvertebrate monitoring" # df$Characteristic_Name # "Project_ID"
             real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_locations.Location_ID`
             real[4] <- paste0(df$NCRN_Site_ID, ".b.macroinvertebrates.", format(df$`Date Collected`, "%Y%m%d")) # "Activity_ID" shared field with `real_locations.Activity_ID` and `real_results.Activity_ID`
             real[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
