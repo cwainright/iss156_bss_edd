@@ -12,6 +12,37 @@ locations_wrangle <- function(example, real){
                         ,TRUE ~ Location_ID
                     )
                 ) %>%
+                mutate(
+                    Location_Name = case_when(
+                        Location_Name == "Hazen Creek" ~"Reservation 630 Creek"
+                        ,Location_Name == "NCRN Monocacy Park at Bush Creek" ~"Bush Creek"
+                        ,Location_Name == "Henson Creek @ Suitland Road" ~"Henson Creek"
+                        ,Location_Name == "Still Creek, Greenbelt Park" ~"Still Creek"
+                        ,Location_Name == "Whiskey Still Creek" ~"Blue Blazes Creek"
+                        ,Location_Name == "Visitor's Center Creek" ~"Visitor Center Creek"
+                        ,TRUE ~ Location_Name
+                    )
+                ) %>%
+                mutate(
+                    Latitude = case_when(
+                        Location_ID == "NCRN_ROCR_PACR" & Latitude == "0" ~ "38.9204346469"
+                    )
+                ) %>%
+                mutate(
+                    Longitude = case_when(
+                        Location_ID == "NCRN_ROCR_PACR" & Latitude == "0" ~ "-77.0994775797"
+                    )
+                ) %>%
+                mutate(
+                    Drainage_Area = case_when(
+                        Location_ID == "NCRN_ROCR_PACR" & is.na(Drainage_Area) ~ "172.54"
+                    )
+                ) %>%
+                mutate(
+                    Drainage_Area_Unit = case_when(
+                        Location_ID == "NCRN_ROCR_PACR" & is.na(Drainage_Area_Unit) ~ "acre"
+                    )
+                )
                 
                 #----- keep only unique locations
                 real <- real %>% distinct(Location_ID, .keep_all = TRUE)
