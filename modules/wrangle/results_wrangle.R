@@ -402,6 +402,7 @@ results_wrangle <- function(example, real){
                 mutate(Result_Qualifier = case_when(
                     Characteristic_Name %like% "float time" ~ "for sites with extremely low flow, the speed of a floating object is substituted to allow calculation of discharge"
                     ,Characteristic_Name %like% "alternate flow measurement" ~ "for sites with extremely low flow, the speed of a floating object is substituted to allow calculation of discharge"
+                    ,TRUE ~ Result_Qualifier
                 )
                 ) %>%
                 mutate(
@@ -435,6 +436,7 @@ results_wrangle <- function(example, real){
                     ,Characteristic_Name == "stream abiotic - chemistry - nitrite concentration" & Result_Text == "< 0.0028" ~ "reported as '< 0.0028'; undetectable"
                     ,Characteristic_Name == "instrumentation or event data - sampling location longitude" ~ "only present if coordinates do not fall within 30m of stream or on samplable reach"
                     ,Characteristic_Name == "instrumentation or event data - sampling location latitude" ~ "only present if coordinates do not fall within 30m of stream or on samplable reach"
+                    ,TRUE ~ Result_Qualifier
                 )) %>%
                 mutate(
                     Subject_Taxon = tolower(Subject_Taxon)
@@ -533,6 +535,7 @@ results_wrangle <- function(example, real){
                     ,Result_Text = trimws(Result_Text, which="both")
                     ,Result_Unit = trimws(Result_Unit, which="both")
                     ,Result_Comment = trimws(Result_Comment, which="both")
+                    ,Result_Qualifier = trimws(Result_Qualifier, which="both")
                 )
             
             # check that data wrangling produced valid units
