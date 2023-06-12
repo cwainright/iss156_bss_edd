@@ -1,30 +1,33 @@
-# a module for `edd_locations()`
-# ETL marc2022 into edd.results
-options(warn=-1)
-marc_2022_fish_locations <- function(marc2022, example, results_list){
+# a module for `edd_activities()`
+# ETL summer_index_marc2022 into edd.activities
+options(warn = -1)
+marc_2022_summer_exotic_locations <- function(summer_exotic_marc2022, example, results_list){
     tryCatch(
         expr = {
-            # make a flat dataframe where one row is one e-fishing pass from `results_list`
-            df <- marc2022
-            df <- dplyr::distinct(df, `Station_Name`, .keep_all = TRUE)
+            #----- load external libraries
+            suppressWarnings(suppressMessages(library(data.table)))
+            suppressWarnings(suppressMessages(library(tidyverse)))
+            suppressWarnings(suppressMessages(library(dplyr)))
+            suppressWarnings(suppressMessages(library(readxl)))
             
-            df <- dplyr::left_join(df, results_list$tbl_Locations, by=c("Reach_Name" = "NCRN_Site_ID"))
-            df <- dplyr::distinct(df, Station_Name, .keep_all = TRUE) %>%
-                select(Basin, Branch, Reach_Name, Station_Name, Station_ID, Location_ID, Site_ID, GIS_Location_ID, Unit_Code, Loc_Name, Reach_Code24,
-                       MDSP_Feet_NAD27_North, MDSP_Feet_NAD27_East, MDSP_Feet_NAD83_North, MDSP_Feet_NAD83_East, Dec_Degrees_North, Dex_Degrees_East, Coord_Units,
-                       Coord_System, UTM_Zone, Datum, Loc_Type, Elevation, County, State, HUC, Loc_Code, Basin_Code, Watershed_Code, Catchment_Area)
-            # df <- dplyr::left_join(df, results_list$tlu_Basin_Code, by="Basin_Code")
+            #----- wrangle
+            df <- summer_exotic_marc2022
+            df$Site <- paste0(df$Site, "-N") # add the '-N' suffix so we can xref against `results_list$tbl_Locations`
+            df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(Site_ID, NCRN_Site_ID, Unit_Code, Loc_Name), by=c("Site" = "Site_ID")) %>%
+                mutate(Event_Site_ID = paste0(Site, "-2022")) # create a column `Event_Site_ID`
             
-            #----- re-build `example`
-            real <- tibble::tibble(data.frame(matrix(ncol = ncol(example), nrow = length(unique(df$Station_Name))))) # empty dataframe
+            #----- use NCRN lookup tables to add values that are missing from Marc's data
+            df <- dplyr::left_join(df, results_list$tbl_Locations %>% select(-c(Unit_Code, Loc_Name, Site_ID)), by=c("NCRN_Site_ID")) # add lookup values
+            
+            #----- build to match example
+            real <- tibble::tibble(data.frame(matrix(ncol = ncol(example), nrow = nrow(df)))) # empty dataframe
             colnames(real) <- colnames(example) # name columns to match example
-            
             
             real[1] <- "NCRN" # "#Org_Code"
             for(i in 1:nrow(real)){
-                real[i,2] <- stringr::str_extract(df$Station_Name[i], "[A-Z][A-Z][A-Z][A-Z]") # "Park_Code" 
+                real[i,2] <- substr(df$NCRN_Site_ID[i], 6, 9) # "Park_Code" 
             }
-            real[3] <- df$Reach_Name # "Location_ID" shared field with `real_activities.Location_ID`
+            real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_activities.Location_ID`
             real[4] <- df$Loc_Name # "Location_Name"
             real[5] <- "Creek" # "Location_Type"
             real[6] <- df$Dec_Degrees_North # "Latitude"
@@ -66,7 +69,7 @@ marc_2022_fish_locations <- function(marc2022, example, results_list){
             real[36] <- NA # "Well_ID"
             real[37] <- NA # "Well_Type"
             real[38] <- NA # "Aquifer_Name"
-            real[39] <- NA # "Formation_Type"
+            real[39] <- "Stream habitat survey" # "Formation_Type"
             real[40] <- NA # "Well_Hole_Depth"
             real[41] <- NA # "Well_Hole_Depth_Unit"
             real[42] <- NA # "Well_Status"
@@ -89,7 +92,7 @@ marc_2022_fish_locations <- function(marc2022, example, results_list){
             
             message(
                 if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`marc_2022_fish_locations()` executed successfully..."
+                    "`marc_2022_summer_exotic_locations()` executed successfully..."
                 } else {
                     for(i in 1:length(check_df$result != "MATCH")){
                         cat(paste(paste0("`real", check_df$real[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))
@@ -97,7 +100,6 @@ marc_2022_fish_locations <- function(marc2022, example, results_list){
                 }
             )
             # assign("real", real, envir = globalenv())
-            
             return(real)
         }
     )

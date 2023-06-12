@@ -64,7 +64,7 @@ edd_locations <- function(
             bob_2022_habitat_locations <- bob_2022_habitat_locations(results_list, bob_2022_hab, example)
             
             #----- marc.edd.locations
-            marc_2022_fish_locations <- marc_2022_fish_locations(marc2022, example) # marc's 2021 fish data are in db.tbl_Fish_Data
+            marc_2022_fish_locations <- marc_2022_fish_locations(marc2022, example, results_list) # marc's 2021 fish data are in db.tbl_Fish_Data
             marc_habitat_locations <- marc_habitat_locations(habitat_marc2022, habitat_marc2021, example, results_list) # marc's 2021 fish locations are not in db.tbl_Fish_Data
             marc_2022_summer_index_locations <- marc_2022_summer_index_locations(summer_index_marc2022, example, results_list)
             marc_2022_summer_exotic_locations <- marc_2022_summer_exotic_locations(summer_exotic_marc2022, example, results_list)
@@ -88,31 +88,10 @@ edd_locations <- function(
                 ,marc_2022_flow_locations
             )
             
-            #----- keep only unique locations
-            real <- real %>% distinct(Location_ID, .keep_all = TRUE)
+            real <- locations_wrangle(example, real)
             
-            #----- error-checking
-            check_df <- tibble::tibble(data.frame(matrix(ncol=3, nrow=ncol(real))))
-            colnames(check_df) <- c("real", "example", "result")
-            check_df$real <- colnames(real)
-            check_df$example <- colnames(example)
-            for(i in 1:nrow(check_df)){
-                if(check_df$real[i] == check_df$example[i]){
-                    check_df$result[i] <- "MATCH"
-                } else {
-                    check_df$result[i] <- "MISMATCH"
-                }
-            }
+            message("\n`edd.locations` built successfully...\n")
             
-            message(
-                if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`edd_locations()` executed successfully..."
-                } else {
-                    for(i in 1:length(check_df$result != "MATCH")){
-                        cat(paste(paste0("`real.", check_df$real[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))
-                    }
-                }
-            )
             return(real)
         }
     )

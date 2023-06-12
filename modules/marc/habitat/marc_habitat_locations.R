@@ -65,7 +65,7 @@ marc_habitat_locations <- function(habitat_marc2022, habitat_marc2021, example, 
                 real[i,2] <- substr(df$NCRN_Site_ID[i], 6, 9) # "Park_Code" 
             }
             real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_activities.Location_ID`
-            real[4] <- df$Site_ID # "Location_Name"
+            real[4] <- df$Loc_Name # "Location_Name"
             real[5] <- "Creek" # "Location_Type"
             real[6] <- df$Dec_Degrees_North # "Latitude"
             real[7] <- df$Dex_Degrees_East # "Longitude"
