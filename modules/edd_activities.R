@@ -92,7 +92,7 @@ edd_activities <- function(
             #----- wrangle
             real <- activities_wrangle(example, real)
             
-            message("`edd.activities` built successfully...")
+            message("\n`edd.activities` built successfully...\n")
             
             return(real)
         }

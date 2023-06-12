@@ -91,7 +91,7 @@ edd_results <- function(
             #----- wrangle
             real <- results_wrangle(example, real)
             
-            message("`edd.results` built successfully...")
+            message("\n`edd.results` built successfully...\n")
             
             return(real)
         }
