@@ -91,8 +91,16 @@ make_edd <- function(write, db){
             
             #----- correct erroneous records from source files to avoid propagating errors; justification for each fix available at end of this file
             # ncrn
-            results_list$tbl_Locations <- results_list$tbl_Locations %>% subset(Location_ID != "20141014213700-948571085.929871") # this is an erroneous duplicate of NCRN_ROCR_PACR
-            results_list$tbl_Events <- results_list$tbl_Events %>% subset(Location_ID != "20141014213700-948571085.929871") # this Location_ID is associated with tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’], which is an event with no data (i.e., this event was probably created by mistake and never deleted from the db)
+            # results_list$tbl_Locations <- results_list$tbl_Locations %>% subset(Location_ID != "20141014213700-948571085.929871") # this is an erroneous duplicate of NCRN_ROCR_PACR
+            # results_list$tbl_Events <- results_list$tbl_Events %>% subset(Location_ID != "20141014213700-948571085.929871") # this Location_ID is associated with tbl_Events.Event_ID[‘{6E1170DE-F76F-47EE-A51B-81CEA278F876}’], which is an event with no data (i.e., this event was probably created by mistake and never deleted from the db)
+            results_list$tbl_Events <- results_list$tbl_Events %>%
+                mutate(
+                    Location_ID = case_when(
+                        Location_ID == "20141014213700-948571085.929871" ~ "20080430152712-430261135.101318" # duplicate location ID for "NCRN_ROCR_PACR" that breaks joins
+                        ,TRUE ~ Location_ID
+                    )
+                )
+            
             
             # bob
             bob_2021_macroinvert$site[bob_2021_macroinvert$site == "PRWI-MAWI"] <- "PRWI-MARU" # Corrected typo in source file `2021_prwi_sites_bob.xlsx`.’raw benthic data’.site == ‘PRWI-MAWI’ to ‘PRWI-MARU’. Bob’s spreadsheet has the same sites for macroinvertebrates and water chemistry, except for one site: ‘PRWI-MAWI’, which is not a valid value in `tbl_Locations.NCRN_Site_ID`
