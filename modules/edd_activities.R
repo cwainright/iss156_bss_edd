@@ -43,6 +43,8 @@ edd_activities <- function(
             source("modules/marc/habitat/marc_2022_summer_index_activities.R")
             source("modules/marc/habitat/marc_2022_summer_exotic_activities.R")
             source("modules/marc/habitat/marc_2022_flow_activities.R")
+            #wrangle
+            source("modules/wrangle/activities_wrangle.R")
             
             #----- load template
             example <- readxl::read_excel("template/NCRN_BSS_EDD_20230105_1300.xlsx", sheet = "Activities") # https://doimspp.sharepoint.com/:x:/r/sites/NCRNDataManagement/Shared%20Documents/General/Standards/Data-Standards/EQuIS-WQX-EDD/NCRN_BSS_EDD_20230105_1300.xlsx?d=w8c283fde9cbd4af480945c8c8bd94ff6&csf=1&web=1&e=7Y9W1M
@@ -86,31 +88,12 @@ edd_activities <- function(
                 ,marc_2022_flow_activities
                 )
             
-            #----- keep only unique activities
-            real <- real %>% distinct(Activity_ID, .keep_all = TRUE)
             
-            #----- error-checking
-            check_df <- tibble::tibble(data.frame(matrix(ncol=3, nrow=ncol(real))))
-            colnames(check_df) <- c("real", "example", "result")
-            check_df$real <- colnames(real)
-            check_df$example <- colnames(example)
-            for(i in 1:nrow(check_df)){
-                if(check_df$real[i] == check_df$example[i]){
-                    check_df$result[i] <- "MATCH"
-                } else {
-                    check_df$result[i] <- "MISMATCH"
-                }
-            }
+            #----- wrangle
+            real <- activities_wrangle(example, real)
             
-            message(
-                if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`edd.activities` built successfully..."
-                } else {
-                    for(i in 1:length(check_df$result != "MATCH")){
-                        cat(paste(paste0("`real.", check_df$real[i], "`"), paste0(" DID NOT MATCH `example.", check_df$example[i][i], "`"), "\n", sep = ""))
-                    }
-                }
-            )
+            message("`edd.activities` built successfully...")
+            
             return(real)
         }
     )
