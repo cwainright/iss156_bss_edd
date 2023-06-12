@@ -31,7 +31,7 @@ ncrn_macroinvert_activities <- function(results_list, example){
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"
             real[8] <- "Stream benthic macroinvertebrates" # "Assemblage_Sampled_Name"
-            real[9] <- format(df$SampleDate, "%Y-%m-%d") # "Activity_Start_Date"
+            real[9] <- format(df$Start_Date, "%Y-%m-%d") # "Activity_Start_Date"
             real[10] <- format(df$Start_Time, "%H:%M") # "Activity_Start_Time" 
             real[11] <- "Eastern Time - Washington, DC" # "Activity_Start_Time_Zone" 
             real[12] <- NA # "Activity_End_Date" 
