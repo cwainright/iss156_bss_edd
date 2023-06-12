@@ -61,7 +61,7 @@ marc_habitat_activities <- function(habitat_marc2022, habitat_marc2021, example,
             real[2] <- "Biological Stream Survey - physical habitat inventory" # "Project_ID"
             real[3] <- df$NCRN_Site_ID # "Location_ID" shared field with `real_locations.Location_ID`
             # real[4] <- df$Activity_ID # "Activity_ID" shared field with `real_locations.Activity_ID` and `real_results.Activity_ID`
-            real[4] <- paste0(df$NCRN_Site_ID, ".m.habitat.", format(as.Date(df$Start_Date), "%Y%m%d"))
+            real[4] <- paste0(df$NCRN_Site_ID, ".m.", format(as.Date(df$Start_Date), "%Y%m%d"))
             real[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"

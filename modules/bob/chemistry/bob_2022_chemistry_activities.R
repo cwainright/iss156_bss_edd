@@ -15,7 +15,7 @@ bob_2022_chemistry_activities <- function(results_list, bob_2022_wq, example){
             df <- df %>% subset(`Sample ID` %like% "NCRN")
             df$`Date Collected` <- as.Date(as.numeric(df$`Date Collected`), origin = "1899-12-30")
             df$sample_type <- "Stream water chemistry"
-            df$Activity_ID <- paste0(df$`Sample ID`, ".b.water_chemistry.", format(df$`Date Collected`, "%Y%m%d"))
+            df$Activity_ID <- paste0(df$`Sample ID`, ".b.", format(df$`Date Collected`, "%Y%m%d"))
             
             loc_lookup <- results_list$tbl_Locations %>% select(Location_ID, Site_ID, NCRN_Site_ID, Loc_Name)
             loc_lookup$bob_site <- stringr::str_sub(loc_lookup$NCRN_Site_ID, -9, -1)

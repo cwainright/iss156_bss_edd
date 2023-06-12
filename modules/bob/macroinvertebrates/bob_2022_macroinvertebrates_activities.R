@@ -14,7 +14,7 @@ bob_2022_macroinvert_activities <- function(results_list, bob_2022_macroinvert, 
             df <- bob_2022_macroinvert
             df$date <- 2022 # there is no date column in the source file
             df$Characteristic_Name <- "Stream macroinvertebrate sampling"
-            df$Activity_ID <- paste0(df$site, ".b.macroinvertebrates.", as.character(df$date))
+            df$Activity_ID <- paste0(df$site, ".b.", as.character(df$date))
             df$Assemblage_Sampled_Name <- "Stream benthic macroinvertebrates"
             
             loc_lookup <- results_list$tbl_Locations %>% select(Location_ID, Site_ID, NCRN_Site_ID, Loc_Name)
