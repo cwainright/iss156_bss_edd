@@ -115,7 +115,7 @@ activities_wrangle <- function(example, real){
             
             message(
                 if(length(check_df$result == "MATCH") == nrow(check_df)){
-                    "`activities` wrangled successfully..."
+                    message("`activities` wrangled successfully...")
                     return(real)
                 } else {
                     for(i in 1:length(check_df$result != "MATCH")){
