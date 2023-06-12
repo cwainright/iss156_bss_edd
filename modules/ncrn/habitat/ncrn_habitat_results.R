@@ -57,7 +57,7 @@ ncrn_habitat_results <- function(results_list, example){
             real[6] <- NA # "Result_Detection_Condition"
             real[7] <- df$value # "Result_Text"
             real[8] <- df$unit # "Result_Unit"
-            real[9] <- df$source # "Result_Qualifier"
+            real[9] <- NA # "Result_Qualifier"
             real[10] <- "Final" # "Result_Status" 
             real[11] <- "Actual" # "Result_Type" 
             real[12] <- df$Comments # "Result_Comment" 
