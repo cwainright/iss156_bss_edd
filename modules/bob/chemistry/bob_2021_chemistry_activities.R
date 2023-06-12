@@ -34,7 +34,7 @@ bob_2021_chemistry_activities <- function(results_list, bob_2021_water_chem, exa
             real[5] <- "Field Msr/Obs" # "Activity_Type"; choices are: 1) 'Field Msr/Obs' and 2) 'Sample-Routine'
             real[6] <- "Water" # "Medium"  choices are "Water", "Air", and "Other" in `example`
             real[7] <- NA # "Medium_Subdivision"
-            real[8] <- df$sample_type # "Assemblage_Sampled_Name"
+            real[8] <- "physical habitat inventory" # df$sample_type # "Assemblage_Sampled_Name"
             real[9] <- format(df$`Date Collected`, "%Y-%m-%d") # "Activity_Start_Date"
             real[10] <- NA # "Activity_Start_Time" 
             real[11] <- NA # "Activity_Start_Time_Zone" 
