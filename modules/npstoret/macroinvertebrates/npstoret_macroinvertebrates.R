@@ -15,6 +15,7 @@ npstoret_macroinvertebrates_results <- function(){
             data <- RODBC::sqlQuery(channel , statement)
             RODBC::odbcCloseAll()
             data <- rename(data, "#Org_Code" = "Org_Code")
+            message("`npstoret_macroinvertebrates_results() executed successfully")
             return(data)
         }
     )
@@ -35,6 +36,7 @@ npstoret_macroinvertebrates_activities <- function(){
             RODBC::odbcCloseAll()
             data <- data %>% distinct(Activity_ID, .keep_all = TRUE)
             data <- rename(data, "#Org_Code" = "Org_Code")
+            message("`npstoret_macroinvertebrates_activities() executed successfully")
             return(data)
         }
     )
@@ -57,6 +59,7 @@ npstoret_macroinvertebrates_locations <- function(unique_locs){
                 Location_ID %in% unique_locs
             )
             data <- rename(data, "#Org_Code" = "Org_Code")
+            message("`npstoret_macroinvertebrates_locations() executed successfully")
             return(data)
         }
     )
