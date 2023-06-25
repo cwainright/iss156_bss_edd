@@ -1,7 +1,7 @@
 SELECT tblLocations.LocSTATN_ORG_ID AS Org_Code
 	,tblLocations.StationID AS Park_Code
 	,tblLocations.StationID AS Location_ID
-	,tblLocations.[Station Name]
+	,tblLocations.[Station Name] AS Location_Name
 	,tblLocations.LocationType AS Location_Type
 	,tblLocations.[Latitude Degrees] AS Latitude
 	,tblLocations.[Longitude Degrees] AS Longitude
@@ -24,7 +24,7 @@ SELECT tblLocations.LocSTATN_ORG_ID AS Org_Code
 	,tblLocations.[Elevation Datum] AS Elevation_Datum
 	,tblLocations.ElevationAccuracy AS Elevation_Accuracy
 	,'ft' AS Elevation_Accuracy_Unit
-	,'US' AS Elevation_Country_Code_Unit
+	,'US' AS Country_Code
 	,tblLocations.STATE AS State_Code
 	,tblLocations.County AS County_Name
 	,tblLocations.DrainageArea AS Drainage_Area
