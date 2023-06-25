@@ -43,6 +43,8 @@ edd_results <- function(
             source("modules/marc/habitat/marc_2022_summer_index_results.R")
             source("modules/marc/habitat/marc_2022_summer_exotic_results.R")
             source("modules/marc/habitat/marc_2022_flow_results.R")
+            #npstoret
+            source("modules/npstoret/macroinvertebrates/npstoret_macroinvertebrates.R")
             #wrangle
             source("modules/wrangle/results_wrangle.R")
             
@@ -70,6 +72,9 @@ edd_results <- function(
             marc_2022_summer_exotic_results <- marc_2022_summer_exotic_results(summer_exotic_marc2022, example, results_list)
             marc_2022_flow_results <- marc_2022_flow_results(summer_flow_marc2022, example, results_list)
             
+            #----- npstoret.edd.activities
+            npstoret_results <- npstoret_macroinvertebrates_results()
+            
             #----- combine edd.results
             real <- rbind(
                 ncrn_benthic_habitat_results
@@ -86,6 +91,7 @@ edd_results <- function(
                 ,marc_2022_summer_index_results
                 ,marc_2022_summer_exotic_results
                 ,marc_2022_flow_results
+                ,npstoret_results
             )
             
             #----- wrangle
