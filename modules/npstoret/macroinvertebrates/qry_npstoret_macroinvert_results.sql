@@ -108,5 +108,5 @@ WHERE (
 			(tblResults.LocChDef_IS_NUMBER) > 30
 			AND (tblResults.LocChDef_IS_NUMBER) < 55
 			)
-		AND ((tblProjects.ProjectID) = 'NCRNWQ01')
+		AND ((tblProjects.ProjectID) = 'NCRNBI01')
 		);
