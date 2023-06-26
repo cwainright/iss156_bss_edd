@@ -9,6 +9,9 @@ locations_wrangle <- function(example, real){
                     Location_ID = case_when(
                         Location_ID == "NCRN_ROCR_FEBR_DUP" ~ "NCRN_ROCR_FEBR"
                         ,Location_ID == "NCRN_PRWI_MBBR_DUP" ~ "NCRN_PRWI_MBBR"
+                        # ,Location_ID == 'PRWI_SOS_A_01' ~ 'NCRN_PRWI_NFQC'
+                        # ,Location_ID == 'PRWI_SOS_A_05' ~ 'NCRN_PRWI_SFQC'
+                        # ,Location_ID == 'PRWI_SOS_A_08' ~ 'NCRN_PRWI_SFQC'
                         ,TRUE ~ Location_ID
                     )
                 ) %>%

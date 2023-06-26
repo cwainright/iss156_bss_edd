@@ -40,22 +40,26 @@ SELECT tblLocations.LocSTATN_ORG_ID AS Org_Code
 	,'' AS Well_Hole_Depth
 	,'' AS Well_Hole_Depth_Unit
 	,'' AS Well_Status
-FROM (
-	tblLocations INNER JOIN tblVisits ON (tblLocations.LocSTATN_ORG_ID = tblVisits.LocSTATN_ORG_ID)
-		AND (tblLocations.LocSTATN_IS_NUMBER = tblVisits.LocSTATN_IS_NUMBER)
-	)
+FROM tblProjects
 INNER JOIN (
-	tblCharacteristics INNER JOIN (
-		tblActivities INNER JOIN tblResults ON (tblActivities.LocFdAct_ORG_ID = tblResults.LocFdAct_Org_ID)
-			AND (tblActivities.LocFdAct_IS_NUMBER = tblResults.LocFdAct_IS_NUMBER)
-		) ON (tblCharacteristics.LocCHDEF_ORG_ID = tblResults.LocChDef_Org_ID)
-		AND (tblCharacteristics.LocCHDEF_IS_NUMBER = tblResults.LocChDef_IS_NUMBER)
-	) ON (tblVisits.LocStVst_ORG_ID = tblActivities.LocStVst_ORG_ID)
-	AND (tblVisits.LocStVst_IS_NUMBER = tblActivities.LocStVst_IS_NUMBER)
+	(
+		tblLocations INNER JOIN tblVisits ON (tblLocations.LocSTATN_ORG_ID = tblVisits.LocSTATN_ORG_ID)
+			AND (tblLocations.LocSTATN_IS_NUMBER = tblVisits.LocSTATN_IS_NUMBER)
+		) INNER JOIN (
+		tblCharacteristics INNER JOIN (
+			tblActivities INNER JOIN tblResults ON (tblActivities.LocFdAct_ORG_ID = tblResults.LocFdAct_Org_ID)
+				AND (tblActivities.LocFdAct_IS_NUMBER = tblResults.LocFdAct_IS_NUMBER)
+			) ON (tblCharacteristics.LocCHDEF_ORG_ID = tblResults.LocChDef_Org_ID)
+			AND (tblCharacteristics.LocCHDEF_IS_NUMBER = tblResults.LocChDef_IS_NUMBER)
+		) ON (tblVisits.LocStVst_ORG_ID = tblActivities.LocStVst_ORG_ID)
+		AND (tblVisits.LocStVst_IS_NUMBER = tblActivities.LocStVst_IS_NUMBER)
+	) ON (tblProjects.LocProj_ORG_ID = tblVisits.LocProj_ORG_ID)
+	AND (tblProjects.LocProj_IS_NUMBER = tblVisits.LocProj_IS_NUMBER)
 WHERE (
 		((tblVisits.START_DATE) > #1 / 1 / 2005 #)
 		AND (
 			(tblResults.LocChDef_IS_NUMBER) > 30
 			AND (tblResults.LocChDef_IS_NUMBER) < 55
 			)
+		AND ((tblProjects.ProjectID) = 'NCRNWQ01')
 		);
