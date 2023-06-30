@@ -17,8 +17,8 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "field comments about site" ~ "comments"
                         ,Characteristic_Name == "wetted width of stream at bottom of 75m sampling reach" ~ "stream abiotic - 75m - wetted channel width"
                         ,Characteristic_Name == "wetted width of stream at top of 75m sampling reach" ~ "stream abiotic - 0m - wetted channel width"
-                        ,Characteristic_Name == "riparian vegetation width on left bank" ~ "stream abiotic - riparian width - left bank"
-                        ,Characteristic_Name == "riparian vegetation width on right bank" ~ "stream abiotic - riparian width - right bank "
+                        ,Characteristic_Name == "riparian vegetation width on left bank" ~ "stream abiotic - left bank - riparian width"
+                        ,Characteristic_Name == "riparian vegetation width on right bank" ~ "stream abiotic - right bank - riparian width"
                         ,Characteristic_Name == "right bank concrete" ~ "stream abiotic - right bank - extent - length of stream channelized by pipe"
                         ,Characteristic_Name == "left bank concrete" ~ "stream abiotic - left bank - extent - length of stream channelized by pipe"
                         ,Characteristic_Name == "field comments" ~ "comments"
@@ -120,17 +120,17 @@ results_wrangle <- function(example, real){
                         ,Characteristic_Name == "number of large wood pieces in active channel but currently dewatered" ~ "stream abiotic - coarse woody debris in stream channel but currently dewatered"
                         ,Characteristic_Name == "number of root wads in wetted stream" ~ "stream abiotic - root wads in wetted stream"
                         ,Characteristic_Name == "number of root wads in active channel but currently dewatered" ~ "stream abiotic - root wads in stream channel but currently dewatered"
-                        ,Characteristic_Name == "left bank riparian width (m)" ~ "stream abiotic - left bank - riparian width"
+                        ,Characteristic_Name == "left bank riparian width (m)" ~ "stream biotic - left bank - riparian width"
                         ,Characteristic_Name == "riparian vegetation buffer broken on left bank (yes/no)" ~ "stream abiotic - left bank - presence absence - riparian buffer breaks"
-                        ,Characteristic_Name == "left bank adjacent land cover" ~ "stream biotic - left bank - adjacent land cover"
-                        ,Characteristic_Name == "right bank adjacent land cover" ~ "stream biotic - right bank - adjacent land cover"
-                        ,Characteristic_Name == "adjacent land cover left bank" ~ "stream biotic - left bank - adjacent land cover"
-                        ,Characteristic_Name == "adjacent land cover righ bank" ~ "stream biotic - right bank - adjacent land cover"
+                        ,Characteristic_Name == "left bank adjacent land cover" ~ "stream abiotic - left bank - adjacent land cover"
+                        ,Characteristic_Name == "right bank adjacent land cover" ~ "stream abiotic - right bank - adjacent land cover"
+                        ,Characteristic_Name == "adjacent land cover left bank" ~ "stream abiotic - left bank - adjacent land cover"
+                        ,Characteristic_Name == "adjacent land cover righ bank" ~ "stream abiotic - right bank - adjacent land cover"
                         ,Characteristic_Name == "left bank dredge spoil" ~ "stream abiotic - relative abundance - left bank - dredge spoil"
                         ,Characteristic_Name == "right bank dredge spoil" ~ "stream abiotic - relative abundance - right bank - dredge spoil"
                         ,Characteristic_Name == "left bank buffer breaks" ~ "stream abiotic - left bank - presence absence - riparian buffer breaks"
                         ,Characteristic_Name == "right bank buffer breaks" ~ "stream abiotic - right bank - presence absence - riparian buffer breaks"
-                        ,Characteristic_Name == "right bank riparian width (m)" ~ "stream abiotic - right bank - riparian width"
+                        ,Characteristic_Name == "right bank riparian width (m)" ~ "stream biotic - right bank - riparian width"
                         ,Characteristic_Name == "riparian vegetation buffer broken on right bank (yes/no)" ~ "stream abiotic - right bank - presence absence - riparian buffer breaks"
                         ,Characteristic_Name == "left dominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right dominant substrate"
                         ,Characteristic_Name == "left subdominant substrate at 50m-75m" ~ "stream abiotic - 50m-75m - river-right subdominant substrate"
@@ -408,6 +408,8 @@ results_wrangle <- function(example, real){
                 mutate(
                     Characteristic_Name = gsub("right bank", "top right bank", Characteristic_Name)
                     ,Characteristic_Name = gsub("left bank", "top left bank", Characteristic_Name)
+                    ,Characteristic_Name = gsub("top right bank", "river-left bank", Characteristic_Name)
+                    ,Characteristic_Name = gsub("top left bank", "river-right bank", Characteristic_Name)
                 ) %>%
                 mutate(
                     Result_Sampling_Point_Name = case_when(
@@ -536,6 +538,10 @@ results_wrangle <- function(example, real){
                     ,Result_Unit = trimws(Result_Unit, which="both")
                     ,Result_Comment = trimws(Result_Comment, which="both")
                     ,Result_Qualifier = trimws(Result_Qualifier, which="both")
+                ) %>%
+                mutate(
+                    Characteristic_Name = gsub("stream biotic", "habitat inventory", Characteristic_Name)
+                    ,Characteristic_Name = gsub("stream abiotic", "habitat inventory", Characteristic_Name)
                 )
             
             # check that data wrangling produced valid units
