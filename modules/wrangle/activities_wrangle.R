@@ -12,6 +12,7 @@ activities_wrangle <- function(example, real){
             real$lat <- NULL
             real$lon <- NULL
             real$name <- NULL
+            real$Project_ID <- 'USNPS NCRN Biological Stream Survey'
 
             real <- real %>%
                 rename(Location_ID = good) %>%
