@@ -11,6 +11,7 @@ locations_wrangle <- function(example, real){
             real$Location_Name <- NULL
             real <- dplyr::left_join(real, loc_lookup, by=c('Location_ID' = 'bad'))
             real$Location_ID <- NULL
+            real$Location_Type <- 'Perennial non-tidal stream'
             
             real <- real %>%
                 rename(Location_ID = good) %>%
