@@ -4,25 +4,36 @@ options(warn=-1)
 activities_wrangle <- function(example, real){
     tryCatch(
         expr = {
+            # import the location lookup table and replace values from source files with vetted values
+            loc_lookup <- readxl::read_excel("data/location_lookup.xlsx")
+            real$Additional_Location_Info <- ''
+            real <- dplyr::left_join(real, loc_lookup, by=c('Location_ID' = 'bad'))
+            real$Location_ID <- NULL
+            real$lat <- NULL
+            real$lon <- NULL
+            real$name <- NULL
+
             real <- real %>%
-                mutate(
-                    Location_ID = case_when(
-                        Location_ID == "NCRN_ROCR_FEBR_DUP" ~ "NCRN_ROCR_FEBR"
-                        ,Location_ID == "NCRN_PRWI_MBBR_DUP" ~ "NCRN_PRWI_MBBR"
-                        ,TRUE ~ Location_ID
-                    )
-                ) %>%
-                mutate(
-                    Additional_Location_Info = case_when(
-                        Additional_Location_Info == "Hazen Creek" ~"Reservation 630 Creek"
-                        ,Additional_Location_Info == "NCRN Monocacy Park at Bush Creek" ~"Bush Creek"
-                        ,Additional_Location_Info == "Henson Creek @ Suitland Road" ~"Henson Creek"
-                        ,Additional_Location_Info == "Still Creek, Greenbelt Park" ~"Still Creek"
-                        ,Additional_Location_Info == "Whiskey Still Creek" ~"Blue Blazes Creek"
-                        ,Additional_Location_Info == "Visitor's Center Creek" ~"Visitor Center Creek"
-                        ,TRUE ~ Additional_Location_Info
-                    )
-                ) %>%
+                rename(Location_ID = good) %>%
+                select(colnames(example)) %>%
+                # mutate(
+                #     Location_ID = case_when(
+                #         Location_ID == "NCRN_ROCR_FEBR_DUP" ~ "NCRN_ROCR_FEBR"
+                #         ,Location_ID == "NCRN_PRWI_MBBR_DUP" ~ "NCRN_PRWI_MBBR"
+                #         ,TRUE ~ Location_ID
+                #     )
+                # ) %>%
+                # mutate(
+                #     Additional_Location_Info = case_when(
+                #         Additional_Location_Info == "Hazen Creek" ~"Reservation 630 Creek"
+                #         ,Additional_Location_Info == "NCRN Monocacy Park at Bush Creek" ~"Bush Creek"
+                #         ,Additional_Location_Info == "Henson Creek @ Suitland Road" ~"Henson Creek"
+                #         ,Additional_Location_Info == "Still Creek, Greenbelt Park" ~"Still Creek"
+                #         ,Additional_Location_Info == "Whiskey Still Creek" ~"Blue Blazes Creek"
+                #         ,Additional_Location_Info == "Visitor's Center Creek" ~"Visitor Center Creek"
+                #         ,TRUE ~ Additional_Location_Info
+                #     )
+                # ) %>%
                 mutate(
                     Assemblage_Sampled_Name = case_when(
                         Assemblage_Sampled_Name == "physical habitat inventory" ~ "stream physical habitat"
